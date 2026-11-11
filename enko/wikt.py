@@ -7,7 +7,7 @@ from collections import Counter
 
 from .paths import DEFERRED, DUMP, DUMP_VERSION, ENTRIES, FORMS, SOURCE, SOURCE_VERSION
 
-TOP_WORDS = 20000  # single words: the wordfreq top N
+TOP_WORDS = 50000  # single words: the wordfreq top N
 SKIP_POS = {"character", "symbol"}
 # Senses a learner's dictionary can do without; dropping them cuts the sense count by about 30%.
 SKIP_TAGS = {"obsolete", "archaic", "rare", "dialectal", "dated", "nonstandard", "misspelling"}
