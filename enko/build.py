@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import wikt
-from .paths import DIST, NAME, RELEASE_URL, REPO, SOURCE_VERSION, TAGS_FILE, TERMS_STORE
+from .paths import DIST, FORMS, NAME, RELEASE_URL, REPO, SOURCE_VERSION, TAGS_FILE, TERMS_STORE
 from .store import Store
 
 BANK_SIZE = 10000
@@ -104,10 +104,38 @@ def _render(entry, tr, tags):
     return {"type": "structured-content", "content": content}
 
 
+# Wiktextract tags on a form-of sense -> the label Yomitan shows next to the headword.
+FORM_LABELS = [
+    ("third-person", "3인칭"), ("singular", "단수"), ("plural", "복수"), ("present", "현재"), ("past", "과거"),
+    ("participle", "분사"), ("gerund", "동명사"), ("comparative", "비교급"), ("superlative", "최상급"),
+]
+ALT_LABELS = [("pronunciation-spelling", "발음대로 쓴 철자"), ("misconstruction", "잘못 분석된 형태"), ("US", "미국식 철자"), ("UK", "영국식 철자")]
+
+
+def form_label(tags):
+    if tags[0] == "form-of":
+        return " ".join(ko for tag, ko in FORM_LABELS if tag in tags) or "활용형"
+    return next((ko for tag, ko in ALT_LABELS if tag in tags), "다른 철자")
+
+
+def _form_rows(headwords, seq):
+    """Rows that only point at a headword: Yomitan looks up the target and shows the label as the inflection."""
+    rows = []
+    if not FORMS.exists():
+        return rows
+    with open(FORMS, encoding="utf-8") as f:
+        for line in f:
+            form = json.loads(line)
+            if form["to"] in headwords:
+                seq += 1
+                rows.append([form["w"], "", "", "", 0, [[form["to"], [form_label(form["t"])]]], seq, ""])
+    return rows
+
+
 def main(args):
     store = Store(Path(args.store) if args.store else TERMS_STORE)
     tags = TagNames()
-    rows, order = [], Counter()
+    rows, order, seq = [], Counter(), 0
     for seq, e in enumerate(wikt.load(), 1):
         tr = store.get(e["id"])
         if tr and tr["h"] != wikt.source_hash(e):
@@ -116,8 +144,10 @@ def main(args):
             continue
         order[e["w"]] += 1  # same spelling: keep Wiktionary's order (first etymology first)
         rows.append([e["w"], "", "", wikt.rule_of(e), 1 - order[e["w"]], [_render(e, tr, tags)], seq, ""])
+    forms = _form_rows({row[0] for row in rows}, seq)
+    rows += forms
     version = SOURCE_VERSION.read_text().strip()
     index = _index(f"영어 위키낱말사전 기반 영한사전. 한국어 뜻은 LLM 번역 (Wiktionary {version}).")
     digest = _write_zip(index, rows)
     (DIST / "content.sha256").write_text(f"{digest}  {NAME}\n")
-    print(f"{NAME}: {len(rows)} entries")
+    print(f"{NAME}: {len(rows) - len(forms)} entries, {len(forms)} forms")

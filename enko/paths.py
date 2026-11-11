@@ -12,6 +12,7 @@ DUMP = RAW / "kaikki-English.jsonl.gz"
 DUMP_VERSION = RAW / "DUMP_VERSION"
 ENTRIES = SOURCE / "entries.jsonl"
 DEFERRED = SOURCE / "deferred.jsonl"  # selected but set aside: not translated, not built
+FORMS = SOURCE / "forms.jsonl"  # inflected forms and other spellings, linked to their headword
 SOURCE_VERSION = SOURCE / "VERSION"
 
 TERMS_STORE = TRANSLATIONS / "terms.jsonl"

@@ -5,20 +5,21 @@
 An **English→Korean** dictionary for [Yomitan](https://github.com/yomidevs/yomitan).
 It keeps the headwords, parts of speech and sense divisions of the [English Wiktionary](https://en.wiktionary.org/) (through the [kaikki.org](https://kaikki.org/) extraction) and translates each sense into Korean with an LLM.
 
-> All 31,145 entries (100,199 senses) are translated, by Claude Haiku.
+> All 33,166 entries (103,460 senses) are translated, by Claude Haiku.
 
 ## Coverage
 
 | Scope | Headwords | Entries | Senses |
 |---|---|---|---|
-| Single words: the top 20,000 by [wordfreq](https://github.com/rspeer/wordfreq) frequency | 15,392 | 27,042 | 90,773 |
+| Single words: the top 20,000 by [wordfreq](https://github.com/rspeer/wordfreq) frequency | 15,912 | 29,063 | 94,034 |
 | Phrasal verbs: one of those verbs + particles (`give up`, `look forward to`) | — | 4,103 | 9,426 |
-| Total | | 31,145 | 100,199 |
+| Total | | 33,166 | 103,460 |
 
-- Inflected-form entries (`went`, `years`) are left out. Yomitan finds the base form.
+- Inflected forms (`went`, `children`, `years`) and other spellings (`favorite` → favourite) are not translated separately; they link to the base entry (`source/forms.jsonl`, 32,895 links).
+- Abbreviations and contractions (`it's`, `Mr`, `CIA`) are included only where the entry has no ordinary sense, with at most 3 expansions each.
 - Character and symbol entries are left out, and so are senses marked obsolete, archaic, rare, dialectal, dated, nonstandard or misspelling.
 - Proper names (`London`, `March`, `English`) are included, but each spelling keeps at most 1 surname sense, 1 given-name sense and 2 place senses. Namesake places listed under "a number of places in …" are dropped.
-- Capitalised variants of a lowercase word (`She` the ethnic group, `TO` the verb, `Grew` the surname) are set aside in `source/deferred.jsonl` (3,916 entries). They are neither translated nor built. The pronoun `I` and proper names with a meaning of their own (`March`, `Turkey`) stay.
+- Capitalised variants of a lowercase word (`She` the ethnic group, `TO` the verb, `Grew` the surname) are set aside in `source/deferred.jsonl` (5,287 entries). They are neither translated nor built. `I`, `US`, `IT`, `AM`, `ID` and proper names with a meaning of their own (`March`, `Turkey`) stay.
 - Multi-word headwords other than phrasal verbs are not included.
 - The selection is stored in `source/entries.jsonl`, and the build reads only that file.
 
@@ -33,7 +34,7 @@ Inflected forms and phrasal verbs are found too (`running` → run, `pick it up`
 ## Translation quality
 
 - The Korean glosses are machine-translated by an LLM (Claude Haiku), so some are wrong. Each entry has the English original from Wiktionary folded underneath; use it to check.
-- Entries the model was unsure about carry the note `※ 자동 번역 신뢰도 낮음` (low confidence). That is 2,939 entries, 9.4%.
+- Entries the model was unsure about carry the note `※ 자동 번역 신뢰도 낮음` (low confidence). That is 3,115 entries, 9.4%.
 - The only quality check so far was a blind test of 300 entries (883 senses), also graded by Claude: about 2% of the senses had a problem, most of them an imprecise gloss and a few a wrong meaning. Because a model graded a model, the real rate is probably higher. Entries with more than 12 senses were not in the test.
 - To fix a translation, edit the `s` field (the list of Korean glosses per sense) on that entry's line in `translations/terms.jsonl`.
 

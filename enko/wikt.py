@@ -5,13 +5,19 @@ import json
 import re
 from collections import Counter
 
-from .paths import DEFERRED, DUMP, DUMP_VERSION, ENTRIES, SOURCE, SOURCE_VERSION
+from .paths import DEFERRED, DUMP, DUMP_VERSION, ENTRIES, FORMS, SOURCE, SOURCE_VERSION
 
 TOP_WORDS = 20000  # single words: the wordfreq top N
 SKIP_POS = {"character", "symbol"}
 # Senses a learner's dictionary can do without; dropping them cuts the sense count by about 30%.
 SKIP_TAGS = {"obsolete", "archaic", "rare", "dialectal", "dated", "nonstandard", "misspelling"}
 FORM_TAGS = {"form-of", "alt-of"}
+# "X is short for Y" senses (CIA, it's, Mr) are translated when the entry has no ordinary sense; adding them
+# to entries that do would re-translate 900 common words for little gain. Other form-of and alt-of senses
+# (went, favorite) become links to the base word instead, see `_links`.
+ABBR_TAGS = {"abbreviation", "initialism", "acronym", "contraction", "clipping", "ellipsis"}
+MAX_ABBR = 3  # per entry: CIA has eight expansions
+KEEP_CAPS = {"I", "US", "IT", "AM", "ID"}  # capitalised variants of a lowercase headword that are kept anyway
 # Words that can follow a verb in a phrasal verb (Yomitan's particle and preposition lists).
 PARTICLES = set(
     "aback aboard about above across after against ahead along alongside among apart around as aside astray at away "
@@ -47,13 +53,37 @@ def name_kind(glosses):
     return "place" if PLACE.search(last) else None
 
 
+def _is_abbr(sense):
+    return bool(sense.get("alt_of")) and bool(ABBR_TAGS & set(sense.get("tags", [])))
+
+
+def _links(entry):
+    """(base word, tags) for each sense that only says "past of go" or "US spelling of favourite"."""
+    out = []
+    for s in entry.get("senses", []):
+        tags = s.get("tags", [])
+        if SKIP_TAGS & set(tags) or _is_abbr(s):
+            continue
+        kind = "form-of" if s.get("form_of") else "alt-of"
+        for target in s.get("form_of") or s.get("alt_of") or []:
+            if target.get("word"):
+                out.append((target["word"], [kind] + sorted(t for t in tags if t not in FORM_TAGS)))
+    return out
+
+
 def _lemma_senses(entry, kinds):
     """`kinds` counts the name senses already kept for this spelling, across its entries (Paris has seven)."""
-    out = []
+    out, abbrs = [], []
     for s in entry.get("senses", []):
         # Wiktextract lists topics from specific to broad (mathematics, sciences); the first is enough.
         tags = list(dict.fromkeys(s.get("tags", []) + s.get("topics", [])[:1]))
-        if not s.get("glosses") or s.get("form_of") or s.get("alt_of") or (FORM_TAGS | SKIP_TAGS) & set(tags):
+        if not s.get("glosses") or SKIP_TAGS & set(tags):
+            continue
+        if _is_abbr(s):
+            if len(abbrs) < MAX_ABBR:
+                abbrs.append({"g": " › ".join(g.strip() for g in s["glosses"]), "t": [t for t in tags if t not in FORM_TAGS]})
+            continue
+        if s.get("form_of") or s.get("alt_of") or FORM_TAGS & set(tags):
             continue
         if entry.get("pos") == "name":
             kind = name_kind(s["glosses"])
@@ -65,7 +95,9 @@ def _lemma_senses(entry, kinds):
         if ex and len(ex) <= MAX_EXAMPLE and "\n" not in ex:
             rec["ex"] = ex
         out.append(rec)
-    return out
+    if not out and re.search(r"[A-Za-z]", entry.get("word", "")):
+        return abbrs, True
+    return out, False
 
 
 def _hints(entry):
@@ -84,11 +116,11 @@ def _hints(entry):
 
 
 def select(top=TOP_WORDS):
-    """Read the dump and return (entries worth translating, most useful first; deferred entries)."""
+    """Read the dump and return (entries worth translating, most useful first; deferred entries; forms)."""
     from wordfreq import top_n_list
 
     rank = {w: i for i, w in enumerate(top_n_list("en", top))}
-    out, seen, name_kinds, lowercase = [], Counter(), {}, set()
+    out, seen, name_kinds, lowercase, links = [], Counter(), {}, set(), {}
     with gzip.open(DUMP, "rt", encoding="utf-8") as f:
         for n, line in enumerate(f):
             e = json.loads(line)
@@ -99,6 +131,10 @@ def select(top=TOP_WORDS):
                 continue
             toks = word.lower().split()
             if len(toks) == 1:
+                for target, tags in _links(e):
+                    if target != word:
+                        links.setdefault(word, {}).setdefault(target, tags)
+            if len(toks) == 1:
                 r, phrasal = rank.get(toks[0]), False
             elif pos == "verb" and 2 <= len(toks) <= 3 and all(t in PARTICLES for t in toks[1:]):
                 r, phrasal = rank.get(toks[0]), True
@@ -106,7 +142,7 @@ def select(top=TOP_WORDS):
                 continue
             if r is None:
                 continue
-            senses = _lemma_senses(e, name_kinds.setdefault(word, Counter()))
+            senses, abbr_only = _lemma_senses(e, name_kinds.setdefault(word, Counter()))
             if not senses:
                 continue
             key = f"{word}|{pos}|{e.get('etymology_number', 0)}"
@@ -123,21 +159,40 @@ def select(top=TOP_WORDS):
                 rec["ko"] = hints
             # A name that is nothing but surnames, given names and places (Grew, Butler, Ripple).
             namesake_only = pos == "name" and all(name_kind(s.get("glosses") or [""]) for s in e["senses"])
-            out.append((rec["r"], n, rec, namesake_only))
+            out.append((rec["r"], n, rec, namesake_only, abbr_only))
     out.sort(key=lambda x: x[:2])
     # A capitalised variant borrows the rank of the lowercase word and shows up next to it in Yomitan
     # (She the people on "she", TO the verb, Grew the surname on "grew"). Set these aside.
     # Proper names with a sense of their own (March, Turkey) stay, and so does the pronoun I.
-    headwords = {rec["w"] for _, _, rec, _ in out if rec["w"] == rec["w"].lower()}
+    # Abbreviation-only entries follow the same rule (TOLD, BASE and HELP are acronyms too), except KEEP_CAPS.
+    headwords = {rec["w"] for _, _, rec, _, abbr_only in out if rec["w"] == rec["w"].lower() and not abbr_only}
     keep, deferred = [], []
-    for _, _, rec, namesake_only in out:
+    for _, _, rec, namesake_only, abbr_only in out:
         w = rec["w"]
-        if rec["pos"] == "name":
+        if abbr_only:
+            variant = w != w.lower() and w.lower() in headwords and w not in KEEP_CAPS
+        elif rec["pos"] == "name":
             variant = namesake_only and w.lower() in lowercase
         else:
-            variant = w != w.lower() and w.lower() in headwords and w != "I"
+            variant = w != w.lower() and w.lower() in headwords and w not in KEEP_CAPS
         (deferred if variant else keep).append(rec)
-    return keep, deferred
+    return keep, deferred, _forms(links, {rec["w"] for rec in keep})
+
+
+def _forms(links, headwords):
+    """Links whose base word is in the dictionary, following one more link if needed (favored → favoured → favour)."""
+    out = []
+    for word in sorted(links):
+        found = {}
+        for target, tags in links[word].items():
+            if target in headwords:
+                found.setdefault(target, tags)
+                continue
+            for target2 in links.get(target, {}):
+                if target2 in headwords and target2 != word:
+                    found.setdefault(target2, tags)
+        out.extend({"w": word, "to": target, "t": tags} for target, tags in found.items())
+    return out
 
 
 def load():
@@ -173,9 +228,9 @@ def main(args):
     from .fetch import fetch_dump
 
     fetch_dump()
-    entries, deferred = select(args.top)
+    entries, deferred, forms = select(args.top)
     SOURCE.mkdir(exist_ok=True)
-    for path, recs in ((ENTRIES, entries), (DEFERRED, deferred)):
+    for path, recs in ((ENTRIES, entries), (DEFERRED, deferred), (FORMS, forms)):
         with open(path, "w", encoding="utf-8") as f:
             for e in recs:
                 f.write(json.dumps(e, ensure_ascii=False) + "\n")
@@ -187,3 +242,4 @@ def main(args):
     names = [e for e in entries if e["pos"] == "name"]
     print(f"  proper names: {len(names):,} entries, {sum(len(e['s']) for e in names):,} senses")
     print(f"deferred (capitalised variants of a lowercase word): {len(deferred):,} entries, {sum(len(e['s']) for e in deferred):,} senses → {DEFERRED}")
+    print(f"forms linked to a headword (went → go, favorite → favourite): {len(forms):,} → {FORMS}")
