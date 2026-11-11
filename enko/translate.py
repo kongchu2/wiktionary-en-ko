@@ -31,7 +31,7 @@ Rules:
 6. Keep register: slang, vulgar or informal senses → equally informal Korean; formal or literary → formal Korean.
 7. If Korean normally uses the loanword, give it in standard 외래어 표기법 spelling (computer → 컴퓨터, dock → 도크). Do not transliterate when a native or Sino-Korean word is the normal equivalent (water → 물, not 워터).
 8. Technical senses (math, law, medicine, computing, …): use the established Korean term (corollary → 따름정리, tort → 불법행위).
-9. Culture-specific terms with no Korean equivalent: Hangul transliteration plus a short explanation in parentheses.
+9. Culture-specific terms with no Korean equivalent: Hangul transliteration plus a short explanation in parentheses. Proper names: the standard Korean name (Germany → 독일, London → 런던, Monday → 월요일); for personal names and lesser-known places add what it is in parentheses (John → 존 (남자 이름), Smith → 스미스 (성씨), Salem → 세일럼 (미국 오리건주의 주도)).
 10. The ko hints are unreviewed. Use a hint when it is right for the sense; ignore it when it is wrong, belongs to another sense, or is unnatural.
 11. Write only Korean (Hangul, with punctuation and ~ allowed): no English words, no romanization, no hanja. Latin letters are allowed only where Korean itself writes them (DNA, CD, km).
 12. conf: "low" only when you are unsure of the core meaning of some sense (obscure, rare or ambiguous). Many senses, nuance or register differences alone are not reasons for "low"; otherwise "high"."""

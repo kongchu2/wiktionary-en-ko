@@ -5,10 +5,10 @@ import json
 import re
 from collections import Counter
 
-from .paths import DUMP, DUMP_VERSION, ENTRIES, SOURCE, SOURCE_VERSION
+from .paths import DEFERRED, DUMP, DUMP_VERSION, ENTRIES, SOURCE, SOURCE_VERSION
 
 TOP_WORDS = 20000  # single words: the wordfreq top N
-SKIP_POS = {"name", "character", "symbol"}
+SKIP_POS = {"character", "symbol"}
 # Senses a learner's dictionary can do without; dropping them cuts the sense count by about 30%.
 SKIP_TAGS = {"obsolete", "archaic", "rare", "dialectal", "dated", "nonstandard", "misspelling"}
 FORM_TAGS = {"form-of", "alt-of"}
@@ -20,18 +20,46 @@ PARTICLES = set(
     "throughout to together toward towards under underneath up upon way with within without".split()
 )
 # part of speech -> Yomitan deinflection condition
-RULES = {"verb": "v", "noun": "n", "adj": "adj", "adv": "adv"}
+RULES = {"verb": "v", "noun": "n", "name": "n", "adj": "adj", "adv": "adv"}
 HANGUL = re.compile(r"[가-힣]")
 MAX_EXAMPLE = 120
 
+# Proper names: most senses are namesakes ("A city in Ohio", "A surname"), so keep only a few per entry.
+_PLACE = (
+    r"(city|cities|town|village|hamlet|community|communities|suburb|county|counties|river|township|settlement"
+    r"|locality|localities|neighbou?rhood|parish|municipality|borough|places?|placename|commune|district|island"
+    r"|lake|mountain|province|region|area|ward|creek|barangay)"
+)
+PLACE_LIST = re.compile(r"^(a |an |any of |the name of )?(number of |several |various |numerous )?(\w+ ){0,2}" + _PLACE + r"\b")
+PLACE = re.compile(r"^(a |an |the )?([\w-]+ ){0,3}" + _PLACE + r"\b")
+NAME_LIMITS = {"surname": 1, "given": 1, "place": 2}  # per spelling
 
-def _lemma_senses(entry):
+
+def name_kind(glosses):
+    """Classify a proper-name sense: surname, given, place, namesake (a place inside a list of places) or None."""
+    first, last = glosses[0].lower(), glosses[-1].lower()
+    if re.search(r"\bsurname\b", first + " " + last):
+        return "surname"
+    if re.search(r"given name|diminutive of|nickname", first + " " + last):
+        return "given"
+    if len(glosses) > 1 and PLACE_LIST.search(first):
+        return "namesake"
+    return "place" if PLACE.search(last) else None
+
+
+def _lemma_senses(entry, kinds):
+    """`kinds` counts the name senses already kept for this spelling, across its entries (Paris has seven)."""
     out = []
     for s in entry.get("senses", []):
         # Wiktextract lists topics from specific to broad (mathematics, sciences); the first is enough.
         tags = list(dict.fromkeys(s.get("tags", []) + s.get("topics", [])[:1]))
         if not s.get("glosses") or s.get("form_of") or s.get("alt_of") or (FORM_TAGS | SKIP_TAGS) & set(tags):
             continue
+        if entry.get("pos") == "name":
+            kind = name_kind(s["glosses"])
+            kinds[kind] += 1
+            if kind == "namesake" or kinds[kind] > NAME_LIMITS.get(kind, 10**9):
+                continue
         ex = next((x.get("text", "") for x in s.get("examples", []) if x.get("type") == "example"), "")
         rec = {"g": " › ".join(g.strip() for g in s["glosses"]), "t": tags}
         if ex and len(ex) <= MAX_EXAMPLE and "\n" not in ex:
@@ -56,15 +84,17 @@ def _hints(entry):
 
 
 def select(top=TOP_WORDS):
-    """Read the dump and return the entries worth translating, most useful first."""
+    """Read the dump and return (entries worth translating, most useful first; deferred entries)."""
     from wordfreq import top_n_list
 
     rank = {w: i for i, w in enumerate(top_n_list("en", top))}
-    out, seen = [], Counter()
+    out, seen, name_kinds, lowercase = [], Counter(), {}, set()
     with gzip.open(DUMP, "rt", encoding="utf-8") as f:
         for n, line in enumerate(f):
             e = json.loads(line)
             word, pos = e.get("word", ""), e.get("pos", "")
+            if word == word.lower():
+                lowercase.add(word)  # every lowercase spelling in the dump, inflected forms included
             if pos in SKIP_POS:
                 continue
             toks = word.lower().split()
@@ -76,7 +106,7 @@ def select(top=TOP_WORDS):
                 continue
             if r is None:
                 continue
-            senses = _lemma_senses(e)
+            senses = _lemma_senses(e, name_kinds.setdefault(word, Counter()))
             if not senses:
                 continue
             key = f"{word}|{pos}|{e.get('etymology_number', 0)}"
@@ -91,8 +121,23 @@ def select(top=TOP_WORDS):
             hints = _hints(e)
             if hints:
                 rec["ko"] = hints
-            out.append((rec["r"], n, rec))
-    return [rec for _, _, rec in sorted(out, key=lambda x: x[:2])]
+            # A name that is nothing but surnames, given names and places (Grew, Butler, Ripple).
+            namesake_only = pos == "name" and all(name_kind(s.get("glosses") or [""]) for s in e["senses"])
+            out.append((rec["r"], n, rec, namesake_only))
+    out.sort(key=lambda x: x[:2])
+    # A capitalised variant borrows the rank of the lowercase word and shows up next to it in Yomitan
+    # (She the people on "she", TO the verb, Grew the surname on "grew"). Set these aside.
+    # Proper names with a sense of their own (March, Turkey) stay, and so does the pronoun I.
+    headwords = {rec["w"] for _, _, rec, _ in out if rec["w"] == rec["w"].lower()}
+    keep, deferred = [], []
+    for _, _, rec, namesake_only in out:
+        w = rec["w"]
+        if rec["pos"] == "name":
+            variant = namesake_only and w.lower() in lowercase
+        else:
+            variant = w != w.lower() and w.lower() in headwords and w != "I"
+        (deferred if variant else keep).append(rec)
+    return keep, deferred
 
 
 def load():
@@ -128,13 +173,17 @@ def main(args):
     from .fetch import fetch_dump
 
     fetch_dump()
-    entries = select(args.top)
+    entries, deferred = select(args.top)
     SOURCE.mkdir(exist_ok=True)
-    with open(ENTRIES, "w", encoding="utf-8") as f:
-        for e in entries:
-            f.write(json.dumps(e, ensure_ascii=False) + "\n")
+    for path, recs in ((ENTRIES, entries), (DEFERRED, deferred)):
+        with open(path, "w", encoding="utf-8") as f:
+            for e in recs:
+                f.write(json.dumps(e, ensure_ascii=False) + "\n")
     SOURCE_VERSION.write_text(DUMP_VERSION.read_text() if DUMP_VERSION.exists() else "unknown\n")
     phrasal = [e for e in entries if is_phrasal(e)]
     print(f"{len(entries):,} entries, {sum(len(e['s']) for e in entries):,} senses → {ENTRIES}")
     print(f"  single words: {len({e['w'].lower() for e in entries if not is_phrasal(e)}):,} headwords")
     print(f"  phrasal verbs: {len(phrasal):,} entries, {sum(len(e['s']) for e in phrasal):,} senses")
+    names = [e for e in entries if e["pos"] == "name"]
+    print(f"  proper names: {len(names):,} entries, {sum(len(e['s']) for e in names):,} senses")
+    print(f"deferred (capitalised variants of a lowercase word): {len(deferred):,} entries, {sum(len(e['s']) for e in deferred):,} senses → {DEFERRED}")

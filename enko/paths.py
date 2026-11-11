@@ -11,6 +11,7 @@ REVIEW = ROOT / "review"
 DUMP = RAW / "kaikki-English.jsonl.gz"
 DUMP_VERSION = RAW / "DUMP_VERSION"
 ENTRIES = SOURCE / "entries.jsonl"
+DEFERRED = SOURCE / "deferred.jsonl"  # selected but set aside: not translated, not built
 SOURCE_VERSION = SOURCE / "VERSION"
 
 TERMS_STORE = TRANSLATIONS / "terms.jsonl"
