@@ -5,7 +5,7 @@
 [Yomitan](https://github.com/yomidevs/yomitan)에서 쓰는 **영어→한국어** 사전입니다.
 [영어 위키낱말사전](https://en.wiktionary.org/)의 표제어, 품사, 뜻 구분을 그대로 쓰고([kaikki.org](https://kaikki.org/) 추출본), 각 뜻을 LLM으로 한국어로 번역합니다.
 
-> 31,145개 항목(뜻 100,199개)을 모두 Claude Haiku로 번역했습니다. 사람이 검수한 번역은 아직 없습니다.
+> 31,145개 항목(뜻 100,199개)을 모두 Claude Haiku로 번역했습니다.
 
 ## 수록 범위
 
