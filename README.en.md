@@ -1,8 +1,8 @@
 # Wiktionary-en-ko: an English→Korean dictionary for Yomitan
 
-An **English→Korean** dictionary for [Yomitan](https://github.com/yomidevs/yomitan).
 [한국어](README.md) · English
 
+An **English→Korean** dictionary for [Yomitan](https://github.com/yomidevs/yomitan).
 It keeps the headwords, parts of speech and sense divisions of the [English Wiktionary](https://en.wiktionary.org/) (through the [kaikki.org](https://kaikki.org/) extraction) and translates each sense into Korean with an LLM.
 
 > All 31,145 entries (100,199 senses) are translated, by Claude Haiku. No human has reviewed the translations yet.
