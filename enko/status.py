@@ -12,11 +12,13 @@ def main(args):
     entries = wikt.load()
     store = Store(TERMS_STORE)
     fresh = {e["id"] for e in entries if (store.get(e["id"]) or {}).get("h") == wikt.source_hash(e)}
-    single = [e for e in entries if not wikt.is_phrasal(e)]
+    single = [e for e in entries if not wikt.is_multiword(e)]
     phrasal = [e for e in entries if wikt.is_phrasal(e)]
+    multi = [e for e in entries if wikt.is_multiword(e) and not wikt.is_phrasal(e)]
 
     print(f"single words:  {_pct(sum(e['id'] in fresh for e in single), len(single))}")
     print(f"phrasal verbs: {_pct(sum(e['id'] in fresh for e in phrasal), len(phrasal))}")
+    print(f"other multi-word: {_pct(sum(e['id'] in fresh for e in multi), len(multi))}")
     print(f"all entries:   {_pct(len(fresh), len(entries))}")
     print(f"senses:        {_pct(sum(len(e['s']) for e in entries if e['id'] in fresh), sum(len(e['s']) for e in entries))}")
     print(f"stale or dropped from the source: {len(store.records) - len(fresh):,}")

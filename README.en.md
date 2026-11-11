@@ -5,22 +5,23 @@
 An **English→Korean** dictionary for [Yomitan](https://github.com/yomidevs/yomitan).
 It keeps the headwords, parts of speech and sense divisions of the [English Wiktionary](https://en.wiktionary.org/) (through the [kaikki.org](https://kaikki.org/) extraction) and translates each sense into Korean with an LLM.
 
-> 63,589 entries (162,141 senses), translated by Claude Haiku.
+> 96,295 entries (203,631 senses), translated by Claude Haiku.
 
 ## Coverage
 
 | Scope | Headwords | Entries | Senses |
 |---|---|---|---|
-| Single words: the top 50,000 by [wordfreq](https://github.com/rspeer/wordfreq) frequency | 37,266 | 59,066 | 152,101 |
+| Single words: the top 50,000 by [wordfreq](https://github.com/rspeer/wordfreq) frequency | 37,237 | 58,955 | 150,747 |
 | Phrasal verbs: one of those verbs + particles (`give up`, `look forward to`) | — | 4,523 | 10,040 |
-| Total | | 63,589 | 162,141 |
+| Other multi-word headwords (`of course`, `fall in love`, `ice cream`) | — | 32,817 | 42,844 |
+| Total | | 96,295 | 203,631 |
 
-- Inflected forms (`went`, `children`, `years`) and other spellings (`favorite` → favourite) are not translated separately; they link to the base entry (`source/forms.jsonl`, 60,080 links).
-- Abbreviations and contractions (`it's`, `Mr`, `CIA`) are included only where the entry has no ordinary sense, with at most 3 expansions each.
-- Character and symbol entries are left out, and so are senses marked obsolete, archaic, rare, dialectal, dated, nonstandard or misspelling.
+- Inflected forms (`went`, `children`, `years`) and other spellings (`favorite` → favourite) are not translated separately; they link to the base entry (`source/forms.jsonl`, 118,008 links, including `fell in love` → fall in love).
+- Abbreviations and contractions (`it's`, `Mr`, `CIA`) are included only where the entry has no ordinary sense, with at most 2 expansions each.
+- Character and symbol entries are left out, one-letter headwords too (only the article `a` and the pronoun `I` stay), and so are senses marked obsolete, archaic, rare, dialectal, dated, nonstandard or misspelling.
 - Proper names (`London`, `March`, `English`) are included, but each spelling keeps at most 1 surname sense, 1 given-name sense and 2 place senses. Namesake places listed under "a number of places in …" are dropped.
-- Capitalised variants of a lowercase word (`She` the ethnic group, `TO` the verb, `Grew` the surname) are set aside in `source/deferred.jsonl` (8,807 entries). They are neither translated nor built. `I`, `US`, `IT`, `AM`, `ID` and proper names with a meaning of their own (`March`, `Turkey`) stay.
-- Multi-word headwords other than phrasal verbs are not included.
+- Capitalised variants of a lowercase word (`She` the ethnic group, `TO` the verb, `Grew` the surname) are set aside in `source/deferred.jsonl` (8,738 entries). They are neither translated nor built. `I`, `US`, `IT`, `AM`, `ID` and proper names with a meaning of their own (`March`, `Turkey`) stay.
+- Multi-word headwords have two to four words, each inside the top 50,000. Nouns and proper names are too many, so only those with translations into at least 3 languages on Wiktionary are included. The same test applies to headwords made only of very common words (`to the`, `for you`), and headwords with a slot (`pull someone's leg`) are left out.
 - The selection is stored in `source/entries.jsonl`, and the build reads only that file.
 
 ## Install
@@ -34,7 +35,7 @@ Inflected forms and phrasal verbs are found too (`running` → run, `pick it up`
 ## Translation quality
 
 - The Korean glosses are machine-translated by an LLM (Claude Haiku), so some are wrong. Each entry has the English original from Wiktionary folded underneath; use it to check.
-- Entries the model was unsure about carry the note `※ 자동 번역 신뢰도 낮음` (low confidence). That is 5,236 entries, 8.2%.
+- Entries the model was unsure about carry the note `※ 자동 번역 신뢰도 낮음` (low confidence). That is 6,533 entries, 6.8%.
 - The only quality check so far was a blind test of 300 entries (883 senses), also graded by Claude: about 2% of the senses had a problem, most of them an imprecise gloss and a few a wrong meaning. Because a model graded a model, the real rate is probably higher. Entries with more than 12 senses were not in the test.
 - To fix a translation, edit the `s` field (the list of Korean glosses per sense) on that entry's line in `translations/terms.jsonl`.
 

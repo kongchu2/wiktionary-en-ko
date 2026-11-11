@@ -9,6 +9,9 @@ from .paths import DEFERRED, DUMP, DUMP_VERSION, ENTRIES, FORMS, SOURCE, SOURCE_
 
 TOP_WORDS = 50000  # single words: the wordfreq top N
 SKIP_POS = {"character", "symbol"}
+# One-character headwords are letter names, numeral symbols and slang (p: "the sixteenth numeral symbol"), and
+# with letter-by-letter scanning Yomitan lists them under every word that starts with that letter.
+KEEP_LETTERS = {("a", "article"), ("I", "pron")}
 # Senses a learner's dictionary can do without; dropping them cuts the sense count by about 30%.
 SKIP_TAGS = {"obsolete", "archaic", "rare", "dialectal", "dated", "nonstandard", "misspelling"}
 FORM_TAGS = {"form-of", "alt-of"}
@@ -16,7 +19,7 @@ FORM_TAGS = {"form-of", "alt-of"}
 # to entries that do would re-translate 900 common words for little gain. Other form-of and alt-of senses
 # (went, favorite) become links to the base word instead, see `_links`.
 ABBR_TAGS = {"abbreviation", "initialism", "acronym", "contraction", "clipping", "ellipsis"}
-MAX_ABBR = 3  # per entry: CIA has eight expansions
+MAX_ABBR = 2  # per entry: CIA has eight expansions, and the third is already the Culinary Institute of America
 KEEP_CAPS = {"I", "US", "IT", "AM", "ID"}  # capitalised variants of a lowercase headword that are kept anyway
 # Words that can follow a verb in a phrasal verb (Yomitan's particle and preposition lists).
 PARTICLES = set(
@@ -25,6 +28,17 @@ PARTICLES = set(
     "in inside instead into near of off on onto open opposite out outside over overhead past round since through "
     "throughout to together toward towards under underneath up upon way with within without".split()
 )
+# Other multi-word headwords (of course, fall in love, ice cream): two to four words, each in the top N.
+# Nouns and names are far too many (98,000) and have no frequency data, so they need translations into at
+# least MIN_LANGS languages on Wiktionary, as a sign that the term is in real use.
+MAX_WORDS = 4
+MIN_LANGS = 3
+LISTED_POS = {"noun", "name"}
+# The same test for headwords made only of very common words (to the, for you, is it): Yomitan shows the
+# longest match first, so a junk entry there sits on top of "to" all the time. "as if" and "at all" pass.
+COMMON_RANK = 300
+# Headwords with a slot (pull someone's leg) never occur in running text as written.
+PLACEHOLDERS = {"one's", "someone", "someone's", "something", "something's", "somebody", "somebody's", "oneself"}
 # part of speech -> Yomitan deinflection condition
 RULES = {"verb": "v", "noun": "n", "name": "n", "adj": "adj", "adv": "adv"}
 HANGUL = re.compile(r"[가-힣]")
@@ -100,6 +114,11 @@ def _lemma_senses(entry, kinds):
     return out, False
 
 
+def _languages(entry):
+    tables = [entry.get("translations", [])] + [s.get("translations", []) for s in entry.get("senses", [])]
+    return len({t.get("code") or t.get("lang_code") for table in tables for t in table})
+
+
 def _hints(entry):
     """Korean words from Wiktionary's translation tables, grouped by the table's sense label."""
     groups = {}
@@ -127,17 +146,23 @@ def select(top=TOP_WORDS):
             word, pos = e.get("word", ""), e.get("pos", "")
             if word == word.lower():
                 lowercase.add(word)  # every lowercase spelling in the dump, inflected forms included
-            if pos in SKIP_POS:
+            if pos in SKIP_POS or (len(word) == 1 and (word, pos) not in KEEP_LETTERS):
                 continue
             toks = word.lower().split()
-            if len(toks) == 1:
+            if len(toks) <= MAX_WORDS:
                 for target, tags in _links(e):
                     if target != word:
                         links.setdefault(word, {}).setdefault(target, tags)
             if len(toks) == 1:
-                r, phrasal = rank.get(toks[0]), False
+                r = rank.get(toks[0])
             elif pos == "verb" and 2 <= len(toks) <= 3 and all(t in PARTICLES for t in toks[1:]):
-                r, phrasal = rank.get(toks[0]), True
+                r = rank.get(toks[0])
+                r = None if r is None else r + top  # phrasal verbs come after all single words
+            elif 2 <= len(toks) <= MAX_WORDS and all(t in rank for t in toks) and not PLACEHOLDERS & set(toks):
+                common = max(rank[t] for t in toks) < COMMON_RANK
+                if (pos in LISTED_POS or common) and _languages(e) < MIN_LANGS:
+                    continue
+                r = 2 * top + max(rank[t] for t in toks)  # and other multi-word headwords after those
             else:
                 continue
             if r is None:
@@ -151,7 +176,7 @@ def select(top=TOP_WORDS):
                 "id": key if seen[key] == 1 else f"{key}|{seen[key]}",
                 "w": word,
                 "pos": pos,
-                "r": r + top if phrasal else r,  # phrasal verbs come after all single words
+                "r": r,
                 "s": senses,
             }
             hints = _hints(e)
@@ -200,12 +225,19 @@ def load():
         return [json.loads(line) for line in f]
 
 
-def is_phrasal(entry):
+def is_multiword(entry):
     return " " in entry["w"]
 
 
+def is_phrasal(entry):
+    """A verb followed only by particles (give up, look forward to)."""
+    toks = entry["w"].lower().split()
+    return entry["pos"] == "verb" and 2 <= len(toks) <= 3 and all(t in PARTICLES for t in toks[1:])
+
+
 def rule_of(entry):
-    return "v_phr" if is_phrasal(entry) else RULES.get(entry["pos"], "")
+    # Multi-word verbs all get the phrasal rule, so that Yomitan inflects the first word (fell in love).
+    return "v_phr" if is_multiword(entry) and entry["pos"] == "verb" else RULES.get(entry["pos"], "")
 
 
 def source_hash(entry):
@@ -236,9 +268,11 @@ def main(args):
                 f.write(json.dumps(e, ensure_ascii=False) + "\n")
     SOURCE_VERSION.write_text(DUMP_VERSION.read_text() if DUMP_VERSION.exists() else "unknown\n")
     phrasal = [e for e in entries if is_phrasal(e)]
+    multi = [e for e in entries if is_multiword(e) and not is_phrasal(e)]
     print(f"{len(entries):,} entries, {sum(len(e['s']) for e in entries):,} senses → {ENTRIES}")
-    print(f"  single words: {len({e['w'].lower() for e in entries if not is_phrasal(e)}):,} headwords")
+    print(f"  single words: {len({e['w'].lower() for e in entries if not is_multiword(e)}):,} headwords")
     print(f"  phrasal verbs: {len(phrasal):,} entries, {sum(len(e['s']) for e in phrasal):,} senses")
+    print(f"  other multi-word headwords: {len(multi):,} entries, {sum(len(e['s']) for e in multi):,} senses")
     names = [e for e in entries if e["pos"] == "name"]
     print(f"  proper names: {len(names):,} entries, {sum(len(e['s']) for e in names):,} senses")
     print(f"deferred (capitalised variants of a lowercase word): {len(deferred):,} entries, {sum(len(e['s']) for e in deferred):,} senses → {DEFERRED}")
