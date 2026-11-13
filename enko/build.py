@@ -120,13 +120,14 @@ def form_label(tags):
 
 def _form_rows(headwords, seq):
     """Rows that only point at a headword: Yomitan looks up the target and shows the label as the inflection."""
-    rows = []
+    rows, seen = [], set()
     if not FORMS.exists():
         return rows
     with open(FORMS, encoding="utf-8") as f:
         for line in f:
             form = json.loads(line)
-            if form["to"] in headwords:
+            if form["to"] in headwords and (form["w"], form["to"]) not in seen:
+                seen.add((form["w"], form["to"]))
                 seq += 1
                 rows.append([form["w"], "", "", "", 0, [[form["to"], [form_label(form["t"])]]], seq, ""])
     return rows

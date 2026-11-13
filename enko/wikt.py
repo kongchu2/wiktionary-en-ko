@@ -3,22 +3,28 @@ import gzip
 import hashlib
 import json
 import re
+import subprocess
 from collections import Counter
 
-from .paths import DEFERRED, DUMP, DUMP_VERSION, ENTRIES, FORMS, SOURCE, SOURCE_VERSION
+from .paths import DEFERRED, DUMP, DUMP_VERSION, ENTRIES, FORMS, ROOT, SOURCE, SOURCE_VERSION
 
 TOP_WORDS = 50000  # single words: the wordfreq top N
-SKIP_POS = {"character", "symbol"}
+SKIP_POS = {"character", "symbol", "prefix", "suffix", "infix", "interfix", "circumfix", "affix", "combining_form"}
 # One-character headwords are letter names, numeral symbols and slang (p: "the sixteenth numeral symbol"), and
 # with letter-by-letter scanning Yomitan lists them under every word that starts with that letter.
 KEEP_LETTERS = {("a", "article"), ("I", "pron")}
 # Senses a learner's dictionary can do without; dropping them cuts the sense count by about 30%.
 SKIP_TAGS = {"obsolete", "archaic", "rare", "dialectal", "dated", "nonstandard", "misspelling"}
 FORM_TAGS = {"form-of", "alt-of"}
+# A link costs nothing to translate, so dated and regional spellings may link; Wiktextract also reads
+# "Non-Oxford British standard spelling" (recognise) as nonstandard.
+LINK_SKIP_TAGS = {"obsolete", "archaic", "misspelling"}
+SYMBOL_WORD = re.compile(r"[A-Za-z]{2,}$")  # km, cm, Fe: symbols that are read as words
 # "X is short for Y" senses (CIA, it's, Mr) are translated when the entry has no ordinary sense; adding them
 # to entries that do would re-translate 900 common words for little gain. Other form-of and alt-of senses
 # (went, favorite) become links to the base word instead, see `_links`.
 ABBR_TAGS = {"abbreviation", "initialism", "acronym", "contraction", "clipping", "ellipsis"}
+MIN_ALT = 3  # other-spelling links from one or two letters (fa → for, u → you) are noise under longer words
 MAX_ABBR = 2  # per entry: CIA has eight expansions, and the third is already the Culinary Institute of America
 KEEP_CAPS = {"I", "US", "IT", "AM", "ID"}  # capitalised variants of a lowercase headword that are kept anyway
 # Words that can follow a verb in a phrasal verb (Yomitan's particle and preposition lists).
@@ -76,7 +82,7 @@ def _links(entry):
     out = []
     for s in entry.get("senses", []):
         tags = s.get("tags", [])
-        if SKIP_TAGS & set(tags) or _is_abbr(s):
+        if LINK_SKIP_TAGS & set(tags) or _is_abbr(s):
             continue
         kind = "form-of" if s.get("form_of") else "alt-of"
         for target in s.get("form_of") or s.get("alt_of") or []:
@@ -134,11 +140,43 @@ def _hints(entry):
     return [[label, words] for label, words in list(groups.items())[:12]]
 
 
+def _tokens(word):
+    """Hyphens separate words like spaces do: wordfreq has no "long-term", only "long" and "term"."""
+    return [t for t in re.split(r"[\s-]+", word.lower()) if t]
+
+
+def _skip(word, pos):
+    if pos == "symbol":
+        return not SYMBOL_WORD.match(word)
+    return pos in SKIP_POS or word.startswith("-") or word.endswith("-") or (len(word) == 1 and (word, pos) not in KEEP_LETTERS)
+
+
+def _wanted(rank):
+    """Base words that a top-N spelling points at, with that spelling's rank: microorganisms → microorganism,
+    socioeconomic → socio-economic, etc → etc. The base word itself is rarer than its form, or has no rank."""
+    wanted = {}
+    with gzip.open(DUMP, "rt", encoding="utf-8") as f:
+        for line in f:
+            if '"form_of"' not in line and '"alt_of"' not in line:
+                continue
+            e = json.loads(line)
+            r = rank.get(e.get("word", "").lower())
+            if r is None or _skip(e["word"], e.get("pos", "")):
+                continue
+            for target, tags in _links(e):
+                # Inflections always; other spellings only when they differ by hyphens, full stops or spaces
+                # ("with" is also an old spelling of withe, which is no reason to add withe).
+                if tags[0] == "form-of" or re.sub(r"[\s.-]", "", target).lower() == e["word"].lower():
+                    wanted[target] = min(r, wanted.get(target, r))
+    return wanted
+
+
 def select(top=TOP_WORDS):
     """Read the dump and return (entries worth translating, most useful first; deferred entries; forms)."""
     from wordfreq import top_n_list
 
     rank = {w: i for i, w in enumerate(top_n_list("en", top))}
+    wanted = _wanted(rank)
     out, seen, name_kinds, lowercase, links = [], Counter(), {}, set(), {}
     with gzip.open(DUMP, "rt", encoding="utf-8") as f:
         for n, line in enumerate(f):
@@ -146,25 +184,28 @@ def select(top=TOP_WORDS):
             word, pos = e.get("word", ""), e.get("pos", "")
             if word == word.lower():
                 lowercase.add(word)  # every lowercase spelling in the dump, inflected forms included
-            if pos in SKIP_POS or (len(word) == 1 and (word, pos) not in KEEP_LETTERS):
+            if _skip(word, pos):
                 continue
-            toks = word.lower().split()
+            toks, words = _tokens(word), word.lower().split()
+            if not toks:
+                continue
             if len(toks) <= MAX_WORDS:
                 for target, tags in _links(e):
-                    if target != word:
-                        links.setdefault(word, {}).setdefault(target, tags)
+                    # It → it and She → she only repeat what Yomitan's capitalisation handling does.
+                    if target.lower() != word.lower() and not (tags[0] == "alt-of" and len(word) < MIN_ALT):
+                        links.setdefault(word, {}).setdefault((target, pos), tags)
+            r = None
             if len(toks) == 1:
                 r = rank.get(toks[0])
-            elif pos == "verb" and 2 <= len(toks) <= 3 and all(t in PARTICLES for t in toks[1:]):
-                r = rank.get(toks[0])
+            elif pos == "verb" and 2 <= len(words) <= 3 and all(t in PARTICLES for t in words[1:]):
+                r = rank.get(words[0])
                 r = None if r is None else r + top  # phrasal verbs come after all single words
-            elif 2 <= len(toks) <= MAX_WORDS and all(t in rank for t in toks) and not PLACEHOLDERS & set(toks):
+            elif len(toks) <= MAX_WORDS and all(t in rank for t in toks) and not PLACEHOLDERS & set(toks):
                 common = max(rank[t] for t in toks) < COMMON_RANK
-                if (pos in LISTED_POS or common) and _languages(e) < MIN_LANGS:
-                    continue
-                r = 2 * top + max(rank[t] for t in toks)  # and other multi-word headwords after those
-            else:
-                continue
+                if not ((pos in LISTED_POS or common) and _languages(e) < MIN_LANGS):
+                    r = 2 * top + max(rank[t] for t in toks)  # and other multi-word headwords after those
+            if r is None and word in wanted and len(toks) <= MAX_WORDS:
+                r = wanted[word] + (0 if len(toks) == 1 else 2 * top)
             if r is None:
                 continue
             senses, abbr_only = _lemma_senses(e, name_kinds.setdefault(word, Counter()))
@@ -190,7 +231,10 @@ def select(top=TOP_WORDS):
     # (She the people on "she", TO the verb, Grew the surname on "grew"). Set these aside.
     # Proper names with a sense of their own (March, Turkey) stay, and so does the pronoun I.
     # Abbreviation-only entries follow the same rule (TOLD, BASE and HELP are acronyms too), except KEEP_CAPS.
-    headwords = {rec["w"] for _, _, rec, _, abbr_only in out if rec["w"] == rec["w"].lower() and not abbr_only}
+    headwords = {
+        rec["w"] for _, _, rec, _, abbr_only in out
+        if rec["w"] == rec["w"].lower() and not abbr_only and rec["pos"] != "symbol"  # fm must not push FM out
+    }
     keep, deferred = [], []
     for _, _, rec, namesake_only, abbr_only in out:
         w = rec["w"]
@@ -201,7 +245,7 @@ def select(top=TOP_WORDS):
         else:
             variant = w != w.lower() and w.lower() in headwords and w not in KEEP_CAPS
         (deferred if variant else keep).append(rec)
-    return keep, deferred, _forms(links, {rec["w"] for rec in keep})
+    return keep, deferred, _needed(_forms(links, {rec["w"] for rec in keep}), keep)
 
 
 def _forms(links, headwords):
@@ -209,15 +253,36 @@ def _forms(links, headwords):
     out = []
     for word in sorted(links):
         found = {}
-        for target, tags in links[word].items():
+        for (target, pos), tags in links[word].items():
             if target in headwords:
-                found.setdefault(target, tags)
+                found.setdefault((target, pos), tags)
                 continue
-            for target2 in links.get(target, {}):
-                if target2 in headwords and target2 != word:
-                    found.setdefault(target2, tags)
-        out.extend({"w": word, "to": target, "t": tags} for target, tags in found.items())
+            for target2, _ in links.get(target, {}):
+                if target2 in headwords and target2.lower() != word.lower():
+                    found.setdefault((target2, pos), tags)
+        out.extend({"w": word, "to": target, "p": pos, "t": tags} for (target, pos), tags in found.items())
     return out
+
+
+def _needed(forms, entries):
+    """Drop the links Yomitan resolves by itself (plans → plan). Its own deinflection knows the part of speech,
+    so "grumbled" shows only the verb; a link row cannot say that and brings up every entry of the headword."""
+    script = ROOT / "tools" / "redundant-forms.mjs"
+    rules = {}
+    for e in entries:
+        rules.setdefault(e["w"], set()).add(rule_of(e))
+    payload = {
+        "forms": [{"w": f["w"], "to": f["to"], "rule": rule_of({"w": f["to"], "pos": f["p"]})} for f in forms],
+        "rules": {w: sorted(r) for w, r in rules.items()},
+    }
+    try:
+        done = subprocess.run(["node", str(script)], input=json.dumps(payload), capture_output=True, text=True, check=True)
+    except (OSError, subprocess.CalledProcessError) as err:
+        print(f"warning: could not ask Yomitan which forms it resolves itself ({err}); keeping all links")
+        return forms
+    drop = set(json.loads(done.stdout))
+    # A spelling linked to the same headword by a form Yomitan cannot resolve keeps that one link.
+    return [f for i, f in enumerate(forms) if i not in drop]
 
 
 def load():

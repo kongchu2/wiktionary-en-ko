@@ -56,6 +56,7 @@
 {"id": "His|name|0", "w": "His", "pos": "name", "r": 33, "s": [{"g": "A surname from Swiss.", "t": []}]}
 {"id": "HIS|noun|0", "w": "HIS", "pos": "noun", "r": 33, "s": [{"g": "Initialism of health information system or hospital information system.", "t": ["abbreviation", "initialism", "computing"]}]}
 {"id": "ME|name|0", "w": "ME", "pos": "name", "r": 35, "s": [{"g": "Abbreviation of Maine: a state of the United States.", "t": ["abbreviation"]}, {"g": "Abbreviation of Middle East: a geographic region of West Asia, additionally including Turkey, as well as Egypt in North Africa.", "t": ["abbreviation"]}]}
+{"id": "ME|symbol|0", "w": "ME", "pos": "symbol", "r": 35, "s": [{"g": "Earth mass: a unit of measurement, equal to the mass of planet Earth, which is 6×10²⁴ kg or 3×10⁻⁶ M_☉.", "t": ["astronomy"]}, {"g": "The mass of the Earth specifically.", "t": []}]}
 {"id": "ME|noun|0", "w": "ME", "pos": "noun", "r": 35, "s": [{"g": "Initialism of master of engineering.", "t": ["abbreviation", "countable", "initialism", "uncountable"]}, {"g": "Initialism of managing editor.", "t": ["abbreviation", "countable", "initialism", "uncountable"]}]}
 {"id": "Me|noun|0", "w": "Me", "pos": "noun", "r": 35, "s": [{"g": "Abbreviation of methyl.", "t": ["abbreviation", "uncountable", "chemistry"]}]}
 {"id": "IF|noun|0", "w": "IF", "pos": "noun", "r": 36, "s": [{"g": "Initialism of interactive fiction.", "t": ["abbreviation", "countable", "initialism", "uncountable"]}, {"g": "Initialism of impact factor.", "t": ["abbreviation", "countable", "initialism", "uncountable"]}]}
@@ -233,6 +234,7 @@
 {"id": "OH|name|0", "w": "OH", "pos": "name", "r": 358, "s": [{"g": "Abbreviation of Ohio: a state of the United States.", "t": ["abbreviation"]}]}
 {"id": "OH|noun|0", "w": "OH", "pos": "noun", "r": 358, "s": [{"g": "Initialism of other half: a husband, wife, partner, etc.", "t": ["Internet", "abbreviation", "initialism"]}, {"g": "Initialism of observation helicopter.", "t": ["US", "abbreviation", "initialism", "aeronautics"]}]}
 {"id": "OH|noun|0|2", "w": "OH", "pos": "noun", "r": 358, "s": [{"g": "Initialism of office hours.", "t": ["abbreviation", "initialism", "plural", "plural-only"]}]}
+{"id": "OH|symbol|0", "w": "OH", "pos": "symbol", "r": 358, "s": [{"g": "A hydroxyl, or alcohol, functional group.", "t": ["chemistry"]}, {"g": "A hydroxide radical, or hydroxyl group.", "t": ["chemistry"]}]}
 {"id": "Oh|name|1", "w": "Oh", "pos": "name", "r": 358, "s": [{"g": "A surname from Korean derived from a common Korean surname.", "t": []}]}
 {"id": "POST|noun|0", "w": "POST", "pos": "noun", "r": 359, "s": [{"g": "Acronym of power-on self-test.", "t": ["abbreviation", "acronym", "computing"]}]}
 {"id": "POST|verb|0", "w": "POST", "pos": "verb", "r": 359, "s": [{"g": "To successfully perform a power-on self-test.", "t": ["computing"], "ex": "The computer had a bunch of strange components, but it still POSTed so I assumed everything worked."}]}
@@ -357,7 +359,9 @@
 {"id": "Points|name|0", "w": "Points", "pos": "name", "r": 590, "s": [{"g": "An unincorporated community in West Virginia.", "t": []}]}
 {"id": "Price|name|0", "w": "Price", "pos": "name", "r": 591, "s": [{"g": "A surname from Welsh [in turn originating as a patronymic], anglicized from ap Rhys.", "t": ["countable", "uncountable"]}]}
 {"id": "PRICE|noun|0", "w": "PRICE", "pos": "noun", "r": 591, "s": [{"g": "Acronym of protect, rest, ice, compression, and elevation (“a common treatment method for sprained joints”).", "t": ["abbreviation", "acronym", "uncountable", "medicine"]}]}
+{"id": "Re|symbol|2", "w": "Re", "pos": "symbol", "r": 592, "s": [{"g": "rupee", "t": []}]}
 {"id": "Re|name|4", "w": "Re", "pos": "name", "r": 592, "s": [{"g": "A municipality of Vestfold, Norway.", "t": []}]}
+{"id": "RE|symbol|2", "w": "RE", "pos": "symbol", "r": 592, "s": [{"g": "Earth radius: the radius of planet Earth, regarded as a unit of measurement.", "t": ["astronomy"]}, {"g": "The radius of the Earth specifically.", "t": []}]}
 {"id": "RE|noun|2", "w": "RE", "pos": "noun", "r": 592, "s": [{"g": "Initialism of recursively enumerable; the class of decision problems for which a “yes” answer can be verified by a Turing machine in a finite amount of time. See more at RE (complexity) on Wikipedia.Wikipedia", "t": ["abbreviation", "countable", "initialism", "uncountable", "computing"]}, {"g": "Initialism of religious education.", "t": ["abbreviation", "countable", "initialism", "uncountable"]}]}
 {"id": "REST|noun|0", "w": "REST", "pos": "noun", "r": 593, "s": [{"g": "Acronym of representational state transfer.", "t": ["abbreviation", "acronym", "uncountable", "computing"]}]}
 {"id": "REST|name|0", "w": "REST", "pos": "name", "r": 593, "s": [{"g": "Acronym of Revised Extended Standard Theory.", "t": ["abbreviation", "acronym", "human-sciences"]}]}
@@ -634,6 +638,7 @@
 {"id": "Pro|name|0", "w": "Pro", "pos": "name", "r": 1231, "s": [{"g": "A surname from Spanish.", "t": []}]}
 {"id": "PRO|noun|1", "w": "PRO", "pos": "noun", "r": 1231, "s": [{"g": "Initialism of pressure retarded osmosis.", "t": ["abbreviation", "countable", "initialism", "uncountable"]}, {"g": "Initialism of patient-reported outcome.", "t": ["abbreviation", "countable", "initialism", "uncountable", "medicine"]}]}
 {"id": "PRO|name|1", "w": "PRO", "pos": "name", "r": 1231, "s": [{"g": "Initialism of Police Regional Office.", "t": ["Philippines", "abbreviation", "initialism"]}, {"g": "Abbreviation of Prohibition Party.", "t": ["US", "abbreviation", "government"]}]}
+{"id": "PRO|symbol|2", "w": "PRO", "pos": "symbol", "r": 1231, "s": [{"g": "A theoretical phonologically null pronoun", "t": ["human-sciences"]}, {"g": "Used to indicate personal pronoun in sign language glosses, e.g. PRO.1 or PRO-1 for the first person.", "t": []}]}
 {"id": "REACH|name|0", "w": "REACH", "pos": "name", "r": 1232, "s": [{"g": "Acronym of Registration, Evaluation and Authorisation of Chemicals.", "t": ["abbreviation", "acronym"]}]}
 {"id": "Reach|name|0", "w": "Reach", "pos": "name", "r": 1232, "s": [{"g": "A village and civil parish in East Cambridgeshire district, Cambridgeshire, England (OS grid ref TL5666).", "t": []}, {"g": "A former township in the Regional Municipality of Durham, Ontario, Canada, now part of the township of Scugog.", "t": []}]}
 {"id": "Rule|name|0", "w": "Rule", "pos": "name", "r": 1233, "s": [{"g": "A surname.", "t": ["countable", "uncountable"]}, {"g": "An unincorporated community in Carroll County, Arkansas, United States.", "t": ["countable", "uncountable"]}, {"g": "A town in Haskell County, Texas, United States.", "t": ["countable", "uncountable"]}]}
@@ -1049,8 +1054,6 @@
 {"id": "Tony|name|0", "w": "Tony", "pos": "name", "r": 2320, "s": [{"g": "A male given name, a short form of Anthony/Antony", "t": []}, {"g": "A surname transferred from the given name", "t": []}], "ko": [["male given name", ["토니"]]]}
 {"id": "Tony|noun|0", "w": "Tony", "pos": "noun", "r": 2320, "s": [{"g": "Any of the statuettes awarded by the American Theatre Wing.", "t": []}]}
 {"id": "Ah|noun|1", "w": "Ah", "pos": "noun", "r": 2324, "s": [{"g": "Initialism of ampere-hour (unit of charge).", "t": ["abbreviation", "initialism"]}]}
-{"id": "Ah|prefix|2", "w": "Ah", "pos": "prefix", "r": 2324, "s": [{"g": "A prefix of Chinese origin used with a shortened form of given names to express familiarity, roughly equivalent to a nickname.", "t": ["morpheme"], "ex": "Ah Ming moved out of Chinatown last year."}]}
-{"id": "AH|prefix|0", "w": "AH", "pos": "prefix", "r": 2324, "s": [{"g": "prefix for attack helicopter, helicopter gunship designations", "t": ["US", "morpheme", "aeronautics"]}]}
 {"id": "AH|adv|0", "w": "AH", "pos": "adv", "r": 2324, "s": [{"g": "Abbreviation of Anno Hegirae: in the year of the Hegira, used for dates using the Islamic calendar.", "t": ["abbreviation"]}]}
 {"id": "AH|adj|0", "w": "AH", "pos": "adj", "r": 2324, "s": [{"g": "Initialism of all human: applied to fan fiction stories in which supernatural characters are reimagined as normal human beings.", "t": ["abbreviation", "initialism", "slang", "lifestyle"]}]}
 {"id": "AH|prep_phrase|0", "w": "AH", "pos": "prep_phrase", "r": 2324, "s": [{"g": "Abbreviation of after hours", "t": ["abbreviation"]}]}
@@ -1756,6 +1759,7 @@
 {"id": "Bold|name|0", "w": "Bold", "pos": "name", "r": 4578, "s": [{"g": "A surname.", "t": ["countable", "uncountable"]}, {"g": "A civil parish in the Metropolitan Borough of St Helens, Merseyside, England.", "t": ["countable", "uncountable"]}]}
 {"id": "BOLD|adj|0", "w": "BOLD", "pos": "adj", "r": 4578, "s": [{"g": "Acronym of blood-oxygen-level dependent.", "t": ["abbreviation", "acronym", "not-comparable"]}]}
 {"id": "Cooper|name|0", "w": "Cooper", "pos": "name", "r": 4592, "s": [{"g": "An English surname originating as an occupation of cooper.", "t": ["countable"]}]}
+{"id": "eH|symbol|0", "w": "eH", "pos": "symbol", "r": 4594, "s": [{"g": "redox potential (in volts).", "t": []}]}
 {"id": "EH|name|0", "w": "EH", "pos": "name", "r": 4594, "s": [{"g": "Initialism of Eastern Hemisphere (travel within or between IATA areas 2 and 3).", "t": ["abbreviation", "initialism", "aeronautics"]}]}
 {"id": "EH|adj|0", "w": "EH", "pos": "adj", "r": 4594, "s": [{"g": "Initialism of emotionally handicapped.", "t": ["abbreviation", "initialism", "not-comparable"]}]}
 {"id": "EH|noun|0", "w": "EH", "pos": "noun", "r": 4594, "s": [{"g": "Initialism of epididymal hypertension.", "t": ["abbreviation", "initialism", "uncountable"]}]}
@@ -3118,6 +3122,7 @@
 {"id": "Carpenter|name|0", "w": "Carpenter", "pos": "name", "r": 9448, "s": [{"g": "A surname originating as an occupation derived from the trade name carpenter.", "t": ["countable", "uncountable"]}]}
 {"id": "Eighteen|name|0", "w": "Eighteen", "pos": "name", "r": 9462, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Fries|name|0", "w": "Fries", "pos": "name", "r": 9471, "s": [{"g": "A surname.", "t": []}, {"g": "A town in Virginia.", "t": []}]}
+{"id": "Gal|symbol|0", "w": "Gal", "pos": "symbol", "r": 9473, "s": [{"g": "The symbol for the cgs unit of acceleration, gal or galileo.", "t": ["metrology"]}]}
 {"id": "GAL|noun|0", "w": "GAL", "pos": "noun", "r": 9473, "s": [{"g": "Initialism of guardian ad litem, an individual (often a lawyer) appointed to represent the best interests of a child or incapacitated person for the purpose of a legal procedure.", "t": ["abbreviation", "initialism", "law"]}]}
 {"id": "Hawk|name|0", "w": "Hawk", "pos": "name", "r": 9476, "s": [{"g": "A surname; variant forms Hauke, Hawke.", "t": []}]}
 {"id": "Inferior|name|0", "w": "Inferior", "pos": "name", "r": 9481, "s": [{"g": "Ellipsis of Lake Inferior", "t": ["abbreviation", "ellipsis", "human-sciences"]}]}
@@ -3397,9 +3402,11 @@
 {"id": "Vest|name|0", "w": "Vest", "pos": "name", "r": 10790, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Vine|name|1", "w": "Vine", "pos": "name", "r": 10791, "s": [{"g": "A surname.", "t": []}, {"g": "An unincorporated community in Fountain County, Indiana, United States.", "t": []}]}
 {"id": "Vine|noun|2", "w": "Vine", "pos": "noun", "r": 10791, "s": [{"g": "A looping video clip of a few seconds in duration, frequently used on social media.", "t": ["Internet"]}]}
+{"id": "XXX|symbol|1", "w": "XXX", "pos": "symbol", "r": 10798, "s": [{"g": "Denotes extreme or hardcore pornography.", "t": []}]}
 {"id": "XXX|adj|1", "w": "XXX", "pos": "adj", "r": 10798, "s": [{"g": "Extreme or hardcore pornography; or, less strictly, any pornographic content.", "t": []}]}
 {"id": "XXX|adj|2", "w": "XXX", "pos": "adj", "r": 10798, "s": [{"g": "Extra strong; very high quality.", "t": []}]}
 {"id": "XXX|verb|3", "w": "XXX", "pos": "verb", "r": 10798, "s": [{"g": "To delete; to cross out, especially to conceal or suggest vulgar language.", "t": ["transitive", "uncommon"]}]}
+{"id": "XXX|symbol|4", "w": "XXX", "pos": "symbol", "r": 10798, "s": [{"g": "Straight edge (lifestyle and subculture).", "t": []}]}
 {"id": "XXX|adj|8", "w": "XXX", "pos": "adj", "r": 10798, "s": [{"g": "Unknown eye or hair color.", "t": ["not-comparable"]}, {"g": "Bald.", "t": ["not-comparable"]}]}
 {"id": "Atom|name|0", "w": "Atom", "pos": "name", "r": 10812, "s": [{"g": "A Meitei surname from Manipuri", "t": []}]}
 {"id": "Brace|name|0", "w": "Brace", "pos": "name", "r": 10819, "s": [{"g": "A surname from Old French.", "t": []}]}
@@ -3520,7 +3527,6 @@
 {"id": "Stella|noun|0", "w": "Stella", "pos": "noun", "r": 11298, "s": [{"g": "A serving of Stella Artois, a brand of beer.", "t": [], "ex": "I'm going to have a few Stellas tonight."}, {"g": "A black woman who visits Jamaica as a sex tourist.", "t": ["Jamaica", "derogatory", "slang"]}]}
 {"id": "Temples|name|0", "w": "Temples", "pos": "name", "r": 11307, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Trench|name|0", "w": "Trench", "pos": "name", "r": 11311, "s": [{"g": "A suburb of Telford, Telford and Wrekin borough, Shropshire, England (OS grid ref SJ6912).", "t": ["countable", "uncountable"]}, {"g": "A habitational surname.", "t": ["countable", "uncountable"]}]}
-{"id": "Wo|prefix|0", "w": "Wo", "pos": "prefix", "r": 11326, "s": [{"g": "the prefix of catalog entries in the Gliese star catalog, the Richard van der Riet Woolley expansion", "t": ["morpheme", "astronomy"]}]}
 {"id": "WO|noun|0", "w": "WO", "pos": "noun", "r": 11326, "s": [{"g": "Initialism of warrant officer.", "t": ["abbreviation", "initialism", "government"]}]}
 {"id": "Zen|adj|0", "w": "Zen", "pos": "adj", "r": 11329, "s": [{"g": "Of or related to Zen Buddhism.", "t": ["lifestyle"], "ex": "Zen meditation"}]}
 {"id": "APT|noun|0", "w": "APT", "pos": "noun", "r": 11336, "s": [{"g": "Initialism of automation presses tooling.", "t": ["abbreviation", "initialism"]}, {"g": "Initialism of advanced passenger train.", "t": ["UK", "abbreviation", "initialism", "rail-transport"]}]}
@@ -3694,6 +3700,7 @@
 {"id": "Methodist|adj|0", "w": "Methodist", "pos": "adj", "r": 12102, "s": [{"g": "Of or pertaining to the branch of Christianity that descends from the religious societies overseen by John Wesley (1703–1791) among others.", "t": []}], "ko": [["of or relating to Methodism", ["감리교의"]]]}
 {"id": "Panda|name|0", "w": "Panda", "pos": "name", "r": 12117, "s": [{"g": "A South Asian surname.", "t": []}]}
 {"id": "Panther|noun|0", "w": "Panther", "pos": "noun", "r": 12118, "s": [{"g": "A member of the Black Panther Party, White Panther Party or Gray Panthers.", "t": ["US"]}]}
+{"id": "Perkin|name|0", "w": "Perkin", "pos": "name", "r": 12121, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Salvage|name|0", "w": "Salvage", "pos": "name", "r": 12132, "s": [{"g": "A town in Newfoundland, Newfoundland and Labrador, Canada.", "t": []}]}
 {"id": "Speedy|name|0", "w": "Speedy", "pos": "name", "r": 12143, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Stein|name|0", "w": "Stein", "pos": "name", "r": 12148, "s": [{"g": "A surname originating as a patronymic from a Scots diminutive of Stephen.", "t": ["countable", "uncountable"]}, {"g": "A male given name from Norwegian.", "t": ["countable", "uncountable"]}]}
@@ -3982,6 +3989,7 @@
 {"id": "ALMA|noun|0", "w": "ALMA", "pos": "noun", "r": 13458, "s": [{"g": "Acronym of Asian land mammal age.", "t": ["abbreviation", "acronym"]}]}
 {"id": "ALMA|name|0", "w": "ALMA", "pos": "name", "r": 13458, "s": [{"g": "Abbreviation of Atacama Large Millimeter Array (a telescope in Chile).", "t": ["abbreviation", "astronomy"]}]}
 {"id": "ARSE|noun|0", "w": "ARSE", "pos": "noun", "r": 13461, "s": [{"g": "Abbreviation of arylsulfatase E, an enzyme, deficiencies in which are associated with abnormalities in cartilage and bone development.", "t": ["abbreviation", "biochemistry"]}]}
+{"id": "Bruin|name|2", "w": "Bruin", "pos": "name", "r": 13471, "s": [{"g": "A surname from Dutch.", "t": ["countable", "uncountable"]}, {"g": "An unincorporated community in Elliott County, Kentucky, United States.", "t": ["countable", "uncountable"]}, {"g": "A borough of Butler County, Pennsylvania, United States.", "t": ["countable", "uncountable"]}]}
 {"id": "Cartridge|name|0", "w": "Cartridge", "pos": "name", "r": 13476, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Circa|name|0", "w": "Circa", "pos": "name", "r": 13479, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Cologne|name|0", "w": "Cologne", "pos": "name", "r": 13483, "s": [{"g": "The largest city in North Rhine-Westphalia, in western Germany, on the Rhine River.", "t": []}, {"g": "A city and town in Minnesota, United States.", "t": []}], "ko": [["city in Germany", ["쾰른"]]]}
@@ -4497,6 +4505,7 @@
 {"id": "Hamburger|noun|0", "w": "Hamburger", "pos": "noun", "r": 16039, "s": [{"g": "A person from Hamburg.", "t": []}]}
 {"id": "Indo|noun|0", "w": "Indo", "pos": "noun", "r": 16049, "s": [{"g": "A Eurasian person living in or connected with Indonesia, especially (historical) a person in the former Dutch East Indies who held European legal status but was of mixed Dutch and indigenous Indonesian descent, or a descendant of such a person.", "t": []}]}
 {"id": "Keystone|name|0", "w": "Keystone", "pos": "name", "r": 16056, "s": [{"g": "A census-designated place in Colorado.", "t": []}, {"g": "A city and town in Iowa.", "t": []}]}
+{"id": "Kudo|name|0", "w": "Kudo", "pos": "name", "r": 16059, "s": [{"g": "A surname from Japanese.", "t": []}]}
 {"id": "Lieu|name|0", "w": "Lieu", "pos": "name", "r": 16061, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Loch|name|0", "w": "Loch", "pos": "name", "r": 16063, "s": [{"g": "A surname.", "t": []}, {"g": "A town in Bass Coast Shire and South Gippsland Shire, southern Victoria, Australia.", "t": []}]}
 {"id": "Lola|name|0", "w": "Lola", "pos": "name", "r": 16064, "s": [{"g": "A female given name from Spanish.", "t": []}]}
@@ -4580,6 +4589,7 @@
 {"id": "NAY|name|0", "w": "NAY", "pos": "name", "r": 16540, "s": [{"g": "Abbreviation of Nayarit: a state of Mexico.", "t": ["abbreviation"]}]}
 {"id": "Nay|name|0", "w": "Nay", "pos": "name", "r": 16540, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Ob|name|1", "w": "Ob", "pos": "name", "r": 16546, "s": [{"g": "A river in Russia; the westernmost of the three great Siberian rivers.", "t": []}], "ko": [["river in Russia", ["오비 강"]]]}
+{"id": "Ob|symbol|2", "w": "Ob", "pos": "symbol", "r": 16546, "s": [{"g": "The set of objects of a category.", "t": ["category-theory"]}]}
 {"id": "OB|noun|0", "w": "OB", "pos": "noun", "r": 16546, "s": [{"g": "Initialism of Olympic best.", "t": ["abbreviation", "countable", "initialism", "uncountable", "hobbies"]}, {"g": "Initialism of outside broadcast.", "t": ["abbreviation", "countable", "initialism", "uncountable", "broadcasting"]}]}
 {"id": "OB|adj|0", "w": "OB", "pos": "adj", "r": 16546, "s": [{"g": "Abbreviation of obstetric.", "t": ["abbreviation", "not-comparable"]}, {"g": "Initialism of out of bounds.", "t": ["abbreviation", "initialism", "not-comparable", "golf"]}]}
 {"id": "PAWS|noun|0", "w": "PAWS", "pos": "noun", "r": 16552, "s": [{"g": "Acronym of pervasive arousal withdrawal syndrome.", "t": ["abbreviation", "acronym", "uncountable"]}, {"g": "Acronym of post-acute-withdrawal syndrome.", "t": ["abbreviation", "acronym", "uncountable"]}]}
@@ -4912,6 +4922,7 @@
 {"id": "MUFFIN|verb|0", "w": "MUFFIN", "pos": "verb", "r": 18372, "s": [{"g": "To transfer files between 13-sector and 16-sector Apple II diskettes, as with MUFFIN (Move Utility For Files In NewDOS.)", "t": ["transitive", "computing"]}]}
 {"id": "Nigger|name|1", "w": "Nigger", "pos": "name", "r": 18374, "s": [{"g": "A given name for a black pet.", "t": ["historical", "offensive"]}]}
 {"id": "Pancake|name|0", "w": "Pancake", "pos": "name", "r": 18387, "s": [{"g": "A surname.", "t": []}]}
+{"id": "Pennie|name|0", "w": "Pennie", "pos": "name", "r": 18392, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Pip|name|1", "w": "Pip", "pos": "name", "r": 18395, "s": [{"g": "A diminutive form of the given names Philip, Phillip, Pippi and Philippa.", "t": []}]}
 {"id": "PIP|name|0", "w": "PIP", "pos": "name", "r": 18395, "s": [{"g": "Acronym of Peripheral Interchange Program.", "t": ["abbreviation", "acronym", "historical", "computing"]}, {"g": "Initialism of Portsmouth Independents Party.", "t": ["UK", "abbreviation", "initialism", "government"]}]}
 {"id": "PIP|noun|0", "w": "PIP", "pos": "noun", "r": 18395, "s": [{"g": "Acronym of picture-in-picture.", "t": ["abbreviation", "acronym", "countable", "uncountable", "broadcasting"]}, {"g": "Acronym of predicted impact point.", "t": ["abbreviation", "acronym", "countable", "uncountable", "government"]}]}
@@ -4962,6 +4973,7 @@
 {"id": "Melvin|name|0", "w": "Melvin", "pos": "name", "r": 18622, "s": [{"g": "A surname from Old French.", "t": []}]}
 {"id": "Milling|name|0", "w": "Milling", "pos": "name", "r": 18626, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Myrtle|name|0", "w": "Myrtle", "pos": "name", "r": 18635, "s": [{"g": "A female given name from English.", "t": []}]}
+{"id": "Oriole|noun|0", "w": "Oriole", "pos": "noun", "r": 18639, "s": [{"g": "A player on the team Baltimore Orioles.", "t": ["ball-games"], "ex": "He became an Oriole as the result of a pre-season trade."}]}
 {"id": "Pricey|name|0", "w": "Pricey", "pos": "name", "r": 18659, "s": [{"g": "A nickname of the surname Price.", "t": []}]}
 {"id": "Rector|name|0", "w": "Rector", "pos": "name", "r": 18672, "s": [{"g": "A surname from German.", "t": ["countable"]}]}
 {"id": "Ridley|name|0", "w": "Ridley", "pos": "name", "r": 18679, "s": [{"g": "A surname from Old English.", "t": []}]}
@@ -5674,6 +5686,7 @@
 {"id": "Saber|name|0", "w": "Saber", "pos": "name", "r": 23090, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Samba|name|0", "w": "Samba", "pos": "name", "r": 23092, "s": [{"g": "A town and district of Jammu and Kashmir, India.", "t": []}]}
 {"id": "Sitter|name|0", "w": "Sitter", "pos": "name", "r": 23099, "s": [{"g": "A surname.", "t": ["countable", "uncountable"]}, {"g": "A river in north-east Switzerland, a tributary of the Thur.", "t": ["countable", "uncountable"]}]}
+{"id": "Sixer|noun|0", "w": "Sixer", "pos": "noun", "r": 23100, "s": [{"g": "A player for the 76ers, a team from Philadelphia.", "t": ["informal", "ball-games"]}]}
 {"id": "Snowball|name|0", "w": "Snowball", "pos": "name", "r": 23105, "s": [{"g": "A surname transferred from the nickname.", "t": []}, {"g": "A locality in the Queanbeyan-Palerang council area, south eastern New South Wales, Australia.", "t": []}]}
 {"id": "Stalling|name|0", "w": "Stalling", "pos": "name", "r": 23111, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Sulphur|name|0", "w": "Sulphur", "pos": "name", "r": 23117, "s": [{"g": "A city, the county seat of Murray County, Oklahoma, United States.", "t": []}]}
@@ -5706,6 +5719,7 @@
 {"id": "Greyhound|noun|0", "w": "Greyhound", "pos": "noun", "r": 23284, "s": [{"g": "A bus run by Greyhound Lines.", "t": []}]}
 {"id": "Guido|name|0", "w": "Guido", "pos": "name", "r": 23287, "s": [{"g": "A male given name from Italian, equivalent to English Guy.", "t": []}]}
 {"id": "HH|phrase|0", "w": "HH", "pos": "phrase", "r": 23298, "s": [{"g": "Initialism of Heil Hitler.", "t": ["Nazism", "abbreviation", "initialism"]}]}
+{"id": "HH|symbol|0", "w": "HH", "pos": "symbol", "r": 23298, "s": [{"g": "Used to indicate one's support for Nazism.", "t": ["Nazism"]}]}
 {"id": "HH|pron|0", "w": "HH", "pos": "pron", "r": 23298, "s": [{"g": "Initialism of Her Highness.", "t": ["abbreviation", "initialism"]}, {"g": "Initialism of His Highness.", "t": ["abbreviation", "initialism"]}]}
 {"id": "HH|name|0", "w": "HH", "pos": "name", "r": 23298, "s": [{"g": "Initialism of Hansestadt Hamburg, the German city of Hamburg; used on licence plates and informally in other contexts.", "t": ["abbreviation", "initialism"]}]}
 {"id": "HH|noun|0", "w": "HH", "pos": "noun", "r": 23298, "s": [{"g": "Initialism of heavy helicopter.", "t": ["abbreviation", "initialism", "aeronautics"]}, {"g": "Initialism of household.", "t": ["abbreviation", "initialism"]}]}
@@ -5868,6 +5882,7 @@
 {"id": "COA|name|0", "w": "COA", "pos": "name", "r": 24409, "s": [{"g": "Abbreviation of Coahuila: a state of Mexico.", "t": ["abbreviation"]}, {"g": "Initialism of Commonwealth of Australia.", "t": ["Commonwealth", "abbreviation", "initialism"]}]}
 {"id": "CoA|noun|0", "w": "CoA", "pos": "noun", "r": 24409, "s": [{"g": "Abbreviation of coenzyme A.", "t": ["abbreviation", "countable", "uncountable", "biochemistry"]}, {"g": "Initialism of certificate of airworthiness.", "t": ["abbreviation", "countable", "initialism", "uncountable", "aeronautics"]}]}
 {"id": "Coates|name|0", "w": "Coates", "pos": "name", "r": 24410, "s": [{"g": "A surname.", "t": ["countable"]}]}
+{"id": "Coate|name|0", "w": "Coate", "pos": "name", "r": 24410, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Doppler|name|0", "w": "Doppler", "pos": "name", "r": 24428, "s": [{"g": "A surname from German", "t": []}]}
 {"id": "Doppler|noun|0", "w": "Doppler", "pos": "noun", "r": 24428, "s": [{"g": "Ellipsis of Doppler ultrasonography.", "t": ["abbreviation", "ellipsis", "uncountable"]}]}
 {"id": "Eyre|name|0", "w": "Eyre", "pos": "name", "r": 24441, "s": [{"g": "A surname.", "t": ["countable", "uncountable"]}, {"g": "A former township in the municipality of Dysart et al, Haliburton County, Ontario, Canada.", "t": ["countable", "uncountable"]}]}
@@ -6128,6 +6143,7 @@
 {"id": "Fairbanks|name|0", "w": "Fairbanks", "pos": "name", "r": 26084, "s": [{"g": "A habitational surname. An English habitational surname for someone who lived in any of several places named \"fair bank\" etc.", "t": []}, {"g": "A placename", "t": []}], "ko": [["city", ["페어뱅크스"]]]}
 {"id": "Felicia|name|0", "w": "Felicia", "pos": "name", "r": 26086, "s": [{"g": "A female given name from Latin, masculine equivalent Felix.", "t": []}]}
 {"id": "Gable|name|0", "w": "Gable", "pos": "name", "r": 26092, "s": [{"g": "A surname.", "t": []}]}
+{"id": "Gallow|name|0", "w": "Gallow", "pos": "name", "r": 26094, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Guernsey|noun|0", "w": "Guernsey", "pos": "noun", "r": 26100, "s": [{"g": "A breed of dairy cattle originally bred on Guernsey; any individual of this breed.", "t": []}, {"g": "A knitted fisherman’s sweater of a type made on the island.", "t": []}, {"g": "A long-sleeved shirt worn by sportsmen, especially in rugby codes (historically).", "t": []}, {"g": "A team-liveried shirt; a jersey.", "t": ["Australia"]}, {"g": "Selection or election to a position.", "t": ["Australia"]}]}
 {"id": "Gunning|name|0", "w": "Gunning", "pos": "name", "r": 26102, "s": [{"g": "A surname.", "t": []}, {"g": "A locality in the Upper Lachlan council area, south eastern New South Wales, Australia.", "t": []}]}
 {"id": "Haiku|name|0", "w": "Haiku", "pos": "name", "r": 26104, "s": [{"g": "A village in the census-designated place of Haiku-Pauwela, Hawaii, United States.", "t": []}]}
@@ -6715,6 +6731,7 @@
 {"id": "OBE|name|0", "w": "OBE", "pos": "name", "r": 30155, "s": [{"g": "Initialism of Office of Bilingual Education.", "t": ["abbreviation", "initialism"]}, {"g": "Initialism of Office of Business Economics, now BEA.", "t": ["US", "abbreviation", "historical", "initialism", "government"]}]}
 {"id": "OBE|noun|0", "w": "OBE", "pos": "noun", "r": 30155, "s": [{"g": "Initialism of Officer of the Order of the British Empire.", "t": ["abbreviation", "countable", "initialism", "uncountable"]}, {"g": "Initialism of operating-basis earthquake.", "t": ["abbreviation", "countable", "initialism", "uncountable"]}]}
 {"id": "OBE|adj|0", "w": "OBE", "pos": "adj", "r": 30155, "s": [{"g": "Initialism of overcome / overtaken by events (i.e., now obsolete).", "t": ["abbreviation", "initialism", "not-comparable"]}]}
+{"id": "Sapien|name|0", "w": "Sapien", "pos": "name", "r": 30211, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Shanks|name|1", "w": "Shanks", "pos": "name", "r": 30218, "s": [{"g": "A surname.", "t": []}, {"g": "An unincorporated community in Hampshire County, West Virginia, United States, named after Abraham Shank.", "t": []}]}
 {"id": "Shearer|name|0", "w": "Shearer", "pos": "name", "r": 30219, "s": [{"g": "An English surname originating as an occupation for a shearer.", "t": []}]}
 {"id": "Shoals|name|0", "w": "Shoals", "pos": "name", "r": 30221, "s": [{"g": "A town, the county seat of Martin County, Indiana, United States, located in Center Township and Halbert Township.", "t": []}, {"g": "A township and unincorporated community therein, in Surry County, North Carolina, United States.", "t": []}]}
@@ -6884,6 +6901,7 @@
 {"id": "Carboniferous|adj|0", "w": "Carboniferous", "pos": "adj", "r": 31900, "s": [{"g": "Of a geologic period within the Paleozoic era; comprises the lower, middle and upper Mississippian and lower, middle and upper Pennsylvanian epochs from about 345 to 280 million years ago, when coal was laid down.", "t": ["not-comparable", "geography"]}]}
 {"id": "Clapper|name|0", "w": "Clapper", "pos": "name", "r": 31916, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Clarion|name|0", "w": "Clarion", "pos": "name", "r": 31917, "s": [{"g": "An unincorporated community in Bureau County, Illinois, United States.", "t": []}, {"g": "A city, the county seat of Wright County, Iowa, United States.", "t": []}]}
+{"id": "Coffer|name|0", "w": "Coffer", "pos": "name", "r": 31918, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Commie|noun|1", "w": "Commie", "pos": "noun", "r": 31923, "s": [{"g": "A Communist.", "t": ["derogatory", "slang"]}]}
 {"id": "Commie|adj|1", "w": "Commie", "pos": "adj", "r": 31923, "s": [{"g": "Communist.", "t": ["derogatory", "slang"]}]}
 {"id": "Commie|noun|2", "w": "Commie", "pos": "noun", "r": 31923, "s": [{"g": "A Commodore computer.", "t": ["slang", "computing"]}]}
@@ -6961,6 +6979,7 @@
 {"id": "Melton|name|0", "w": "Melton", "pos": "name", "r": 32497, "s": [{"g": "The Borough of Melton, a local government district with borough status in Leicestershire, England, formed in 1974, with its headquarters in Melton Mowbray.", "t": ["countable", "uncountable"]}, {"g": "A village and civil parish in East Suffolk district, Suffolk, England (OS grid ref TM2850).", "t": ["countable", "uncountable"]}, {"g": "A habitational surname from Old English.", "t": ["countable", "uncountable"]}]}
 {"id": "MEM|noun|0", "w": "MEM", "pos": "noun", "r": 32498, "s": [{"g": "Initialism of Master of Engineering Management.", "t": ["abbreviation", "initialism", "uncountable", "education"]}, {"g": "Initialism of Master of Environmental Management.", "t": ["abbreviation", "initialism", "uncountable", "education"]}]}
 {"id": "Micky|name|0", "w": "Micky", "pos": "name", "r": 32502, "s": [{"g": "Alternative spelling of Mickey. › A diminutive of the male given name Michael.", "t": []}]}
+{"id": "Musketeer|noun|0", "w": "Musketeer", "pos": "noun", "r": 32509, "s": [{"g": "A fan, supporter or partisan of Elon Musk.", "t": ["informal"]}]}
 {"id": "NAD|noun|0", "w": "NAD", "pos": "noun", "r": 32510, "s": [{"g": "Initialism of nicotinamide adenine dinucleotide.", "t": ["abbreviation", "initialism", "uncountable", "biochemistry"]}]}
 {"id": "NAD|phrase|0", "w": "NAD", "pos": "phrase", "r": 32510, "s": [{"g": "Initialism of nothing abnormal (or no abnormality) discovered (or detected).", "t": ["abbreviation", "initialism", "medicine"]}]}
 {"id": "NAD|name|0", "w": "NAD", "pos": "name", "r": 32510, "s": [{"g": "Initialism of National Association for the Deaf.", "t": ["abbreviation", "initialism"]}]}
@@ -7104,6 +7123,7 @@
 {"id": "Curie|name|0", "w": "Curie", "pos": "name", "r": 33598, "s": [{"g": "A surname from French, especially referring to Marie Curie and her husband Pierre Curie.", "t": []}]}
 {"id": "CURIE|noun|0", "w": "CURIE", "pos": "noun", "r": 33598, "s": [{"g": "Acronym of compact URI expression.", "t": ["abbreviation", "acronym"]}]}
 {"id": "DBA|noun|0", "w": "DBA", "pos": "noun", "r": 33603, "s": [{"g": "Initialism of database analyst.", "t": ["abbreviation", "initialism", "computing"]}, {"g": "Initialism of database administrator.", "t": ["abbreviation", "initialism", "computing"]}]}
+{"id": "Dissenter|noun|0", "w": "Dissenter", "pos": "noun", "r": 33621, "s": [{"g": "A Protestant Christian who does not follow the established church, the Church of England.", "t": ["UK"]}, {"g": "A person who took part in the Dissenters' March in Moscow.", "t": []}]}
 {"id": "Draconian|adj|0", "w": "Draconian", "pos": "adj", "r": 33624, "s": [{"g": "Of or relating to Draco, the first legislator of Athens in Ancient Greece.", "t": []}]}
 {"id": "Falk|name|0", "w": "Falk", "pos": "name", "r": 33643, "s": [{"g": "A surname.", "t": ["countable", "uncountable"]}, {"g": "A ghost town and former logging settlement in Humboldt County, California, United States.", "t": ["countable", "uncountable"]}, {"g": "A township in Clearwater County, Minnesota, United States.", "t": ["countable", "uncountable"]}]}
 {"id": "Firestone|name|0", "w": "Firestone", "pos": "name", "r": 33650, "s": [{"g": "A surname from German.", "t": []}]}
@@ -7131,6 +7151,7 @@
 {"id": "OCH|noun|0", "w": "OCH", "pos": "noun", "r": 33764, "s": [{"g": "6-oxocamphor hydrolase", "t": ["uncountable", "biochemistry"]}]}
 {"id": "Panhandle|name|1", "w": "Panhandle", "pos": "name", "r": 33777, "s": [{"g": "A city, the county seat of Carson County, Texas, United States.", "t": []}]}
 {"id": "Pate|name|0", "w": "Pate", "pos": "name", "r": 33783, "s": [{"g": "An island of Kenya.", "t": []}, {"g": "A surname.", "t": []}]}
+{"id": "Phy|name|0", "w": "Phy", "pos": "name", "r": 33789, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Pulaski|name|0", "w": "Pulaski", "pos": "name", "r": 33806, "s": [{"g": "A surname from Polish.", "t": ["countable", "uncountable"]}, {"g": "A city, the county seat of Giles County, Tennessee, United States.", "t": ["countable", "uncountable"]}, {"g": "A town, the county seat of Pulaski County, Virginia, United States.", "t": ["countable", "uncountable"]}]}
 {"id": "Riser|name|0", "w": "Riser", "pos": "name", "r": 33826, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Salami|name|0", "w": "Salami", "pos": "name", "r": 33831, "s": [{"g": "A surname.", "t": []}]}
@@ -7263,6 +7284,8 @@
 {"id": "Kohl|name|0", "w": "Kohl", "pos": "name", "r": 34949, "s": [{"g": "A surname from German.", "t": []}]}
 {"id": "Landau|name|0", "w": "Landau", "pos": "name", "r": 34953, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Lauder|name|0", "w": "Lauder", "pos": "name", "r": 34954, "s": [{"g": "A small town in the Scottish Borders council area, Scotland (OS grid ref NT5347).", "t": []}, {"g": "A small community in the Municipality of Grassland, Manitoba, Canada.", "t": []}, {"g": "A surname.", "t": []}]}
+{"id": "Leaver|name|1", "w": "Leaver", "pos": "name", "r": 34956, "s": [{"g": "A surname.", "t": []}]}
+{"id": "Leaver|noun|2", "w": "Leaver", "pos": "noun", "r": 34956, "s": [{"g": "Someone who supports Brexit, the United Kingdom's exit from the European Union.", "t": ["UK", "government"]}]}
 {"id": "Lewes|name|0", "w": "Lewes", "pos": "name", "r": 34957, "s": [{"g": "A surname.", "t": ["countable", "uncountable"]}]}
 {"id": "Pollack|name|0", "w": "Pollack", "pos": "name", "r": 35020, "s": [{"g": "A surname", "t": []}]}
 {"id": "Pounder|name|0", "w": "Pounder", "pos": "name", "r": 35024, "s": [{"g": "A surname.", "t": []}]}
@@ -7343,6 +7366,8 @@
 {"id": "Buss|name|0", "w": "Buss", "pos": "name", "r": 35639, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Buzzard|name|0", "w": "Buzzard", "pos": "name", "r": 35641, "s": [{"g": "A surname from Old French.", "t": []}]}
 {"id": "Dauphin|noun|1", "w": "Dauphin", "pos": "noun", "r": 35675, "s": [{"g": "The title of a dauphin.", "t": []}]}
+{"id": "DIB|noun|0", "w": "DIB", "pos": "noun", "r": 35682, "s": [{"g": "Abbreviation of diffuse interstellar band.", "t": ["abbreviation", "astronomy"]}, {"g": "Abbreviation of device-independent bitmap.", "t": ["abbreviation", "computing"]}]}
+{"id": "Dib|name|0", "w": "Dib", "pos": "name", "r": 35682, "s": [{"g": "A surname from Arabic.", "t": []}]}
 {"id": "Dipper|adj|3", "w": "Dipper", "pos": "adj", "r": 35685, "s": [{"g": "Of or pertaining to the Canadian New Democratic Party or supporters thereof.", "t": ["Canadian", "attributive", "informal", "government"]}]}
 {"id": "Doughty|name|0", "w": "Doughty", "pos": "name", "r": 35693, "s": [{"g": "A surname transferred from the nickname.", "t": []}]}
 {"id": "Eastside|name|0", "w": "Eastside", "pos": "name", "r": 35701, "s": [{"g": "An area east of the city centre of Birmingham, West Midlands, England (OS grid ref SP0786).", "t": []}, {"g": "A settlement on the east side of South Ronaldsay, Orkney Islands council area, Scotland (OS grid ref ND4691).", "t": []}]}
@@ -7377,6 +7402,8 @@
 {"id": "Aime|name|0", "w": "Aime", "pos": "name", "r": 36031, "s": [{"g": "A surname.", "t": ["countable", "uncountable"]}, {"g": "A female given name.", "t": ["countable", "uncountable"]}, {"g": "A settlement in Aime-la-Plagne commune, Savoie department, Auvergne-Rhône-Alpes, France.", "t": ["countable", "uncountable"]}]}
 {"id": "Alfalfa|name|0", "w": "Alfalfa", "pos": "name", "r": 36033, "s": [{"g": "An unincorporated community in Deschutes County, Oregon, United States.", "t": []}, {"g": "An unincorporated community in Caddo County, Oklahoma, United States, originally named Boise.", "t": []}]}
 {"id": "Bunt|name|0", "w": "Bunt", "pos": "name", "r": 36057, "s": [{"g": "A surname.", "t": []}]}
+{"id": "Celt|noun|0", "w": "Celt", "pos": "noun", "r": 36067, "s": [{"g": "A member of one of the ancient peoples of Western Europe called Celtae by the Romans.", "t": ["historical"]}, {"g": "A member of any of the (modern, Celtic) peoples who speak Celtic languages.", "t": []}], "ko": [["ancient", ["켈트족", "셀트족"]]]}
+{"id": "Celt|adj|0", "w": "Celt", "pos": "adj", "r": 36067, "s": [{"g": "Synonym of Celtic.", "t": []}]}
 {"id": "Cobbler|noun|0", "w": "Cobbler", "pos": "noun", "r": 36077, "s": [{"g": "A person from Northamptonshire (traditionally a centre for shoemaking)", "t": []}]}
 {"id": "Diggs|name|0", "w": "Diggs", "pos": "name", "r": 36103, "s": [{"g": "A surname originating as a patronymic.", "t": []}]}
 {"id": "ELE|noun|0", "w": "ELE", "pos": "noun", "r": 36120, "s": [{"g": "Initialism of extinction level event.", "t": ["abbreviation", "initialism"]}]}
@@ -7395,6 +7422,7 @@
 {"id": "Kana|name|3", "w": "Kana", "pos": "name", "r": 36209, "s": [{"g": "A gewog of Dagana District, Bhutan.", "t": []}]}
 {"id": "Lanier|name|0", "w": "Lanier", "pos": "name", "r": 36218, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Lind|name|0", "w": "Lind", "pos": "name", "r": 36224, "s": [{"g": "A surname.", "t": []}]}
+{"id": "Mannerism|noun|0", "w": "Mannerism", "pos": "noun", "r": 36236, "s": [{"g": "A style of art developed at the end of the High Renaissance, characterized by the deliberate distortion and exaggeration of perspective and especially the elongation of figures.", "t": ["uncountable", "art"]}]}
 {"id": "MANTA|noun|0", "w": "MANTA", "pos": "noun", "r": 36237, "s": [{"g": "Acronym of multiaxis no-tail aircraft.", "t": ["US", "abbreviation", "acronym", "government"]}]}
 {"id": "NEG|name|0", "w": "NEG", "pos": "name", "r": 36259, "s": [{"g": "Initialism of National Energy Guarantee.", "t": ["Australian", "abbreviation", "initialism", "government"]}]}
 {"id": "ONI|name|0", "w": "ONI", "pos": "name", "r": 36266, "s": [{"g": "Initialism of Office of Naval Intelligence.", "t": ["US", "abbreviation", "initialism", "government"]}]}
@@ -7411,6 +7439,7 @@
 {"id": "Purdy|name|0", "w": "Purdy", "pos": "name", "r": 36300, "s": [{"g": "A surname from Norman.", "t": []}]}
 {"id": "Puri|name|0", "w": "Puri", "pos": "name", "r": 36301, "s": [{"g": "A surname from Punjabi", "t": []}, {"g": "A holy city in Odisha, India (the capital of Kalinga, noted for the adoration of Jagannath or Krishna) (IW., 244 n. 1).", "t": []}, {"g": "A district of Odisha, India, in which the holy city is based.", "t": []}]}
 {"id": "Rusher|name|0", "w": "Rusher", "pos": "name", "r": 36324, "s": [{"g": "A surname.", "t": []}]}
+{"id": "Soli|name|2", "w": "Soli", "pos": "name", "r": 36341, "s": [{"g": "A surname from Italian.", "t": []}]}
 {"id": "Steely|name|0", "w": "Steely", "pos": "name", "r": 36351, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Stent|name|0", "w": "Stent", "pos": "name", "r": 36352, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Summa|name|0", "w": "Summa", "pos": "name", "r": 36356, "s": [{"g": "A surname from Italian.", "t": []}]}
@@ -7525,6 +7554,7 @@
 {"id": "Sloop|name|0", "w": "Sloop", "pos": "name", "r": 37226, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Spooner|name|0", "w": "Spooner", "pos": "name", "r": 37230, "s": [{"g": "A surname.", "t": ["countable"]}]}
 {"id": "Tama|noun|0", "w": "Tama", "pos": "noun", "r": 37243, "s": [{"g": "An African Muslim ethnic group of eastern Chad and western Sudan.", "t": ["plural", "plural-only"]}]}
+{"id": "Teamster|noun|0", "w": "Teamster", "pos": "noun", "r": 37245, "s": [{"g": "A member of the Teamsters labour union, usually a truck driver.", "t": []}]}
 {"id": "Thrall|name|0", "w": "Thrall", "pos": "name", "r": 37251, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Wadi|name|0", "w": "Wadi", "pos": "name", "r": 37277, "s": [{"g": "A town in Kalaburagi district, Karnataka, India.", "t": []}, {"g": "A city in Nagpur district, Maharashtra, India.", "t": []}]}
 {"id": "Winks|name|0", "w": "Winks", "pos": "name", "r": 37287, "s": [{"g": "A surname.", "t": []}]}
@@ -7651,6 +7681,7 @@
 {"id": "Botha|name|0", "w": "Botha", "pos": "name", "r": 38312, "s": [{"g": "A surname from Afrikaans.", "t": ["countable"]}, {"g": "A village in Alberta, Canada.", "t": ["uncountable"]}]}
 {"id": "Cady|name|0", "w": "Cady", "pos": "name", "r": 38318, "s": [{"g": "A surname.", "t": ["countable", "uncountable"]}, {"g": "A town in St. Croix County, Wisconsin, United States, named after Jacob Cady.", "t": ["countable", "uncountable"]}, {"g": "A unisex given name. › A female given name.", "t": ["countable", "uncountable"]}]}
 {"id": "Cardi|name|0", "w": "Cardi", "pos": "name", "r": 38320, "s": [{"g": "A surname from Italian.", "t": []}, {"g": "A female given name originating as a coinage, of African-American usage.", "t": []}]}
+{"id": "Cheerio|noun|0", "w": "Cheerio", "pos": "noun", "r": 38330, "s": [{"g": "An individual piece of the Cheerios breakfast cereal.", "t": []}]}
 {"id": "Chica|name|0", "w": "Chica", "pos": "name", "r": 38331, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Chubb|name|0", "w": "Chubb", "pos": "name", "r": 38334, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Cockney|adj|0", "w": "Cockney", "pos": "adj", "r": 38335, "s": [{"g": "From the East End of London, or London generally.", "t": ["UK", "not-comparable"]}, {"g": "Of or relating to people from this area or their speech style.", "t": ["not-comparable"]}]}
@@ -7756,6 +7787,7 @@
 {"id": "Wands|name|1", "w": "Wands", "pos": "name", "r": 39160, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Woodman|name|0", "w": "Woodman", "pos": "name", "r": 39165, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Worthing|name|0", "w": "Worthing", "pos": "name", "r": 39168, "s": [{"g": "A habitational surname from Old English.", "t": ["countable"]}]}
+{"id": "Buffaloe|name|0", "w": "Buffaloe", "pos": "name", "r": 39226, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Bund|name|1", "w": "Bund", "pos": "name", "r": 39228, "s": [{"g": "A waterfront area in central Shanghai.", "t": []}]}
 {"id": "Bur|name|0", "w": "Bur", "pos": "name", "r": 39229, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Claret|noun|0", "w": "Claret", "pos": "noun", "r": 39246, "s": [{"g": "someone connected with Burnley Football Club, as a fan, player, coach etc.", "t": ["ball-games"]}]}
@@ -7812,6 +7844,7 @@
 {"id": "Mahi|noun|2", "w": "Mahi", "pos": "noun", "r": 39903, "s": [{"g": "A people of Benin.", "t": ["plural", "plural-only"]}]}
 {"id": "MIB|noun|0", "w": "MIB", "pos": "noun", "r": 39911, "s": [{"g": "Initialism of man in black.", "t": ["US", "abbreviation", "countable", "initialism", "uncountable", "human-sciences"]}, {"g": "Initialism of man in black. › Initialism of men in black.", "t": ["US", "abbreviation", "countable", "in-plural", "initialism", "uncountable", "human-sciences"]}]}
 {"id": "MIB|adj|0", "w": "MIB", "pos": "adj", "r": 39911, "s": [{"g": "mint in box", "t": ["initialism", "not-comparable"]}]}
+{"id": "Mib|symbol|0", "w": "Mib", "pos": "symbol", "r": 39911, "s": [{"g": "Abbreviation of Mibit.", "t": ["abbreviation", "computing"]}]}
 {"id": "Mire|name|0", "w": "Mire", "pos": "name", "r": 39913, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Moya|name|0", "w": "Moya", "pos": "name", "r": 39923, "s": [{"g": "A surname from Spanish.", "t": []}]}
 {"id": "Penning|name|0", "w": "Penning", "pos": "name", "r": 39951, "s": [{"g": "A surname.", "t": []}]}
@@ -8038,6 +8071,7 @@
 {"id": "Flathead|noun|0", "w": "Flathead", "pos": "noun", "r": 42137, "s": [{"g": "One of the Salish people of Washington state and British Columbia.", "t": []}]}
 {"id": "Fuchsia|name|0", "w": "Fuchsia", "pos": "name", "r": 42144, "s": [{"g": "A female given name.", "t": []}]}
 {"id": "Ghazi|name|0", "w": "Ghazi", "pos": "name", "r": 42152, "s": [{"g": "A surname from Arabic.", "t": []}]}
+{"id": "Gillie|name|0", "w": "Gillie", "pos": "name", "r": 42154, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Gillies|name|1", "w": "Gillies", "pos": "name", "r": 42154, "s": [{"g": "A surname.", "t": []}, {"g": "A township in Thunder Bay District, Ontario, Canada.", "t": []}]}
 {"id": "Gow|name|0", "w": "Gow", "pos": "name", "r": 42160, "s": [{"g": "A Scottish surname from Scottish Gaelic.", "t": []}]}
 {"id": "GRO|name|0", "w": "GRO", "pos": "name", "r": 42163, "s": [{"g": "Abbreviation of Guerrero: a state of Mexico.", "t": ["abbreviation"]}]}
@@ -8117,12 +8151,14 @@
 {"id": "Wold|name|0", "w": "Wold", "pos": "name", "r": 42996, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Archway|name|0", "w": "Archway", "pos": "name", "r": 43031, "s": [{"g": "A neighbourhood of Upper Holloway, borough of Islington, Greater London, England, centred on a gyratory system and underground station (OS grid ref TQ2986).", "t": []}]}
 {"id": "Axon|name|0", "w": "Axon", "pos": "name", "r": 43038, "s": [{"g": "A surname.", "t": []}]}
+{"id": "Basse|name|0", "w": "Basse", "pos": "name", "r": 43045, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Camber|name|0", "w": "Camber", "pos": "name", "r": 43070, "s": [{"g": "A coastal village and civil parish in Rother district, East Sussex, England (OS grid ref TQ9618).", "t": []}]}
 {"id": "Chesney|name|0", "w": "Chesney", "pos": "name", "r": 43079, "s": [{"g": "An English surname from Anglo-Norman.", "t": []}]}
 {"id": "Coyne|name|0", "w": "Coyne", "pos": "name", "r": 43095, "s": [{"g": "A surname from Irish.", "t": []}]}
 {"id": "Daffy|name|0", "w": "Daffy", "pos": "name", "r": 43101, "s": [{"g": "A diminutive of the female given name Daphne.", "t": []}, {"g": "A surname from Welsh, derived from the Welsh equivalent of David.", "t": []}]}
 {"id": "Dulce|name|0", "w": "Dulce", "pos": "name", "r": 43121, "s": [{"g": "A female given name from Spanish, equivalent to English Dulcie.", "t": []}]}
 {"id": "Fal|name|0", "w": "Fal", "pos": "name", "r": 43150, "s": [{"g": "A river in Cornwall, England.", "t": []}]}
+{"id": "Freemason|noun|0", "w": "Freemason", "pos": "noun", "r": 43157, "s": [{"g": "A member of the Free and Accepted Masons (sometimes entitled Ancient Free and Accepted Masons), an international fraternal and charitable organization.", "t": []}], "ko": [["member of the Free and Accepted Masons", ["프리메이슨"]]]}
 {"id": "Ghee|name|0", "w": "Ghee", "pos": "name", "r": 43166, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Grammer|name|0", "w": "Grammer", "pos": "name", "r": 43173, "s": [{"g": "A surname from Old French.", "t": ["countable", "uncountable"]}, {"g": "An unincorporated community in Bartholomew County, Indiana, United States.", "t": ["countable", "uncountable"]}]}
 {"id": "Griff|name|0", "w": "Griff", "pos": "name", "r": 43175, "s": [{"g": "A male given name.", "t": []}]}
@@ -8238,6 +8274,7 @@
 {"id": "Sais|noun|0", "w": "Sais", "pos": "noun", "r": 44466, "s": [{"g": "Someone from England; Englander", "t": ["Wales", "informal"]}]}
 {"id": "Salas|name|0", "w": "Salas", "pos": "name", "r": 44468, "s": [{"g": "A surname from Spanish.", "t": []}, {"g": "A municipality of Asturias.", "t": []}]}
 {"id": "Shams|name|1", "w": "Shams", "pos": "name", "r": 44482, "s": [{"g": "A surname from Arabic.", "t": []}]}
+{"id": "Shuck|name|0", "w": "Shuck", "pos": "name", "r": 44486, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Smithers|name|0", "w": "Smithers", "pos": "name", "r": 44491, "s": [{"g": "A surname.", "t": []}, {"g": "A town in British Columbia, Canada.", "t": []}, {"g": "A city in West Virginia.", "t": []}]}
 {"id": "SNARK|noun|0", "w": "SNARK", "pos": "noun", "r": 44494, "s": [{"g": "Acronym of succinct non-interactive argument of knowledge.", "t": ["abbreviation", "acronym", "computing"]}]}
 {"id": "Stockman|name|0", "w": "Stockman", "pos": "name", "r": 44506, "s": [{"g": "A surname.", "t": []}]}
@@ -8344,6 +8381,7 @@
 {"id": "Tipper|name|0", "w": "Tipper", "pos": "name", "r": 45703, "s": [{"g": "A surname from Middle English.", "t": []}]}
 {"id": "Twp|noun|0", "w": "Twp", "pos": "noun", "r": 45717, "s": [{"g": "Abbreviation of township.", "t": ["abbreviation"]}]}
 {"id": "Universalist|noun|0", "w": "Universalist", "pos": "noun", "r": 45724, "s": [{"g": "A follower of Universalism", "t": []}]}
+{"id": "Whaler|name|0", "w": "Whaler", "pos": "name", "r": 45745, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Aire|name|1", "w": "Aire", "pos": "name", "r": 45774, "s": [{"g": "A river in Yorkshire, mainly West Yorkshire, England, which flows past Leeds and gives its name to the Airedale.", "t": []}]}
 {"id": "Aire|name|2", "w": "Aire", "pos": "name", "r": 45774, "s": [{"g": "A river in northern France.", "t": []}]}
 {"id": "Amira|name|0", "w": "Amira", "pos": "name", "r": 45779, "s": [{"g": "A female given name from Arabic, masculine equivalent Amir", "t": []}]}
@@ -8545,6 +8583,7 @@
 {"id": "Crandall|name|0", "w": "Crandall", "pos": "name", "r": 48161, "s": [{"g": "A surname from Scottish Gaelic.", "t": []}]}
 {"id": "Dempster|name|0", "w": "Dempster", "pos": "name", "r": 48180, "s": [{"g": "A surname originating as an occupation for a judge.", "t": []}]}
 {"id": "Droll|name|0", "w": "Droll", "pos": "name", "r": 48202, "s": [{"g": "A surname from German.", "t": []}]}
+{"id": "Ducat|name|0", "w": "Ducat", "pos": "name", "r": 48205, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Durian|name|0", "w": "Durian", "pos": "name", "r": 48208, "s": [{"g": "A barangay of San Fernando, Bukidnon, Philippines.", "t": []}, {"g": "A barangay of Las Nieves, Agusan del Norte, Philippines.", "t": []}]}
 {"id": "ERG|noun|0", "w": "ERG", "pos": "noun", "r": 48221, "s": [{"g": "Initialism of electron-releasing group.", "t": ["abbreviation", "initialism", "chemistry"]}, {"g": "Initialism of employee resource group.", "t": ["abbreviation", "initialism", "business"]}]}
 {"id": "ERG|name|0", "w": "ERG", "pos": "name", "r": 48221, "s": [{"g": "Initialism of European Research Group (“Eurosceptic/pro-Brexit publicly funded political activist group subdivision of the UK Conservatives”).", "t": ["UK", "abbreviation", "initialism", "government"]}]}
@@ -8608,6 +8647,7 @@
 {"id": "Gooding|name|0|2", "w": "Gooding", "pos": "name", "r": 48776, "s": [{"g": "An unincorporated community in Boulder County, Colorado, United States.", "t": []}, {"g": "A city, the county seat of Gooding County, Idaho, United States.", "t": []}]}
 {"id": "Grieves|name|0", "w": "Grieves", "pos": "name", "r": 48783, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Hing|name|0", "w": "Hing", "pos": "name", "r": 48800, "s": [{"g": "A Chinese surname from Teochew.", "t": []}]}
+{"id": "Hollin|name|0", "w": "Hollin", "pos": "name", "r": 48804, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Kandy|name|0", "w": "Kandy", "pos": "name", "r": 48842, "s": [{"g": "A city, the capital of Central Province, Sri Lanka.", "t": []}]}
 {"id": "Kop|noun|0", "w": "Kop", "pos": "noun", "r": 48851, "s": [{"g": "A terrace at a football ground, originally for standing spectators, though all-seater stadia have been mandatory for larger UK clubs since 1994.", "t": ["UK"]}]}
 {"id": "Linker|name|0", "w": "Linker", "pos": "name", "r": 48864, "s": [{"g": "A surname.", "t": []}]}
@@ -8675,6 +8715,7 @@
 {"id": "OME|noun|0", "w": "OME", "pos": "noun", "r": 49530, "s": [{"g": "Initialism of order of magnitude estimate.", "t": ["abbreviation", "initialism", "engineering"]}, {"g": "Initialism of otitis media with effusion.", "t": ["abbreviation", "initialism", "medicine"]}]}
 {"id": "Ome|name|0", "w": "Ome", "pos": "name", "r": 49530, "s": [{"g": "A town and commune Brescia, Lombardy, Italy.", "t": []}]}
 {"id": "OMI|name|0", "w": "OMI", "pos": "name", "r": 49531, "s": [{"g": "Initialism of Missionary Oblates of Mary Immaculate", "t": ["abbreviation", "initialism"]}]}
+{"id": "Petti|name|0", "w": "Petti", "pos": "name", "r": 49547, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Pettis|name|0", "w": "Pettis", "pos": "name", "r": 49547, "s": [{"g": "A surname.", "t": []}, {"g": "A township in Adair County, Missouri, United States; another township in Platte County is inactive.", "t": []}]}
 {"id": "Rafter|name|0", "w": "Rafter", "pos": "name", "r": 49578, "s": [{"g": "A surname.", "t": []}]}
 {"id": "Reedy|name|0", "w": "Reedy", "pos": "name", "r": 49583, "s": [{"g": "A surname.", "t": []}]}
@@ -8724,6 +8765,7 @@
 {"id": "Global South|name|0", "w": "Global South", "pos": "name", "r": 101187, "s": [{"g": "A region predominantly composed of developing countries in Africa, Latin America, and Asia, regarded as half of a socioeconomic and political divide opposite to the Global North.", "t": ["geopolitics"]}], "ko": [["region", ["글로벌 사우스"]]]}
 {"id": "Black Forest|name|0", "w": "Black Forest", "pos": "name", "r": 102042, "s": [{"g": "A large forest and mountain range in southwestern Germany.", "t": []}], "ko": [["German forest and mountain range", ["슈바르츠발트"]]]}
 {"id": "Table Mountains|name|0", "w": "Table Mountains", "pos": "name", "r": 103010, "s": [{"g": "A mountain range formed of sandstone in Poland and the Czech Republic, part of the Central Sudetes.", "t": []}]}
+{"id": "Hundred-handed|adj|0", "w": "Hundred-handed", "pos": "adj", "r": 103495, "s": [{"g": "Of the Hekatonkheires, three giants of Greek mythology who helped Zeus overthrow the Titans.", "t": ["not-comparable"]}]}
 {"id": "North Pole|name|0", "w": "North Pole", "pos": "name", "r": 104878, "s": [{"g": "A city in Fairbanks North Star Borough, Alaska, United States.", "t": []}, {"g": "A hamlet in the town of Wilmington, Essex County, New York, United States.", "t": []}], "ko": [["northernmost point on Earth", ["북극"]]]}
 {"id": "Socialist Revolutionary|adj|0", "w": "Socialist Revolutionary", "pos": "adj", "r": 105449, "s": [{"g": "Of or pertaining to the Socialist Revolutionaries, their party, or their ideology.", "t": ["historical"]}]}
 {"id": "around the Horn|prep_phrase|0", "w": "around the Horn", "pos": "prep_phrase", "r": 105688, "s": [{"g": "Via shipboard communications, formerly metal tubes with earhorn-like ends.", "t": ["Navy", "US", "idiomatic"]}, {"g": "Following the extremely hazardous naval route around Cape Horn, the southernmost point in South America.", "t": []}]}
@@ -8733,6 +8775,9 @@
 {"id": "Boy Scout|noun|0", "w": "Boy Scout", "pos": "noun", "r": 107497, "s": [{"g": "A male member of the Scout Movement.", "t": []}, {"g": "A person, especially a politician, who is idealistic and naive.", "t": ["slang"]}], "ko": [["male member of the Scout Movement", ["보이스카우트", "스카우트"]]]}
 {"id": "Box and Cox|adv|0", "w": "Box and Cox", "pos": "adv", "r": 107782, "s": [{"g": "Occupying the same post or location in an alternating arrangement.", "t": ["UK", "not-comparable"], "ex": "They lived Box and Cox."}]}
 {"id": "Space Shuttle|noun|0", "w": "Space Shuttle", "pos": "noun", "r": 108348, "s": [{"g": "A space transportation system developed by NASA consisting of a reusable winged orbiter, a set of recoverable booster rockets, and a fuel tank.", "t": []}, {"g": "The reusable winged orbiter of this system.", "t": []}], "ko": [["a space transportation system", ["우주왕복선", "스페이스 셔틀"]]]}
+{"id": "Alt-Tab|verb|0", "w": "Alt-Tab", "pos": "verb", "r": 109433, "s": [{"g": "To switch between windows or applications by pressing Alt-Tab (or equivalent).", "t": ["intransitive", "computing"]}]}
+{"id": "Gram-positive|adj|0", "w": "Gram-positive", "pos": "adj", "r": 110218, "s": [{"g": "That stains dark blue or violet after Gram staining, due to large quantities of peptidoglycan in the cell wall.", "t": ["not-comparable", "bacteriology"]}]}
 {"id": "Galactic Center|name|0", "w": "Galactic Center", "pos": "name", "r": 115173, "s": [{"g": "The central region of the Milky Way.", "t": ["US"]}]}
 {"id": "Mont Blanc|name|0", "w": "Mont Blanc", "pos": "name", "r": 116648, "s": [{"g": "The highest mountain in Europe, in the Alps between France and Italy.", "t": []}], "ko": [["the highest mountain in Europe", ["몽블랑 산", "몬테비안코 산"]]]}
+{"id": "Deep Water|name|0", "w": "Deep Water", "pos": "name", "r": 131129, "s": [{"g": "A census-designated place in Fayette County, West Virginia, United States.", "t": []}]}
 {"id": "blow this Popsicle stand|verb|0", "w": "blow this Popsicle stand", "pos": "verb", "r": 136292, "s": [{"g": "To leave a place, often with anger or anticipation of going somewhere more exciting.", "t": ["idiomatic", "informal"]}]}
