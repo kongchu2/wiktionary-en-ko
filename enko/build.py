@@ -125,7 +125,7 @@ def form_label(tags):
     return next((ko for tag, ko in ALT_LABELS if tag in tags), "다른 철자")
 
 
-def _form_rows(headwords, seq):
+def _form_rows(headwords, seq, alts=None):
     """Rows that only point at a headword: Yomitan looks up the target and shows the label as the inflection."""
     rows, seen = [], set()
     if not FORMS.exists():
@@ -146,11 +146,33 @@ def _form_rows(headwords, seq):
     for form in forms:
         if form["to"] in headwords:
             add(form["w"], form["to"], form_label(form["t"]))
+        elif alts and form["to"] in alts and " " not in form["w"] and form["w"] != alts[form["to"]]:
+            # headmen → "head man" (hidden) → headman, the one-word spelling that kept the entry
+            add(form["w"], alts[form["to"]], form_label(form["t"]))
         elif form["t"][0] == "case":
             # "Is" → is, but every entry of "is" is hidden: point at what "is" links to (be), without a label.
             for nxt in links.get(form["to"], []):
                 add(form["w"], nxt["to"], None)
     return rows
+
+
+def _shadow_rows(shadow, headwords):
+    """A hidden phrase ("back pass") only hides the spaced spelling, which could swallow the next word.
+    Its one-word alternative spellings (backpass, bloodhorse) cannot, so they get the entry itself."""
+    rows, seen, alts = [], set(), {}
+    if not FORMS.exists():
+        return rows, alts
+    with open(FORMS, encoding="utf-8") as f:
+        for line in f:
+            form = json.loads(line)
+            word, target = form["w"], form["to"]
+            if (target not in shadow or target in headwords or word in headwords or " " in word
+                    or "alt-of" not in form["t"] or not re.search(r"[A-Za-z]", word) or (word, target) in seen):
+                continue
+            seen.add((word, target))
+            alts.setdefault(target, word)
+            rows += [[word, "", "", rule, score, glossary, seq, ""] for rule, score, glossary, seq in shadow[target]]
+    return rows, alts
 
 
 def _curly_rows(rows, seq):
@@ -223,6 +245,7 @@ def main(args):
     entries = wikt.load()
     orders = _orders(entries)
     rows, order, seq, hidden = [], Counter(), 0, 0
+    shadow = {}  # spelling -> rows of its hidden entries, for one-word alternative spellings
     for seq, e in enumerate(entries, 1):
         tr = store.get(e["id"])
         if tr and tr["h"] != wikt.source_hash(e):
@@ -233,6 +256,11 @@ def main(args):
             pos, senses, hide = orders[e["id"]]
             if hide:
                 hidden += 1
+                if " " in e["w"]:
+                    # Wiktionary's own order: backpass, Redman mean the lexicalised sense, not the literal one.
+                    se, st = _drop_literal(e, tr)
+                    if se["s"]:
+                        shadow.setdefault(e["w"], []).append([wikt.rule_of(se), -pos, [_render(se, st, tags)], seq])
                 continue
             e, tr = _reorder(e, tr, senses)
             score = -pos
@@ -243,7 +271,10 @@ def main(args):
         if not e["s"]:
             continue
         rows.append([e["w"], "", "", wikt.rule_of(e), score, [_render(e, tr, tags)], seq, ""])
-    forms = _form_rows({row[0] for row in rows}, seq)
+    headwords = {row[0] for row in rows}
+    shadow_rows, alts = _shadow_rows(shadow, headwords)
+    rows += shadow_rows
+    forms = _form_rows({row[0] for row in rows}, seq, alts)
     forms += _curly_rows(rows + forms, seq + len(forms))
     rows += forms
     version = SOURCE_VERSION.read_text().strip()

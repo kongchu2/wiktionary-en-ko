@@ -530,6 +530,7 @@
 {"w": "Al Fallujah", "to": "Fallujah", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Al Qaeda", "to": "al-Qaeda", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Al-Raqqah", "to": "Raqqa", "p": "name", "t": ["alt-of", "alternative"]}
+{"w": "Ala", "to": "Ala.", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Alabammer", "to": "Alabama", "p": "name", "t": ["alt-of", "US", "colloquial", "pronunciation-spelling"]}
 {"w": "Alani", "to": "Alan", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "Alaska pollack", "to": "Alaska pollock", "p": "noun", "t": ["alt-of", "alternative"]}
@@ -1063,6 +1064,7 @@
 {"w": "Coldmeece", "to": "Staffordshire", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Coliseum", "to": "Colosseum", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Collinses", "to": "Collin", "p": "noun", "t": ["form-of", "plural"]}
+{"w": "Colo", "to": "Colo.", "p": "name", "t": ["alt-of", "alternative", "countable", "uncountable"]}
 {"w": "Colonial Revivals", "to": "Colonial Revival", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "Columbia River salmon", "to": "chinook salmon", "p": "noun", "t": ["alt-of", "alternative"]}
 {"w": "Commissioner", "to": "European Commissioner", "p": "noun", "t": ["alt-of", "European-Union", "alternative"]}
@@ -1493,6 +1495,7 @@
 {"w": "Gadhafi", "to": "Gaddafi", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Gaea", "to": "Gaia", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Gail", "to": "Gayle", "p": "name", "t": ["alt-of", "alternative"]}
+{"w": "Gal", "to": "Gal.", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Galapago Islands", "to": "Galapagos Islands", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Galiza", "to": "Galicia", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Galápagos", "to": "Galapagos", "p": "name", "t": ["alt-of", "alternative"]}
@@ -1520,10 +1523,12 @@
 {"w": "Gawd", "to": "God", "p": "intj", "t": ["form-of", "euphemistic", "humorous"]}
 {"w": "Gayana", "to": "Guyana", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Gbs", "to": "Gb", "p": "noun", "t": ["form-of", "plural"]}
+{"w": "Gen", "to": "Gen.", "p": "noun", "t": ["alt-of", "alternative"]}
 {"w": "General Governorate", "to": "General Government", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Generation Zed", "to": "Generation Z", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Generation Zed", "to": "Generation Z", "p": "noun", "t": ["alt-of", "alternative"]}
 {"w": "Generation Zeds", "to": "Generation Z", "p": "noun", "t": ["form-of", "plural"]}
+{"w": "Gens.", "to": "Gen.", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "Genses", "to": "Gen", "p": "name", "t": ["form-of", "plural"]}
 {"w": "Gent", "to": "Ghent", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Gent", "to": "Belgium", "p": "name", "t": ["alt-of", "alternative"]}
@@ -2468,6 +2473,7 @@
 {"w": "Messrs", "to": "Mr", "p": "noun", "t": ["form-of", "formal", "plural"]}
 {"w": "Messrs Right", "to": "Mister Right", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "Messrs. Right", "to": "Mister Right", "p": "noun", "t": ["form-of", "plural"]}
+{"w": "Mex", "to": "Mex.", "p": "name", "t": ["alt-of", "alternative", "uncountable"]}
 {"w": "Mexican-Americans", "to": "Mexican-American", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "Mg.", "to": "Mg", "p": "noun", "t": ["alt-of", "alternative"]}
 {"w": "MiST", "to": "MST", "p": "verb", "t": ["alt-of", "alternative"]}
@@ -2857,6 +2863,9 @@
 {"w": "PTAing", "to": "PTA", "p": "verb", "t": ["form-of", "gerund", "participle", "present"]}
 {"w": "PTAs", "to": "PTA", "p": "verb", "t": ["form-of", "indicative", "present", "singular", "third-person"]}
 {"w": "Pa-li", "to": "Bali", "p": "name", "t": ["alt-of", "alternative"]}
+{"w": "Pac", "to": "Pac.", "p": "adj", "t": ["alt-of", "alternative", "not-comparable"]}
+{"w": "Pac", "to": "Pac.", "p": "name", "t": ["alt-of", "alternative"]}
+{"w": "Pacs", "to": "Pac.", "p": "name", "t": ["form-of", "plural"]}
 {"w": "Paeleo diet", "to": "Paleo diet", "p": "noun", "t": ["alt-of", "alternative"]}
 {"w": "Page", "to": "Paige", "p": "name", "t": ["alt-of", "alternative", "countable", "uncountable"]}
 {"w": "Pakhtoon", "to": "Pashtun", "p": "adj", "t": ["alt-of", "alternative"]}
@@ -3184,6 +3193,7 @@
 {"w": "Republic of Viet Nam", "to": "Republic of Vietnam", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Republic of Viet-Nam", "to": "Republic of Vietnam", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Reuven", "to": "Reuben", "p": "name", "t": ["alt-of", "alternative"]}
+{"w": "Rev", "to": "Rev.", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Rhees", "to": "Rhys", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Rheeses", "to": "Rhys", "p": "name", "t": ["form-of", "plural"]}
 {"w": "Rheeses", "to": "Rhee", "p": "name", "t": ["form-of", "plural"]}
@@ -3366,6 +3376,8 @@
 {"w": "Seeta", "to": "Sita", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Seetha", "to": "Sita", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Semi-Arians", "to": "Semi-Arian", "p": "noun", "t": ["form-of", "plural"]}
+{"w": "Sen", "to": "Sen.", "p": "noun", "t": ["alt-of", "alternative"]}
+{"w": "Sens.", "to": "Sen.", "p": "name", "t": ["form-of", "plural"]}
 {"w": "Sgt.", "to": "Sgt", "p": "noun", "t": ["alt-of", "alternative"]}
 {"w": "Sha-shih", "to": "Shashi", "p": "name", "t": ["alt-of", "alternative"]}
 {"w": "Shabbas", "to": "Shabbat", "p": "name", "t": ["alt-of", "alternative"]}
@@ -3883,6 +3895,7 @@
 {"w": "Web-browser", "to": "web browser", "p": "noun", "t": ["alt-of", "alternative"]}
 {"w": "Web-browsers", "to": "web browser", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "Webbased", "to": "web-based", "p": "adj", "t": ["alt-of", "uncommon"]}
+{"w": "Wed", "to": "Wed.", "p": "noun", "t": ["alt-of", "alternative"]}
 {"w": "Wedgwood blues", "to": "Wedgwood blue", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "Wedgwood greens", "to": "Wedgwood green", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "Weekend at Bernie's-ed", "to": "Weekend at Bernie's", "p": "verb", "t": ["form-of", "participle", "past"]}
@@ -5408,6 +5421,7 @@
 {"w": "arenae", "to": "arena", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "arenæ", "to": "arena", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "ares", "to": "be", "p": "noun", "t": ["form-of", "plural"]}
+{"w": "arg", "to": "arg.", "p": "noun", "t": ["alt-of", "alternative", "uncountable"]}
 {"w": "argied", "to": "argue", "p": "verb", "t": ["form-of", "participle", "past"]}
 {"w": "argies", "to": "argue", "p": "verb", "t": ["form-of", "indicative", "present", "singular", "third-person"]}
 {"w": "argued the toss", "to": "argue the toss", "p": "verb", "t": ["form-of", "participle", "past"]}
@@ -11274,6 +11288,7 @@
 {"w": "cerimonies", "to": "ceremony", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "cerimony", "to": "ceremony", "p": "noun", "t": ["alt-of", "Early", "Modern"]}
 {"w": "cerimonys", "to": "ceremony", "p": "noun", "t": ["form-of", "plural"]}
+{"w": "cert", "to": "cert.", "p": "adj", "t": ["alt-of", "alternative"]}
 {"w": "certificates of conduct", "to": "certificate of conduct", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "certificates of deposit", "to": "certificate of deposit", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "cervical vertebrae", "to": "cervical vertebra", "p": "noun", "t": ["form-of", "plural"]}
@@ -13012,6 +13027,7 @@
 {"w": "community center", "to": "community centre", "p": "noun", "t": ["alt-of", "alternative"]}
 {"w": "community centers", "to": "community centre", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "commy", "to": "commie", "p": "noun", "t": ["alt-of", "alternative"]}
+{"w": "comp", "to": "comp.", "p": "noun", "t": ["alt-of", "alternative"]}
 {"w": "comp stomps", "to": "comp stomp", "p": "noun", "t": ["form-of", "plural"]}
 {"w": "compact disk", "to": "compact disc", "p": "noun", "t": ["alt-of", "alternative"]}
 {"w": "compact disks", "to": "compact disc", "p": "noun", "t": ["form-of", "plural"]}
@@ -42702,6 +42718,7 @@
 {"w": "s-f", "to": "SF", "p": "noun", "t": ["alt-of", "alternative", "dated", "uncountable"]}
 {"w": "saar", "to": "sir", "p": "noun", "t": ["alt-of", "India", "pronunciation-spelling"]}
 {"w": "saars", "to": "sir", "p": "noun", "t": ["form-of", "plural"]}
+{"w": "sab", "to": "sab.", "p": "noun", "t": ["alt-of", "alternative", "uncountable"]}
 {"w": "sabb", "to": "sab", "p": "noun", "t": ["alt-of", "UK", "alternative", "slang"]}
 {"w": "sabbatic", "to": "sabbatical", "p": "adj", "t": ["alt-of", "alternative", "not-comparable"]}
 {"w": "sabbatic", "to": "sabbatical", "p": "noun", "t": ["alt-of", "alternative"]}
@@ -50465,6 +50482,8 @@
 {"w": "tells the truth", "to": "tell the truth", "p": "verb", "t": ["form-of", "indicative", "present", "singular", "third-person"]}
 {"w": "tells volumes", "to": "tell volumes", "p": "verb", "t": ["form-of", "indicative", "present", "singular", "third-person"]}
 {"w": "telt", "to": "tell", "p": "verb", "t": ["form-of", "Northern-England", "Scotland", "participle", "past"]}
+{"w": "tem.", "to": "temp.", "p": "adv", "t": ["alt-of", "alternative", "not-comparable"]}
+{"w": "temp", "to": "temp.", "p": "adv", "t": ["alt-of", "alternative", "not-comparable"]}
 {"w": "temperated", "to": "temperate", "p": "verb", "t": ["form-of", "participle", "past"]}
 {"w": "temperates", "to": "temperate", "p": "verb", "t": ["form-of", "indicative", "present", "singular", "third-person"]}
 {"w": "temperating", "to": "temperate", "p": "verb", "t": ["form-of", "gerund", "participle", "present"]}

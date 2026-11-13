@@ -9,6 +9,7 @@ from collections import Counter
 from .paths import DEFERRED, DUMP, DUMP_VERSION, ENTRIES, FORMS, ROOT, SOURCE, SOURCE_VERSION
 
 TOP_WORDS = 50000  # single words: the wordfreq top N
+SENTENCE_END_RANK = 3000  # "X." is dropped when x is this common and would match "x." ending a sentence
 SKIP_POS = {"character", "symbol", "prefix", "suffix", "infix", "interfix", "circumfix", "affix", "combining_form"}
 # One-character headwords are letter names, numeral symbols and slang (p: "the sixteenth numeral symbol"), and
 # with letter-by-letter scanning Yomitan lists them under every word that starts with that letter.
@@ -246,7 +247,9 @@ def select(top=TOP_WORDS):
     for _, _, rec, namesake_only, abbr_only in out:
         w = rec["w"]
         # "It." (Italian), "So." (south), "Can." (Canada) would match "it." at the end of every sentence.
-        if w.endswith(".") and w.count(".") == 1 and w[:-1].lower() in headwords:
+        # Only common words end sentences often enough for this; Gen. (general), Wed. and Rev. stay.
+        stem = w[:-1].lower()
+        if w.endswith(".") and w.count(".") == 1 and stem in headwords and rank.get(stem, top) < SENTENCE_END_RANK:
             continue
         if abbr_only:
             variant = w != w.lower() and w.lower() in headwords and w not in KEEP_CAPS

@@ -1406,7 +1406,7 @@
 {"w": "all the less", "h": "ab4bacdac487", "e": [["all the less|adv|0", [1], true]], "m": "sonnet"}
 {"w": "all the more", "h": "ea33439fa33d", "e": [["all the more|adv|0", [1], false]], "m": "sonnet"}
 {"w": "all the same", "h": "a08dceb3bcf0", "e": [["all the same|adv|0", [1], false], ["all the same|adj|0", [1, 2], false]], "m": "sonnet"}
-{"w": "all the time", "h": "47f2aa2a8f93", "e": [["all the time|adv|0", [2, 1], false]], "m": "sonnet"}
+{"w": "all the time", "h": "47f2aa2a8f93", "e": [["all the time|adv|0", [1, 2], false]], "m": "sonnet+hand"}
 {"w": "all the way", "h": "b77d3bc283a9", "e": [["all the way|adv|0", [1, 2], false]], "m": "sonnet"}
 {"w": "all there", "h": "8bd36f972bb0", "e": [["all there|adj|0", [2, 1], true]], "m": "sonnet"}
 {"w": "all things being equal", "h": "761998a16b0d", "e": [["all things being equal|adv|0", [1], false]], "m": "sonnet"}
@@ -1971,7 +1971,7 @@
 {"w": "at a push", "h": "14e5dd4c80ae", "e": [["at a push|prep_phrase|0", [1], false]], "m": "sonnet"}
 {"w": "at a run", "h": "334ba9811c75", "e": [["at a run|prep_phrase|0", [1], true]], "m": "sonnet"}
 {"w": "at a stand", "h": "3d9460c2517b", "e": [["at a stand|prep_phrase|0", [2, 1], true]], "m": "sonnet"}
-{"w": "at a time", "h": "9d7b840fd5ab", "e": [["at a time|prep_phrase|0", [2, 1, 3], false]], "m": "sonnet"}
+{"w": "at a time", "h": "9d7b840fd5ab", "e": [["at a time|prep_phrase|0", [1, 2, 3], false]], "m": "sonnet+hand"}
 {"w": "at all", "h": "9059f70ef685", "e": [["at all|adv|0", [1], false]], "m": "sonnet"}
 {"w": "at all costs", "h": "f8956f6faad0", "e": [["at all costs|adv|0", [1], false]], "m": "sonnet"}
 {"w": "at all events", "h": "0a3d2d9741b2", "e": [["at all events|adv|0", [1, 2], false]], "m": "sonnet"}
@@ -2001,7 +2001,7 @@
 {"w": "at issue", "h": "f74387a50671", "e": [["at issue|prep_phrase|0", [1, 2], false]], "m": "sonnet"}
 {"w": "at it", "h": "a90706d9a838", "e": [["at it|prep_phrase|0", [1, 2], false]], "m": "sonnet"}
 {"w": "at large", "h": "0579db1b7fdc", "e": [["at large|prep_phrase|0", [1, 2, 3], false]], "m": "sonnet"}
-{"w": "at last", "h": "9ea7bd6aa39b", "e": [["at last|prep_phrase|0", [2, 1], false]], "m": "sonnet"}
+{"w": "at last", "h": "9ea7bd6aa39b", "e": [["at last|prep_phrase|0", [1, 2], false]], "m": "sonnet+hand"}
 {"w": "at least", "h": "8b8cdaeb2cd3", "e": [["at least|prep_phrase|0", [1, 2], false]], "m": "sonnet"}
 {"w": "at length", "h": "21846e3df265", "e": [["at length|prep_phrase|0", [1], false]], "m": "sonnet"}
 {"w": "at most", "h": "25dc21b657a1", "e": [["at most|prep_phrase|0", [1], false]], "m": "sonnet"}
@@ -4887,7 +4887,7 @@
 {"w": "come about", "h": "262ede63848b", "e": [["come about|verb|0", [1, 3, 2], false]], "m": "sonnet"}
 {"w": "come across", "h": "0b475e2c688e", "e": [["come across|verb|0", [1, 4, 3, 6, 5, 2, 7, 8], false]], "m": "sonnet"}
 {"w": "come across with", "h": "8cd11393808d", "e": [["come across with|verb|0", [1], false]], "m": "sonnet"}
-{"w": "come after", "h": "d9e43f7ce79e", "e": [["come after|verb|0", [2, 1], false]], "m": "sonnet"}
+{"w": "come after", "h": "d9e43f7ce79e", "e": [["come after|verb|0", [1, 2], false]], "m": "sonnet+hand"}
 {"w": "come again", "h": "515d6bead46f", "e": [["come again|intj|0", [1, 2], false]], "m": "sonnet"}
 {"w": "come alive", "h": "3b41976c0eca", "e": [["come alive|verb|0", [1], false]], "m": "sonnet"}
 {"w": "come along", "h": "817267981686", "e": [["come along|verb|0", [1, 3, 2], false], ["come along|intj|0", [1], false]], "m": "sonnet"}
@@ -4950,7 +4950,7 @@
 {"w": "come running", "h": "e87be82d1320", "e": [["come running|verb|0", [1, 2], false]], "m": "sonnet"}
 {"w": "come short", "h": "dd8728f05075", "e": [["come short|verb|0", [1, 2], false]], "m": "sonnet"}
 {"w": "come through", "h": "2553a586c65b", "e": [["come through|verb|0", [1, 7, 5, 6, 2, 3, 4], false]], "m": "sonnet"}
-{"w": "come to", "h": "c5fde99d60e0", "e": [["come to|verb|0", [3, 4, 9, 1, 6, 5, 7, 8, 2], false]], "m": "sonnet"}
+{"w": "come to", "h": "c5fde99d60e0", "e": [["come to|verb|0", [9, 4, 1, 3, 6, 5, 7, 8, 2], false]], "m": "sonnet+hand"}
 {"w": "come to Jesus", "h": "09914fd91880", "e": [["come to Jesus|verb|0", [3, 2, 1], false]], "m": "sonnet"}
 {"w": "come to a close", "h": "b0b092db4ccb", "e": [["come to a close|verb|0", [1], false]], "m": "sonnet"}
 {"w": "come to a head", "h": "d3af75660c27", "e": [["come to a head|verb|0", [1, 2, 3, 4], false]], "m": "sonnet"}
@@ -7074,7 +7074,7 @@
 {"w": "dripping", "h": "3e9ba6f7db86", "e": [["dripping|adj|0", [1], false], ["dripping|noun|0", [1, 2, 3], false]], "m": "sonnet"}
 {"w": "drive", "h": "e43f455e70e8", "e": [["drive|verb|0", [1, 2, 3, 5, 4, 6, 8, 9, 14, 13, 15, 16, 17, 18, 12, 7, 10, 11, 19, 20, 21, 22, 23, 24, 25], false], ["drive|noun|0", [1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 23, 24, 2, 3, 4, 5, 18, 19, 20, 21, 22, 25, 26, 27, 28], false]], "m": "sonnet"}
 {"w": "drive at", "h": "8da63d126bbc", "e": [["drive at|verb|0", [1, 2], false]], "m": "sonnet"}
-{"w": "drive away", "h": "3777c46dc0c9", "e": [["drive away|verb|0", [2, 1], false]], "m": "sonnet"}
+{"w": "drive away", "h": "3777c46dc0c9", "e": [["drive away|verb|0", [1, 2], false]], "m": "sonnet+hand"}
 {"w": "drive back", "h": "45b3fd0c61ff", "e": [["drive back|verb|0", [1, 2], false]], "m": "sonnet"}
 {"w": "drive by shooting", "h": "bfa7f4f9dcad", "e": [["drive by shooting|noun|0", [1], false]], "m": "sonnet"}
 {"w": "drive down", "h": "b4a2b7e0aae1", "e": [["drive down|verb|0", [1, 2], false]], "m": "sonnet"}
@@ -8421,7 +8421,7 @@
 {"w": "finch", "h": "ffed7b3fb593", "e": [["finch|noun|0", [2, 3, 1], false], ["finch|verb|0", [1], false]], "m": "sonnet"}
 {"w": "find", "h": "5737cc7789ca", "e": [["find|verb|0", [2, 1, 9, 4, 5, 10, 6, 3, 7, 8, 11, 12, 13], false], ["find|noun|0", [1, 2], false]], "m": "sonnet"}
 {"w": "find fault", "h": "921e30d0a41e", "e": [["find fault|verb|0", [1], false]], "m": "sonnet"}
-{"w": "find in", "h": "336f9f5cb8d9", "e": [["find in|verb|0", [1, 2], true]], "m": "sonnet"}
+{"w": "find in", "h": "336f9f5cb8d9", "e": [["find in|verb|0", [1, 2], false]], "m": "sonnet+hand"}
 {"w": "find out", "h": "fb6a938e4ea3", "e": [["find out|verb|0", [1, 4, 2, 3], false]], "m": "sonnet"}
 {"w": "find religion", "h": "7eeed1ac7269", "e": [["find religion|verb|0", [1], false]], "m": "sonnet"}
 {"w": "find the net", "h": "45ef64301a97", "e": [["find the net|verb|0", [1], false]], "m": "sonnet"}
@@ -9818,7 +9818,7 @@
 {"w": "go through", "h": "a516afca1a02", "e": [["go through|verb|0", [1, 5, 3, 2, 7, 8, 6, 4, 9, 10], false]], "m": "sonnet"}
 {"w": "go through hell", "h": "3c53005a9651", "e": [["go through hell|verb|0", [1], false]], "m": "sonnet"}
 {"w": "go through with", "h": "b57ef54246c7", "e": [["go through with|verb|0", [1], false]], "m": "sonnet"}
-{"w": "go to", "h": "326a9a0a8186", "e": [["go to|verb|0", [2, 3, 1, 4], false]], "m": "sonnet"}
+{"w": "go to", "h": "326a9a0a8186", "e": [["go to|verb|0", [1, 3, 2, 4], false]], "m": "sonnet+hand"}
 {"w": "go to bed", "h": "df729fa9ac36", "e": [["go to bed|verb|0", [1, 2, 3], false]], "m": "sonnet"}
 {"w": "go to bed with", "h": "72535f1f0f24", "e": [["go to bed with|verb|0", [1], false]], "m": "sonnet"}
 {"w": "go to earth", "h": "eb14bcd011b0", "e": [["go to earth|verb|0", [1, 2], false]], "m": "sonnet"}
@@ -10916,7 +10916,7 @@
 {"w": "hold it together", "h": "046af40172df", "e": [["hold it together|verb|0", [1], false]], "m": "sonnet"}
 {"w": "hold my beer", "h": "1bd2ac96d085", "e": [["hold my beer|phrase|0", [2, 1, 3], false]], "m": "sonnet"}
 {"w": "hold off", "h": "030df7dd6d0c", "e": [["hold off|verb|0", [1, 2], false]], "m": "sonnet"}
-{"w": "hold on", "h": "4a4ca030850f", "e": [["hold on|verb|0", [4, 1, 6, 5, 2, 3], false]], "m": "sonnet"}
+{"w": "hold on", "h": "4a4ca030850f", "e": [["hold on|verb|0", [1, 6, 4, 5, 2, 3], false]], "m": "sonnet+hand"}
 {"w": "hold onto", "h": "3d73e05f2792", "e": [["hold onto|verb|0", [1, 2], false]], "m": "sonnet"}
 {"w": "hold onto your hat", "h": "3f6eaf72d070", "e": [["hold onto your hat|phrase|0", [1, 2], false]], "m": "sonnet"}
 {"w": "hold out", "h": "a946a8c53d4d", "e": [["hold out|verb|0", [1, 2, 3, 4, 5, 6], false]], "m": "sonnet"}
@@ -11686,7 +11686,7 @@
 {"w": "in the wrong", "h": "c5c9b1d51a96", "e": [["in the wrong|prep_phrase|0", [1, 2], false]], "m": "sonnet"}
 {"w": "in the zone", "h": "fbdb02e86a79", "e": [["in the zone|prep_phrase|0", [1], false]], "m": "sonnet"}
 {"w": "in theory", "h": "6f3b1bb771ab", "e": [["in theory|prep_phrase|0", [1], false]], "m": "sonnet"}
-{"w": "in time", "h": "5f3a6dfa8c3a", "e": [["in time|prep_phrase|0", [2, 1, 3, 4, 5, 6], false]], "m": "sonnet"}
+{"w": "in time", "h": "5f3a6dfa8c3a", "e": [["in time|prep_phrase|0", [1, 3, 2, 4, 5, 6], false]], "m": "sonnet+hand"}
 {"w": "in too deep", "h": "d7de7f33f8df", "e": [["in too deep|adj|0", [1], false]], "m": "sonnet"}
 {"w": "in total", "h": "2bd1af453c8d", "e": [["in total|prep_phrase|0", [1], false]], "m": "sonnet"}
 {"w": "in touch", "h": "e6c45f7a45ea", "e": [["in touch|prep_phrase|0", [1, 2], false]], "m": "sonnet"}
@@ -12717,7 +12717,7 @@
 {"w": "lay brother", "h": "0e84f93af431", "e": [["lay brother|noun|0", [1], false]], "m": "sonnet"}
 {"w": "lay by", "h": "d842ac71ff6a", "e": [["lay by|verb|1", [1, 2, 3], true]], "m": "sonnet"}
 {"w": "lay claim", "h": "ac822f04b419", "e": [["lay claim|verb|0", [1], false]], "m": "sonnet"}
-{"w": "lay down", "h": "ae68ac0ca090", "e": [["lay down|verb|1", [4, 1, 2, 7, 6, 5, 8, 3], false]], "m": "sonnet"}
+{"w": "lay down", "h": "ae68ac0ca090", "e": [["lay down|verb|1", [1, 4, 2, 7, 6, 5, 8, 3], false]], "m": "sonnet+hand"}
 {"w": "lay down on", "h": "602856ed9daa", "e": [["lay down on|verb|0", [1], true]], "m": "sonnet"}
 {"w": "lay down the law", "h": "96542eb6ad26", "e": [["lay down the law|verb|0", [2, 1], false]], "m": "sonnet"}
 {"w": "lay eggs", "h": "33004a5dac25", "e": [["lay eggs|verb|0", [1], true]], "m": "sonnet"}
@@ -13235,7 +13235,7 @@
 {"w": "live under a rock", "h": "c4d3ef245f19", "e": [["live under a rock|verb|0", [1, 2], false]], "m": "sonnet"}
 {"w": "live up", "h": "518dfdf43f26", "e": [["live up|verb|0", [1], false]], "m": "sonnet"}
 {"w": "live weight", "h": "b27d8043b0b3", "e": [["live weight|noun|0", [1], false]], "m": "sonnet"}
-{"w": "live with", "h": "7b1400fa0dc8", "e": [["live with|verb|0", [2, 1, 3], false]], "m": "sonnet"}
+{"w": "live with", "h": "7b1400fa0dc8", "e": [["live with|verb|0", [1, 2, 3], false]], "m": "sonnet+hand"}
 {"w": "lived", "h": "090b892318cd", "e": [["lived|adj|0", [1], false]], "m": "sonnet"}
 {"w": "lived experience", "h": "c0b70ba6e439", "e": [["lived experience|noun|0", [1], false]], "m": "sonnet"}
 {"w": "lively", "h": "bd964d4f55a6", "e": [["lively|adj|1", [1, 2, 3], false], ["lively|adv|2", [1, 2], false], ["lively|noun|1", [1], false]], "m": "sonnet"}
@@ -13382,7 +13382,7 @@
 {"w": "look the part", "h": "068d0d4da1c9", "e": [["look the part|verb|0", [1], false]], "m": "sonnet"}
 {"w": "look through", "h": "68609967184a", "e": [["look through|verb|0", [1, 2, 3], false]], "m": "sonnet"}
 {"w": "look to", "h": "75611e32ae29", "e": [["look to|verb|0", [2, 4, 3, 1], false]], "m": "sonnet"}
-{"w": "look up", "h": "975a6be53d0e", "e": [["look up|verb|0", [3, 4, 5, 6, 2, 1], false]], "m": "sonnet"}
+{"w": "look up", "h": "975a6be53d0e", "e": [["look up|verb|0", [1, 3, 4, 5, 6, 2], false]], "m": "sonnet+hand"}
 {"w": "look up to", "h": "1e8cfded9ebb", "e": [["look up to|verb|0", [1], false]], "m": "sonnet"}
 {"w": "look upon", "h": "d041f9704b37", "e": [["look upon|verb|0", [1, 2], false]], "m": "sonnet"}
 {"w": "look who's talking", "h": "e8ce9f6e8a47", "e": [["look who's talking|phrase|0", [1], false]], "m": "sonnet"}
@@ -15061,7 +15061,7 @@
 {"w": "not even", "h": "1b8f299c2aa8", "e": [["not even|adv|0", [1], false], ["not even|intj|0", [1], false]], "m": "sonnet"}
 {"w": "not even one", "h": "09be20e72598", "e": [["not even one|det|0", [1], false]], "m": "sonnet"}
 {"w": "not even wrong", "h": "c650989e0366", "e": [["not even wrong|adj|0", [1], false]], "m": "sonnet"}
-{"w": "not exactly", "h": "f33fe1d4378c", "e": [["not exactly|adv|0", [2, 1], false]], "m": "sonnet"}
+{"w": "not exactly", "h": "f33fe1d4378c", "e": [["not exactly|adv|0", [1, 2], false]], "m": "sonnet+hand"}
 {"w": "not feeling it", "h": "ea0f39891d80", "e": [["not feeling it|phrase|0", [1], false]], "m": "sonnet"}
 {"w": "not for nothing", "h": "05112c18afb8", "e": [["not for nothing|phrase|0", [1, 2, 3], false]], "m": "sonnet"}
 {"w": "not going anywhere", "h": "8e3956ffa359", "e": [["not going anywhere|adj|0", [1, 4, 3, 2], false]], "m": "sonnet"}
@@ -17522,8 +17522,8 @@
 {"w": "pull apart", "h": "a42fb9c4620e", "e": [["pull apart|verb|0", [1, 4, 3, 2, 5, 6], false]], "m": "sonnet"}
 {"w": "pull aside", "h": "ee1167fb8d95", "e": [["pull aside|verb|0", [1], false]], "m": "sonnet"}
 {"w": "pull away", "h": "4abb68f2c4a4", "e": [["pull away|verb|0", [2, 1], false]], "m": "sonnet"}
-{"w": "pull back", "h": "be25e021900e", "e": [["pull back|verb|0", [2, 1, 3, 4], false]], "m": "sonnet"}
-{"w": "pull down", "h": "8bfffb639cc5", "e": [["pull down|verb|0", [2, 1, 3], false]], "m": "sonnet"}
+{"w": "pull back", "h": "be25e021900e", "e": [["pull back|verb|0", [1, 2, 3, 4], false]], "m": "sonnet+hand"}
+{"w": "pull down", "h": "8bfffb639cc5", "e": [["pull down|verb|0", [1, 2, 3], false]], "m": "sonnet+hand"}
 {"w": "pull effect", "h": "6e65d73bd38a", "e": [["pull effect|noun|0", [1], false]], "m": "sonnet"}
 {"w": "pull faces", "h": "9613dbe4c86b", "e": [["pull faces|verb|0", [1], false]], "m": "sonnet"}
 {"w": "pull for", "h": "71da74a83f45", "e": [["pull for|verb|0", [1], false]], "m": "sonnet"}
@@ -18553,7 +18553,7 @@
 {"w": "right brain", "h": "48f8f23d1949", "e": [["right brain|noun|0", [1], false]], "m": "sonnet"}
 {"w": "right exact", "h": "9325b06dbc5e", "e": [["right exact|adj|0", [1], true]], "m": "sonnet"}
 {"w": "right face", "h": "980bc430bab2", "e": [["right face|noun|0", [1], true]], "m": "sonnet"}
-{"w": "right hand", "h": "1fd6fcfa6723", "e": [["right hand|noun|0", [1], true]], "m": "sonnet"}
+{"w": "right hand", "h": "1fd6fcfa6723", "e": [["right hand|noun|0", [1], false]], "m": "sonnet+hand"}
 {"w": "right now", "h": "adaf087fac0c", "e": [["right now|adv|0", [1, 2], false]], "m": "sonnet"}
 {"w": "right of way", "h": "980bab1954f3", "e": [["right of way|noun|0", [1, 2, 3, 4, 5, 7, 6], false]], "m": "sonnet"}
 {"w": "right out straight", "h": "969d937173a6", "e": [["right out straight|adj|0", [1], true]], "m": "sonnet"}
@@ -20010,7 +20010,7 @@
 {"w": "sit in on", "h": "304829955932", "e": [["sit in on|verb|0", [1], false]], "m": "sonnet"}
 {"w": "sit in with", "h": "34c955a9ebec", "e": [["sit in with|verb|0", [1], true]], "m": "sonnet"}
 {"w": "sit off", "h": "3211cbd2849f", "e": [["sit off|verb|0", [1], true]], "m": "sonnet"}
-{"w": "sit on", "h": "58f3364bab93", "e": [["sit on|verb|0", [4, 1, 3, 5, 2, 6, 7], false]], "m": "sonnet"}
+{"w": "sit on", "h": "58f3364bab93", "e": [["sit on|verb|0", [7, 1, 3, 4, 5, 2, 6], false]], "m": "sonnet+hand"}
 {"w": "sit on it", "h": "b684fa21f948", "e": [["sit on it|verb|0", [2, 1], true]], "m": "sonnet"}
 {"w": "sit out", "h": "196daa06c528", "e": [["sit out|verb|0", [1, 2, 3, 4, 5], false]], "m": "sonnet"}
 {"w": "sit over", "h": "8837b678ef31", "e": [["sit over|verb|0", [1, 3, 2], true]], "m": "sonnet"}
@@ -22141,7 +22141,7 @@
 {"w": "the day before", "h": "e9dc446f9231", "e": [["the day before|adv|0", [1], false]], "m": "sonnet"}
 {"w": "the die is cast", "h": "788f99673ab1", "e": [["the die is cast|phrase|0", [1], false]], "m": "sonnet"}
 {"w": "the end", "h": "26a4c885b176", "e": [["the end|phrase|0", [2, 1], false]], "m": "sonnet"}
-{"w": "the fact that", "h": "facfbbbd147d", "e": [["the fact that|phrase|0", [2, 1], false]], "m": "sonnet"}
+{"w": "the fact that", "h": "facfbbbd147d", "e": [["the fact that|phrase|0", [1, 2], false]], "m": "sonnet+hand"}
 {"w": "the fix is in", "h": "64a9fec4ffc1", "e": [["the fix is in|phrase|0", [1], false]], "m": "sonnet"}
 {"w": "the fuck", "h": "2cb6a4b1d7bf", "e": [["the fuck|phrase|0", [1, 3, 5, 4, 2], false]], "m": "sonnet"}
 {"w": "the fuck out of", "h": "ba888788e317", "e": [["the fuck out of|adv|0", [1], false]], "m": "sonnet"}
@@ -23012,7 +23012,7 @@
 {"w": "turn and turn about", "h": "129418b408de", "e": [["turn and turn about|adv|0", [1], false]], "m": "sonnet"}
 {"w": "turn around", "h": "662f7b8b6910", "e": [["turn around|verb|0", [1, 2, 5, 3, 6, 7, 4], false]], "m": "sonnet"}
 {"w": "turn aside", "h": "f2e8a397de4d", "e": [["turn aside|verb|0", [1, 4, 3, 2, 6, 5], false]], "m": "sonnet"}
-{"w": "turn away", "h": "9f47a67c6237", "e": [["turn away|verb|0", [5, 1, 2, 6, 3, 4, 7], false]], "m": "sonnet"}
+{"w": "turn away", "h": "9f47a67c6237", "e": [["turn away|verb|0", [1, 2, 5, 6, 3, 4, 7], false]], "m": "sonnet+hand"}
 {"w": "turn back", "h": "b5811ba63fcc", "e": [["turn back|verb|0", [1, 2, 4, 3, 5, 6], false]], "m": "sonnet"}
 {"w": "turn back around", "h": "7cc2b2f50689", "e": [["turn back around|verb|0", [1], false]], "m": "sonnet"}
 {"w": "turn down", "h": "c1bef9323e0f", "e": [["turn down|verb|0", [1, 2, 3], false]], "m": "sonnet"}
@@ -23038,7 +23038,7 @@
 {"w": "turn the other way", "h": "ef3851686ec1", "e": [["turn the other way|verb|0", [1], true]], "m": "sonnet"}
 {"w": "turn the page", "h": "8f176a43be1f", "e": [["turn the page|verb|0", [2, 1], false]], "m": "sonnet"}
 {"w": "turn the scale", "h": "05bc239c7e5b", "e": [["turn the scale|verb|0", [1], false]], "m": "sonnet"}
-{"w": "turn to", "h": "16c22ce897d6", "e": [["turn to|verb|0", [5, 7, 6, 2, 3, 4, 1, 8], false]], "m": "sonnet"}
+{"w": "turn to", "h": "16c22ce897d6", "e": [["turn to|verb|0", [1, 7, 5, 6, 2, 3, 4, 8], false]], "m": "sonnet+hand"}
 {"w": "turn to account", "h": "6fdce1ff05f9", "e": [["turn to account|verb|0", [1], false]], "m": "sonnet"}
 {"w": "turn to good account", "h": "de0cf5c3daed", "e": [["turn to good account|verb|0", [1], false]], "m": "sonnet"}
 {"w": "turn together", "h": "2626313b6619", "e": [["turn together|verb|0", [1], true]], "m": "sonnet"}
@@ -23669,7 +23669,7 @@
 {"w": "walk in on", "h": "f6316ad0fb6a", "e": [["walk in on|verb|0", [1], false]], "m": "sonnet"}
 {"w": "walk in straight lines", "h": "edba72494206", "e": [["walk in straight lines|verb|0", [2, 1], true]], "m": "sonnet"}
 {"w": "walk in the park", "h": "71d4c16e2392", "e": [["walk in the park|noun|0", [1, 2], false]], "m": "sonnet"}
-{"w": "walk into", "h": "4a9e60a3ecaa", "e": [["walk into|verb|0", [2, 1], false]], "m": "sonnet"}
+{"w": "walk into", "h": "4a9e60a3ecaa", "e": [["walk into|verb|0", [1, 2], false]], "m": "sonnet+hand"}
 {"w": "walk of life", "h": "5a333c9f9083", "e": [["walk of life|noun|0", [1], false]], "m": "sonnet"}
 {"w": "walk off", "h": "9f85b8af1a1e", "e": [["walk off|verb|0", [3, 1, 2], false]], "m": "sonnet"}
 {"w": "walk off the job", "h": "a68d9b1e49b0", "e": [["walk off the job|verb|0", [1], false]], "m": "sonnet"}
@@ -24727,3 +24727,5 @@
 {"w": "zoning", "h": "ba34cd157b67", "e": [["zoning|noun|0", [1, 2], false]], "m": "sonnet"}
 {"w": "zoo", "h": "c77a75e12d31", "e": [["zoo|noun|0", [1, 2, 3, 4, 5], false]], "m": "sonnet"}
 {"w": "zoom", "h": "ce11d66a38d7", "e": [["zoom|verb|1", [3, 1, 4, 5, 6, 2, 7], false], ["zoom|noun|1", [4, 1, 3, 2, 5], false], ["zoom|verb|2", [1], false], ["zoom|noun|2", [1], false], ["zoom|intj|1", [2, 1, 3], false]], "m": "sonnet"}
+{"w": "Sen.", "h": "77398dc09d02", "e": [["Sen.|noun|0", [1], false], ["Sen.|name|0", [1], false]], "m": "hand"}
+{"w": "Rev.", "h": "2cf41a63ae26", "e": [["Rev.|name|0", [2, 1], false]], "m": "hand"}

@@ -15,7 +15,7 @@ import {fileURLToPath, pathToFileURL} from 'node:url';
 const STUBS = 'export const convertVariants = (x) => x; export const Hangul = {}; export default {};';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const yomitan = process.env.YOMITAN_DIR || join(root, 'data', 'yomitan');
-const zip = join(root, 'dist', 'wiktionary-en-ko.zip');
+const zip = process.env.ENKO_ZIP || join(root, 'dist', 'wiktionary-en-ko.zip');
 // Yomitan bundles a few npm libraries into ext/lib at build time (kanji variants, Hangul, kana). English lookups
 // never call them, so a checkout without `npm ci` gets empty stand-ins.
 registerHooks({
@@ -136,7 +136,7 @@ if (textFile === null) {
         const result = await lookup(text.slice(m.index).replace(/\s+/g, ' '));
         const top = result.entries[0];
         if (top) {
-            hits.push({word: m[0], matched: result.matched, term: top.term, rules: top.rules, pos: top.senses[0]?.pos ?? '', ko: top.senses[0]?.ko[0] ?? '', en: top.senses[0]?.en[0] ?? ''});
+            hits.push({i: m.index, word: m[0], matched: result.matched, term: top.term, rules: top.rules, pos: top.senses[0]?.pos ?? '', ko: top.senses[0]?.ko[0] ?? '', en: top.senses[0]?.en[0] ?? ''});
         } else {
             missing.set(m[0], (missing.get(m[0]) || 0) + 1);
         }
