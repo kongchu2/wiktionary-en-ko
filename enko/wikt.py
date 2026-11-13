@@ -196,6 +196,9 @@ def select(top=TOP_WORDS):
                     # It → it and She → she only repeat what Yomitan's capitalisation handling does.
                     # "has been" is listed as a spelling of has-been, but in text it is nearly always the verb.
                     spaced = tags[0] == "alt-of" and " " in word and target.replace("-", " ") == word
+                    # "is" and "as" are also the plurals of the letters i and a.
+                    if len(target) == 1:
+                        continue
                     if target.lower() != word.lower() and not spaced and not (tags[0] == "alt-of" and len(word) < MIN_ALT):
                         links.setdefault(word, {}).setdefault((target, pos), tags)
             r = None
@@ -242,6 +245,9 @@ def select(top=TOP_WORDS):
     keep, deferred = [], []
     for _, _, rec, namesake_only, abbr_only in out:
         w = rec["w"]
+        # "It." (Italian), "So." (south), "Can." (Canada) would match "it." at the end of every sentence.
+        if w.endswith(".") and w.count(".") == 1 and w[:-1].lower() in headwords:
+            continue
         if abbr_only:
             variant = w != w.lower() and w.lower() in headwords and w not in KEEP_CAPS
         elif rec["pos"] == "name":

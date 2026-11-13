@@ -131,14 +131,45 @@ def _form_rows(headwords, seq):
     if not FORMS.exists():
         return rows
     with open(FORMS, encoding="utf-8") as f:
-        for line in f:
-            form = json.loads(line)
-            if form["to"] in headwords and (form["w"], form["to"]) not in seen:
-                seen.add((form["w"], form["to"]))
-                seq += 1
-                label = form_label(form["t"])
-                rows.append([form["w"], "", "", "", 0, [[form["to"], [label] if label else []]], seq, ""])
+        forms = [json.loads(line) for line in f]
+    links = {}
+    for form in forms:
+        links.setdefault(form["w"], []).append(form)
+
+    def add(word, target, label):
+        nonlocal seq
+        if target in headwords and (word, target) not in seen:
+            seen.add((word, target))
+            seq += 1
+            rows.append([word, "", "", "", 0, [[target, [label] if label else []]], seq, ""])
+
+    for form in forms:
+        if form["to"] in headwords:
+            add(form["w"], form["to"], form_label(form["t"]))
+        elif form["t"][0] == "case":
+            # "Is" → is, but every entry of "is" is hidden: point at what "is" links to (be), without a label.
+            for nxt in links.get(form["to"], []):
+                add(form["w"], nxt["to"], None)
     return rows
+
+
+def _curly_rows(rows, seq):
+    """Text mostly has ’ where Wiktionary writes ' (didn’t, I’m), and Yomitan's English lookup does not
+    convert it. Give every spelling with ' a twin with ’ that points where the original does."""
+    out, seen = [], {row[0] for row in rows}
+    for row in rows:
+        word = row[0]
+        if "'" not in word:
+            continue
+        curly = word.replace("'", "’")
+        is_link = isinstance(row[5][0], list)
+        target, labels = (row[5][0][0], row[5][0][1]) if is_link else (word, [])
+        if (curly, target) in seen:
+            continue
+        seen.add((curly, target))
+        seq += 1
+        out.append([curly, "", "", "", 0, [[target, labels]], seq, ""])
+    return out
 
 
 # Wiktionary's placeholder for the literal reading of an idiom ("see get, memo"); it says nothing in Korean.
@@ -213,6 +244,7 @@ def main(args):
             continue
         rows.append([e["w"], "", "", wikt.rule_of(e), score, [_render(e, tr, tags)], seq, ""])
     forms = _form_rows({row[0] for row in rows}, seq)
+    forms += _curly_rows(rows + forms, seq + len(forms))
     rows += forms
     version = SOURCE_VERSION.read_text().strip()
     index = _index(f"영어 위키낱말사전 기반 영한사전. 한국어 뜻은 LLM 번역 (Wiktionary {version}).")
