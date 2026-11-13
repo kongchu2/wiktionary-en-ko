@@ -86,13 +86,17 @@ const options = {
 };
 
 /** Korean glosses and the part-of-speech label from one structured-content definition. */
-function gloss(node, out = {pos: '', ko: []}) {
+function gloss(node, out = {pos: '', ko: [], en: []}, inEnglish = false) {
     if (Array.isArray(node)) {
-        for (const child of node) { gloss(child, out); }
+        for (const child of node) { gloss(child, out, inEnglish); }
+    } else if (typeof node === 'string') {
+        if (inEnglish) { out.en.push(node); }
     } else if (node && typeof node === 'object') {
+        if (node.tag === 'summary') { return out; }
+        inEnglish = inEnglish || (node.lang === 'en' && node.tag === 'ol');
         if (node.lang === 'ko' && typeof node.content === 'string') { out.ko.push(node.content); }
         if (!out.pos && node.data?.enko === 'tag' && !node.data.kind && typeof node.content === 'string') { out.pos = node.content; }
-        gloss(node.content, out);
+        gloss(node.content, out, inEnglish);
     }
     return out;
 }
@@ -132,7 +136,7 @@ if (textFile === null) {
         const result = await lookup(text.slice(m.index).replace(/\s+/g, ' '));
         const top = result.entries[0];
         if (top) {
-            hits.push({word: m[0], matched: result.matched, term: top.term, rules: top.rules, ko: top.senses[0]?.ko[0] ?? ''});
+            hits.push({word: m[0], matched: result.matched, term: top.term, rules: top.rules, pos: top.senses[0]?.pos ?? '', ko: top.senses[0]?.ko[0] ?? '', en: top.senses[0]?.en[0] ?? ''});
         } else {
             missing.set(m[0], (missing.get(m[0]) || 0) + 1);
         }

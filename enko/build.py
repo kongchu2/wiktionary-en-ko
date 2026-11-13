@@ -113,6 +113,9 @@ ALT_LABELS = [("pronunciation-spelling", "발음대로 쓴 철자"), ("misconstr
 
 
 def form_label(tags):
+    """None for a capitalisation link, which must carry no label: an inflection label would rank it lower."""
+    if tags[0] == "case":
+        return None
     if tags[0] == "form-of":
         return " ".join(ko for tag, ko in FORM_LABELS if tag in tags) or "활용형"
     return next((ko for tag, ko in ALT_LABELS if tag in tags), "다른 철자")
@@ -129,8 +132,23 @@ def _form_rows(headwords, seq):
             if form["to"] in headwords and (form["w"], form["to"]) not in seen:
                 seen.add((form["w"], form["to"]))
                 seq += 1
-                rows.append([form["w"], "", "", "", 0, [[form["to"], [form_label(form["t"])]]], seq, ""])
+                label = form_label(form["t"])
+                rows.append([form["w"], "", "", "", 0, [[form["to"], [label] if label else []]], seq, ""])
     return rows
+
+
+# Wiktionary's placeholder for the literal reading of an idiom ("see get, memo"); it says nothing in Korean.
+LITERAL = "Used other than figuratively or idiomatically"
+
+
+def _drop_literal(entry, tr):
+    keep = [i for i, s in enumerate(entry["s"]) if not s["g"].startswith(LITERAL)]
+    if len(keep) == len(entry["s"]):
+        return entry, tr
+    entry = dict(entry, s=[entry["s"][i] for i in keep])
+    if tr:
+        tr = dict(tr, s=[tr["s"][i] for i in keep])
+    return entry, tr
 
 
 def main(args):
@@ -142,6 +160,9 @@ def main(args):
         if tr and tr["h"] != wikt.source_hash(e):
             tr = None  # the source entry changed since it was translated
         if tr is None and not args.include_untranslated:
+            continue
+        e, tr = _drop_literal(e, tr)
+        if not e["s"]:
             continue
         order[e["w"]] += 1  # same spelling: keep Wiktionary's order (first etymology first)
         rows.append([e["w"], "", "", wikt.rule_of(e), 1 - order[e["w"]], [_render(e, tr, tags)], seq, ""])

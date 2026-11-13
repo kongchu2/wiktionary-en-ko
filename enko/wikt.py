@@ -192,7 +192,9 @@ def select(top=TOP_WORDS):
             if len(toks) <= MAX_WORDS:
                 for target, tags in _links(e):
                     # It → it and She → she only repeat what Yomitan's capitalisation handling does.
-                    if target.lower() != word.lower() and not (tags[0] == "alt-of" and len(word) < MIN_ALT):
+                    # "has been" is listed as a spelling of has-been, but in text it is nearly always the verb.
+                    spaced = tags[0] == "alt-of" and " " in word and target.replace("-", " ") == word
+                    if target.lower() != word.lower() and not spaced and not (tags[0] == "alt-of" and len(word) < MIN_ALT):
                         links.setdefault(word, {}).setdefault((target, pos), tags)
             r = None
             if len(toks) == 1:
@@ -245,7 +247,7 @@ def select(top=TOP_WORDS):
         else:
             variant = w != w.lower() and w.lower() in headwords and w not in KEEP_CAPS
         (deferred if variant else keep).append(rec)
-    return keep, deferred, _needed(_forms(links, {rec["w"] for rec in keep}), keep)
+    return keep, deferred, _needed(_forms(links, {rec["w"] for rec in keep}), keep) + _case_links(keep)
 
 
 def _forms(links, headwords):
@@ -264,10 +266,30 @@ def _forms(links, headwords):
     return out
 
 
+def _node(script, payload):
+    try:
+        done = subprocess.run(["node", str(ROOT / "tools" / script)], input=json.dumps(payload), capture_output=True, text=True, check=True)
+    except (OSError, subprocess.CalledProcessError) as err:
+        print(f"warning: tools/{script} failed ({err}); skipping it")
+        return None
+    return json.loads(done.stdout)
+
+
+def _case_links(entries):
+    """Links "This" → this where Yomitan would otherwise show a capitalised entry first (Thi, by the plural rule).
+    The link has no inflection label, so it ranks with the exact matches."""
+    caps = {}
+    for e in entries:
+        if e["w"][:1].isupper() and " " not in e["w"]:
+            caps.setdefault(e["w"], set()).add(rule_of(e))
+    words = sorted({e["w"] for e in entries if e["w"][:1].islower() and " " not in e["w"]})
+    found = _node("case-links.mjs", {"words": words, "entries": {w: sorted(r) for w, r in caps.items()}}) or []
+    return [{"w": w[0].upper() + w[1:], "to": w, "p": "", "t": ["case"]} for w in found]
+
+
 def _needed(forms, entries):
     """Drop the links Yomitan resolves by itself (plans → plan). Its own deinflection knows the part of speech,
     so "grumbled" shows only the verb; a link row cannot say that and brings up every entry of the headword."""
-    script = ROOT / "tools" / "redundant-forms.mjs"
     rules = {}
     for e in entries:
         rules.setdefault(e["w"], set()).add(rule_of(e))
@@ -275,12 +297,10 @@ def _needed(forms, entries):
         "forms": [{"w": f["w"], "to": f["to"], "rule": rule_of({"w": f["to"], "pos": f["p"]})} for f in forms],
         "rules": {w: sorted(r) for w, r in rules.items()},
     }
-    try:
-        done = subprocess.run(["node", str(script)], input=json.dumps(payload), capture_output=True, text=True, check=True)
-    except (OSError, subprocess.CalledProcessError) as err:
-        print(f"warning: could not ask Yomitan which forms it resolves itself ({err}); keeping all links")
-        return forms
-    drop = set(json.loads(done.stdout))
+    drop = _node("redundant-forms.mjs", payload)
+    if drop is None:
+        return forms  # keep every link
+    drop = set(drop)
     # A spelling linked to the same headword by a form Yomitan cannot resolve keeps that one link.
     return [f for i, f in enumerate(forms) if i not in drop]
 
