@@ -25,6 +25,8 @@ SYMBOL_WORD = re.compile(r"[A-Za-z]{2,}$")  # km, cm, Fe: symbols that are read 
 # (went, favorite) become links to the base word instead, see `_links`.
 ABBR_TAGS = {"abbreviation", "initialism", "acronym", "contraction", "clipping", "ellipsis"}
 MIN_ALT = 3  # other-spelling links from one or two letters (fa → for, u → you) are noise under longer words
+# Inflection tags worth showing to the order editor (plural of year, past of go).
+FORM_WORDS = {"plural", "past", "participle", "present", "gerund", "third-person", "singular", "comparative", "superlative"}
 MAX_ABBR = 2  # per entry: CIA has eight expansions, and the third is already the Culinary Institute of America
 KEEP_CAPS = {"I", "US", "IT", "AM", "ID"}  # capitalised variants of a lowercase headword that are kept anyway
 # Words that can follow a verb in a phrasal verb (Yomitan's particle and preposition lists).

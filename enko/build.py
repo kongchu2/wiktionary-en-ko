@@ -1,13 +1,14 @@
 """Build the Yomitan English→Korean term dictionary."""
 import hashlib
 import json
+import re
 import zipfile
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
 from . import wikt
-from .paths import DIST, FORMS, NAME, RELEASE_URL, REPO, SOURCE_VERSION, TAGS_FILE, TERMS_STORE
+from .paths import DIST, FORMS, NAME, ORDER_STORE, RELEASE_URL, REPO, SOURCE_VERSION, TAGS_FILE, TERMS_STORE
 from .store import Store
 
 BANK_SIZE = 10000
@@ -141,8 +142,15 @@ def _form_rows(headwords, seq):
 LITERAL = "Used other than figuratively or idiomatically"
 
 
+META = re.compile(r"해당 없음|적용되지 않|번역하지 않")
+
+
 def _drop_literal(entry, tr):
-    keep = [i for i, s in enumerate(entry["s"]) if not s["g"].startswith(LITERAL)]
+    """The literal sense helps for phrasal verbs (found in → ~에서 찾다); drop it only where the model wrote
+    a placeholder instead of a gloss (get the memo → 해당 없음)."""
+    def useless(i):
+        return entry["s"][i]["g"].startswith(LITERAL) and (tr is None or any(META.search(g) for g in tr["s"][i]))
+    keep = [i for i in range(len(entry["s"])) if not useless(i)]
     if len(keep) == len(entry["s"]):
         return entry, tr
     entry = dict(entry, s=[entry["s"][i] for i in keep])
@@ -151,25 +159,60 @@ def _drop_literal(entry, tr):
     return entry, tr
 
 
+def _orders(entries):
+    """id -> (position among the spelling's entries, sense order, hidden), from translations/order.jsonl.
+    A spelling whose entries changed since its order was decided falls back to Wiktionary's order."""
+    from .translate import order_hash
+
+    store = Store(ORDER_STORE, key="w")
+    by_word = {}
+    for e in entries:
+        by_word.setdefault(e["w"], []).append(e)
+    out = {}
+    for w, rec in store.records.items():
+        if w in by_word and rec["h"] == order_hash(by_word[w]):
+            for pos, (eid, senses, hide) in enumerate(rec["e"]):
+                out[eid] = (pos, senses, hide)
+    return out
+
+
+def _reorder(entry, tr, senses):
+    entry = dict(entry, s=[entry["s"][i - 1] for i in senses])
+    if tr:
+        tr = dict(tr, s=[tr["s"][i - 1] for i in senses])
+    return entry, tr
+
+
 def main(args):
     store = Store(Path(args.store) if args.store else TERMS_STORE)
     tags = TagNames()
-    rows, order, seq = [], Counter(), 0
-    for seq, e in enumerate(wikt.load(), 1):
+    entries = wikt.load()
+    orders = _orders(entries)
+    rows, order, seq, hidden = [], Counter(), 0, 0
+    for seq, e in enumerate(entries, 1):
         tr = store.get(e["id"])
         if tr and tr["h"] != wikt.source_hash(e):
             tr = None  # the source entry changed since it was translated
         if tr is None and not args.include_untranslated:
             continue
+        if e["id"] in orders:
+            pos, senses, hide = orders[e["id"]]
+            if hide:
+                hidden += 1
+                continue
+            e, tr = _reorder(e, tr, senses)
+            score = -pos
+        else:
+            order[e["w"]] += 1  # same spelling: keep Wiktionary's order (first etymology first)
+            score = 1 - order[e["w"]]
         e, tr = _drop_literal(e, tr)
         if not e["s"]:
             continue
-        order[e["w"]] += 1  # same spelling: keep Wiktionary's order (first etymology first)
-        rows.append([e["w"], "", "", wikt.rule_of(e), 1 - order[e["w"]], [_render(e, tr, tags)], seq, ""])
+        rows.append([e["w"], "", "", wikt.rule_of(e), score, [_render(e, tr, tags)], seq, ""])
     forms = _form_rows({row[0] for row in rows}, seq)
     rows += forms
     version = SOURCE_VERSION.read_text().strip()
     index = _index(f"영어 위키낱말사전 기반 영한사전. 한국어 뜻은 LLM 번역 (Wiktionary {version}).")
     digest = _write_zip(index, rows)
     (DIST / "content.sha256").write_text(f"{digest}  {NAME}\n")
-    print(f"{NAME}: {len(rows) - len(forms)} entries, {len(forms)} forms")
+    print(f"{NAME}: {len(rows) - len(forms)} entries, {len(forms)} forms, {len(orders)} entries reordered, {hidden} hidden")

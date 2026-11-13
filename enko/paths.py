@@ -17,6 +17,7 @@ SOURCE_VERSION = SOURCE / "VERSION"
 
 TERMS_STORE = TRANSLATIONS / "terms.jsonl"
 TAGS_FILE = TRANSLATIONS / "tags.json"
+ORDER_STORE = TRANSLATIONS / "order.jsonl"  # per spelling: entry and sense order, hidden entries
 
 NAME = "wiktionary-en-ko"
 REPO = "kongchu2/" + NAME

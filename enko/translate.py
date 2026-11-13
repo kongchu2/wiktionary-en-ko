@@ -1,6 +1,8 @@
 """Translate English Wiktionary senses and tag names into Korean with an LLM."""
+import hashlib
 import json
 import re
+import subprocess
 import sys
 import threading
 import time
@@ -10,7 +12,7 @@ from pathlib import Path
 
 from . import wikt
 from .llm import ClaudeCLI, RateLimited
-from .paths import TAGS_FILE, TERMS_STORE
+from .paths import FORMS, ORDER_STORE, ROOT, TAGS_FILE, TERMS_STORE
 from .store import Store
 
 CJK_SCRIPT = re.compile(r"[぀-ヿ㐀-䶿一-鿿]")  # kana and hanja
@@ -190,5 +192,162 @@ def translate_tags(args):
     print(f"{len(tags)} tags translated, missing: {[t for t in todo if t not in tags]}")
 
 
+ORDER_SYSTEM = """You are the editor of an English→Korean learner's dictionary built on English Wiktionary. Wiktionary lists parts of speech and senses in historical order, so the first sense a reader sees is often an old or rare one (with: "against"; team: "draught animals"; style: "a stylus"). Your job is to put them in the order a learner needs.
+
+Each item is one spelling (#n). Its entries are lettered (A, B, …), each with a part of speech and numbered senses (tags in parentheses). Some items also say how the spelling reads as an inflected form of another word (years: plural of year).
+
+For each item return the entries in the order a reader of modern English (news, the web, textbooks, fiction) meets them, most frequent use first, and for each entry its sense numbers in the same kind of order.
+
+Rules:
+1. Every entry letter exactly once, and every sense number of an entry exactly once.
+2. Move what clearly matters: the everyday meaning first (with → "accompanying", for → the preposition before the conjunction "because", on → the preposition before the adjective "switched on"). Where senses are about equally common, keep Wiktionary's order.
+3. Put obsolete-feeling, historical, regional, slang and narrow technical senses after general ones, unless that use is the main one for this spelling.
+4. hide: true only for an entry that is a rare or specialised use of a spelling whose normal reading is the inflected form given (years "a very long time", goals "admirable" (slang), stocks "a pillory", is "used with existential there"). A reader who meets the spelling almost always means the inflected form, and Yomitan shows that form below the hidden entry otherwise. Never hide an entry that is common in its own right: participial adjectives (developed, known, interested), -ing nouns (building, training, meeting), plural-only nouns with their own meaning (data, news, glasses, means). With no inflected reading given, never hide anything."""
+
+ORDER_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "items": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "n": {"type": "integer"},
+                    "entries": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "e": {"type": "string"},
+                                "senses": {"type": "array", "items": {"type": "integer"}},
+                                "hide": {"type": "boolean"},
+                            },
+                            "required": ["e", "senses", "hide"],
+                        },
+                    },
+                },
+                "required": ["n", "entries"],
+            },
+        }
+    },
+    "required": ["items"],
+}
+MAX_GLOSS = 90
+
+
+def order_hash(entries):
+    """Fingerprint of a spelling's entries; a change means the order has to be decided again."""
+    payload = [[e["id"], wikt.source_hash(e)] for e in entries]
+    return hashlib.sha1(json.dumps(payload).encode()).hexdigest()[:12]
+
+
+def order_groups(top):
+    """Spellings in the wordfreq top N whose order is worth deciding: several entries, or several senses,
+    or an inflected reading that may beat the spelling's own entry. Returns [(word, entries, readings)]."""
+    from wordfreq import top_n_list
+
+    entries = wikt.load()
+    by_word = {}
+    for e in entries:
+        by_word.setdefault(e["w"], []).append(e)
+    words = [w for w in top_n_list("en", top) if w in by_word]
+    rules = {}
+    for e in entries:
+        rules.setdefault(e["w"], set()).add(wikt.rule_of(e))
+    try:
+        done = subprocess.run(
+            ["node", str(ROOT / "tools" / "deinflect.mjs")],
+            input=json.dumps({"words": words, "rules": {w: sorted(r) for w, r in rules.items()}}),
+            capture_output=True, text=True, check=True,
+        )
+        readings = json.loads(done.stdout)
+    except (OSError, subprocess.CalledProcessError) as err:
+        print(f"warning: tools/deinflect.mjs failed ({err}); no inflected readings")
+        readings = {}
+    if FORMS.exists():
+        with open(FORMS, encoding="utf-8") as f:
+            for line in f:
+                form = json.loads(line)
+                if form["t"][0] == "form-of" and form["w"] in by_word:
+                    labels = [t for t in form["t"][1:] if t in wikt.FORM_WORDS]
+                    readings.setdefault(form["w"], []).append([form["to"], labels])
+    groups = []
+    for w in words:
+        es = by_word[w]
+        reads = [(h, t) for h, t in readings.get(w, []) if h in by_word and h != w][:3]
+        if len(es) > 1 or any(len(e["s"]) >= 3 for e in es) or reads:
+            groups.append((w, es, reads))
+    return groups, by_word
+
+
+def order_prompt(n, word, entries, readings, by_word):
+    lines = [f"#{n} {word}"]
+    for letter, e in zip(LETTERS, entries):
+        lines.append(f"{letter}. {e['pos']}")
+        for i, s in enumerate(e["s"], 1):
+            g = s["g"] if len(s["g"]) <= MAX_GLOSS else s["g"][: MAX_GLOSS - 1] + "…"
+            lines.append(f"  {i}. " + (f"({', '.join(s['t'])}) " if s["t"] else "") + g)
+    for head, labels in readings:
+        first = by_word[head][0]["s"][0]["g"][:60]
+        lines.append(f"inflected reading: {' '.join(labels) or 'form'} of {head} ({first})")
+    return "\n".join(lines)
+
+
+LETTERS = [chr(c) for c in range(ord("A"), ord("Z") + 1)] + [f"Z{i}" for i in range(1, 100)]
+
+
+def _valid_order(item, entries, readings):
+    if sorted(x["e"] for x in item["entries"]) != sorted(LETTERS[: len(entries)]):
+        return False
+    for x in item["entries"]:
+        e = entries[LETTERS.index(x["e"])]
+        if sorted(x["senses"]) != list(range(1, len(e["s"]) + 1)):
+            return False
+    hidden = sum(1 for x in item["entries"] if x["hide"])
+    return hidden == 0 or (readings and hidden < len(entries) + 1)
+
+
+def translate_order(args):
+    store = Store(Path(args.store) if args.store else ORDER_STORE, key="w")
+    llm = ClaudeCLI(args.model)
+    groups, by_word = order_groups(args.max_rank or 5000)
+    todo = [g for g in groups if (store.get(g[0]) or {}).get("h") != order_hash(g[1])]
+    if args.limit:
+        todo = todo[: args.limit]
+    print(f"{len(todo)} of {len(groups)} spellings to order with {args.model}")
+
+    def worker(batch):
+        by_n = dict(enumerate(batch, 1))
+        prompt = "\n\n".join(order_prompt(n, w, es, reads, by_word) for n, (w, es, reads) in by_n.items())
+        out = llm.call(ORDER_SYSTEM, prompt, ORDER_SCHEMA)
+        recs = []
+        for item in out.get("items", []):
+            g = by_n.get(item.get("n"))
+            if g is None or not _valid_order(item, g[1], g[2]):
+                continue
+            w, es, _ = g
+            del by_n[item["n"]]
+            recs.append({
+                "w": w,
+                "h": order_hash(es),
+                "e": [[es[LETTERS.index(x["e"])]["id"], x["senses"], x["hide"]] for x in item["entries"]],
+                "m": args.model,
+            })
+        store.add_many(recs)
+        return len(recs), list(by_n.values())
+
+    weight = lambda g: sum(len(e["s"]) for e in g[1]) + 2
+    batches = list(_chunk(todo, args.batch, weight=weight, max_weight=args.batch * 8))
+    ok, failed, stopped = _run(batches, worker, args.workers)
+    if failed and not stopped:
+        print(f"retrying {len(failed)} spellings one by one")
+        ok2, failed, stopped = _run(list(_chunk(failed, 1)), worker, args.workers)
+        ok += ok2
+    store.compact()
+    print(f"ordered {ok}, still failing {len(failed)}: {', '.join(g[0] for g in failed[:50])}")
+    if stopped:
+        sys.exit(75)
+
+
 def main(args):
-    {"terms": translate_terms, "tags": translate_tags}[args.what](args)
+    {"terms": translate_terms, "tags": translate_tags, "order": translate_order}[args.what](args)
