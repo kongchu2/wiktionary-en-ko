@@ -24,6 +24,7 @@ STYLES = """\
 [data-sc-enko="note"] { font-size: 0.85em; opacity: 0.8; }
 [data-sc-enko="en"] { font-size: 0.85em; opacity: 0.75; margin-top: 0.3em; }
 [data-sc-enko="en"] ol { margin: 0; }
+[data-sc-enko="ex"] { font-size: 0.85em; opacity: 0.7; font-style: italic; }
 """
 
 
@@ -82,6 +83,8 @@ def _render(entry, tr, tags):
             parts.append({"tag": "span", "lang": "ko", "content": "; ".join(tr["s"][i])})
         else:
             parts.append({"tag": "span", "lang": "en", "content": s["g"]})
+        if s.get("ex"):
+            parts.append({"tag": "div", "lang": "en", "data": {"enko": "ex"}, "content": s["ex"]})
         items.append(parts)
 
     content = [{"tag": "div", "content": [tags.span(entry["pos"])]}]

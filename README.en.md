@@ -23,6 +23,7 @@ It keeps the headwords, parts of speech and sense divisions of the [English Wikt
 - Proper names (`London`, `March`, `English`) are included, but each spelling keeps at most 1 surname sense, 1 given-name sense and 2 place senses. Namesake places listed under "a number of places in …" are dropped.
 - Capitalised variants of a lowercase word (`She` the ethnic group, `TO` the verb, `Grew` the surname) are set aside in `source/deferred.jsonl` (8,783 entries). They are neither translated nor built. `I`, `US`, `IT`, `AM`, `ID` and proper names with a meaning of their own (`March`, `Turkey`) stay.
 - Multi-word headwords and hyphenated compounds have two to four words, each inside the top 50,000. Nouns and proper names are too many, so only those with translations into at least 3 languages on Wiktionary are included. The same test applies to headwords made only of very common words (`to the`, `for you`), and headwords with a slot (`pull someone's leg`) are left out.
+- Senses with an example sentence on Wiktionary (22% of all, 47% for the top 3,000 words) show one English example under the gloss. Examples are not translated.
 - The selection is stored in `source/entries.jsonl`, and the build reads only that file.
 
 ## Install
