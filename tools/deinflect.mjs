@@ -21,6 +21,9 @@ const load = (path) => import(pathToFileURL(join(yomitan, path)).href);
 const {MultiLanguageTransformer} = await load('ext/js/language/multi-language-transformer.js');
 const {LanguageTransformer} = await load('ext/js/language/language-transformer.js');
 
+// Derivations (previously → previous by "adverb", unhappy → happy by "un-") make a new word, not a form of the
+// old one, so they are no reason to hide anything.
+const DERIVATIONS = new Set(['adverb', '-y', 'un-', '-able']);
 const {words, rules} = JSON.parse(readFileSync(0, 'utf8'));
 const transformer = new MultiLanguageTransformer();
 transformer.prepare();
@@ -34,6 +37,7 @@ for (const word of words) {
     const found = [];
     for (const {text, trace, conditions} of transformer.transform('en', word)) {
         if (trace.length === 0 || text === word || !(text in rules)) { continue; }
+        if (trace.some((f) => DERIVATIONS.has(f.transform))) { continue; }
         if (!rules[text].some((rule) => LanguageTransformer.conditionsMatch(conditions, flagsOf(rule)))) { continue; }
         if (!found.some(([t]) => t === text)) { found.push([text, trace.map((f) => f.transform).reverse()]); }
     }

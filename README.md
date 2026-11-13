@@ -38,7 +38,7 @@ Yomitan → 설정 → Lookup resolution을 Word로 바꾸는 것을 권합니�
 ## 번역 품질
 
 - 한국어 뜻은 LLM(Claude Haiku) 자동 번역이라 오역이 있습니다. 항목마다 영어 원문(Wiktionary)을 접어 두었으니 확인용으로 쓰세요.
-- 위키낱말사전은 뜻을 역사 순서로 나열해서 첫 뜻이 옛 뜻인 경우가 많습니다(`with` → "~에 맞서", `team` → "역축 한 조"). 그래서 빈도 상위 5,000개 철자(3,672개)는 Claude Sonnet이 품사와 뜻을 현대 영어에서 흔한 순서로 다시 배열했습니다(`translations/order.jsonl`, 손으로 고칠 수 있음). 활용형으로 읽히는 게 보통인 철자의 사소한 항목(`years` "한참", `goals` "닮고 싶은")은 숨겨서 원형(year, goal)이 먼저 나오게 했습니다.
+- 위키낱말사전은 뜻을 역사 순서로 나열해서 첫 뜻이 옛 뜻인 경우가 많습니다(`with` → "~에 맞서", `team` → "역축 한 조"). 그래서 빈도 상위 20,000개 철자(11,147개)는 Claude Sonnet이 품사와 뜻을 현대 영어에서 흔한 순서로 다시 배열했습니다(`translations/order.jsonl`, 손으로 고칠 수 있음). 활용형으로 읽히는 게 보통인 철자의 사소한 항목(`years` "한참", `goals` "닮고 싶은")은 숨겨서 원형(year, goal)이 먼저 나오게 했습니다.
 - 모델이 확신하지 못한 항목에는 `※ 자동 번역 신뢰도 낮음` 표시가 붙습니다. 7,261개 항목(6.7%)입니다.
 - 지금까지 한 품질 확인은 300개 항목(뜻 883개)의 블라인드 테스트 하나이고, 채점도 Claude가 했습니다. 뜻의 약 2%에 문제가 있었는데, 대부분은 부정확한 표현이고 일부는 뜻이 틀렸습니다. 모델이 모델을 채점했으므로 실제 비율은 더 높을 수 있습니다. 뜻이 12개를 넘는 항목은 테스트에 없었습니다.
 - 오역 수정은 `translations/terms.jsonl`에서 해당 항목 줄의 `s`(뜻별 한국어 목록)를 고치면 됩니다.
@@ -53,7 +53,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m enko fetch                         # Yomitan 스키마 다운로드
 .venv/bin/python -m enko translate tags                # 품사·용법 태그 한국어 라벨
 .venv/bin/python -m enko translate terms --limit 1000  # 빈도순으로 미번역 항목 번역 (재실행하면 이어서)
-.venv/bin/python -m enko translate order --model sonnet  # 상위 5,000 철자의 품사·뜻 순서 정리
+.venv/bin/python -m enko translate order --model sonnet --max-rank 20000  # 상위 철자의 품사·뜻 순서 정리
 .venv/bin/python -m enko build                         # dist/wiktionary-en-ko.zip
 .venv/bin/python -m enko validate                      # Yomitan 스키마 검증 + 활용 규칙 확인
 .venv/bin/python -m enko review -n 200                 # review/sample.md 에 검수용 샘플

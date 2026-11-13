@@ -38,7 +38,7 @@ Setting Yomitan → Settings → Lookup resolution to Word is recommended. With 
 ## Translation quality
 
 - The Korean glosses are machine-translated by an LLM (Claude Haiku), so some are wrong. Each entry has the English original from Wiktionary folded underneath; use it to check.
-- Wiktionary lists senses in historical order, so the first sense is often an old one (`with` "against", `team` "draught animals"). For the 5,000 most frequent spellings (3,672 of them), Claude Sonnet reordered parts of speech and senses by how common they are in modern English (`translations/order.jsonl`, hand-editable). Minor entries of spellings that are normally read as an inflected form (`years` "a very long time", `goals` "admirable") are hidden, so that the base word (year, goal) comes first.
+- Wiktionary lists senses in historical order, so the first sense is often an old one (`with` "against", `team` "draught animals"). For the 20,000 most frequent spellings (11,147 of them), Claude Sonnet reordered parts of speech and senses by how common they are in modern English (`translations/order.jsonl`, hand-editable). Minor entries of spellings that are normally read as an inflected form (`years` "a very long time", `goals` "admirable") are hidden, so that the base word (year, goal) comes first.
 - Entries the model was unsure about carry the note `※ 자동 번역 신뢰도 낮음` (low confidence). That is 7,261 entries, 6.7%.
 - The only quality check so far was a blind test of 300 entries (883 senses), also graded by Claude: about 2% of the senses had a problem, most of them an imprecise gloss and a few a wrong meaning. Because a model graded a model, the real rate is probably higher. Entries with more than 12 senses were not in the test.
 - To fix a translation, edit the `s` field (the list of Korean glosses per sense) on that entry's line in `translations/terms.jsonl`.
@@ -53,7 +53,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m enko fetch                         # download the Yomitan schemas
 .venv/bin/python -m enko translate tags                # Korean labels for part-of-speech and usage tags
 .venv/bin/python -m enko translate terms --limit 1000  # translate untranslated entries in frequency order (resumable)
-.venv/bin/python -m enko translate order --model sonnet  # order the parts of speech and senses of the top 5,000 spellings
+.venv/bin/python -m enko translate order --model sonnet --max-rank 20000  # order the parts of speech and senses of the top spellings
 .venv/bin/python -m enko build                         # dist/wiktionary-en-ko.zip
 .venv/bin/python -m enko validate                      # check against the Yomitan schemas and the deinflection rules
 .venv/bin/python -m enko review -n 200                 # write a review sample to review/sample.md
