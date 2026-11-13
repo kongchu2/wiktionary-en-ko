@@ -34,12 +34,13 @@ It keeps the headwords, parts of speech and sense divisions of the [English Wikt
 
 Inflected forms and phrasal verbs are found too (`running` → run, `pick it up` → pick up).
 
-Setting Yomitan → Settings → Lookup resolution to Word is recommended. With the default (Letter), prefix matches such as `wen` and `we` are listed under `went`.
+Setting Yomitan → Settings → Lookup resolution to Word is recommended. With the default (Letter), prefix matches such as `wen` and `we` are listed under `went`, and a phrase can match the start of the next word and come out on top (`a large` → `a la`, `in research` → `in re`).
 
 ## Translation quality
 
 - The Korean glosses are machine-translated by an LLM (Claude Haiku), so some are wrong. Each entry has the English original from Wiktionary folded underneath; use it to check.
 - Wiktionary lists senses in historical order, so the first sense is often an old one (`with` "against", `team` "draught animals"). For the 20,000 most frequent spellings (11,147 of them), Claude Sonnet reordered parts of speech and senses by how common they are in modern English (`translations/order.jsonl`, hand-editable). Minor entries of spellings that are normally read as an inflected form (`years` "a very long time", `goals` "admirable") are hidden, so that the base word (year, goal) comes first.
+- The same was done for 13,582 phrases made only of common words (top 3,000). Common senses come first, and rare idioms whose words are usually meant literally in running text (`be on` "to be on the list", `the man` "the establishment") are hidden, so the single words show instead.
 - Entries the model was unsure about carry the note `※ 자동 번역 신뢰도 낮음` (low confidence). That is 7,261 entries, 6.7%.
 - The only quality check so far was a blind test of 300 entries (883 senses), also graded by Claude: about 2% of the senses had a problem, most of them an imprecise gloss and a few a wrong meaning. Because a model graded a model, the real rate is probably higher. Entries with more than 12 senses were not in the test.
 - To fix a translation, edit the `s` field (the list of Korean glosses per sense) on that entry's line in `translations/terms.jsonl`.
@@ -55,6 +56,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m enko translate tags                # Korean labels for part-of-speech and usage tags
 .venv/bin/python -m enko translate terms --limit 1000  # translate untranslated entries in frequency order (resumable)
 .venv/bin/python -m enko translate order --model sonnet --max-rank 20000  # order the parts of speech and senses of the top spellings
+.venv/bin/python -m enko translate order --model sonnet --phrases  # order and hide phrases made of common words
 .venv/bin/python -m enko build                         # dist/wiktionary-en-ko.zip
 .venv/bin/python -m enko validate                      # check against the Yomitan schemas and the deinflection rules
 .venv/bin/python -m enko review -n 200                 # write a review sample to review/sample.md

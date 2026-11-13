@@ -202,7 +202,8 @@ Rules:
 1. Every entry letter exactly once, and every sense number of an entry exactly once.
 2. Move what clearly matters: the everyday meaning first (with → "accompanying", for → the preposition before the conjunction "because", on → the preposition before the adjective "switched on"). Where senses are about equally common, keep Wiktionary's order.
 3. Put obsolete-feeling, historical, regional, slang and narrow technical senses after general ones, unless that use is the main one for this spelling.
-4. hide: true only for an entry that is a rare or specialised use of a spelling whose normal reading is the inflected form given (years "a very long time", goals "admirable" (slang), stocks "a pillory", is "used with existential there"). A reader who meets the spelling almost always means the inflected form, and Yomitan shows that form below the hidden entry otherwise. Never hide an entry that is common in its own right: participial adjectives (developed, known, interested), -ing nouns (building, training, meeting), plural-only nouns with their own meaning (data, news, glasses, means). With no inflected reading given, never hide anything."""
+4. hide: true only for an entry that is a rare or specialised use of a spelling whose normal reading is the inflected form given (years "a very long time", goals "admirable" (slang), stocks "a pillory", is "used with existential there"). A reader who meets the spelling almost always means the inflected form, and Yomitan shows that form below the hidden entry otherwise. Never hide an entry that is common in its own right: participial adjectives (developed, known, interested), -ing nouns (building, training, meeting), plural-only nouns with their own meaning (data, news, glasses, means). With no inflected reading given, never hide anything.
+5. Items marked "phrase" are multi-word headwords made of common words. Yomitan shows the longest match first, so whenever these words stand side by side in ordinary text, this entry appears above the single words. Put first the sense that matches the words' plain meaning when there is one (come to: "reach, amount to" before "regain consciousness"; of course: the adverb before the adjective). hide: true for an entry whose words are nearly always meant literally in running text and whose idiomatic use is rare or narrow (the man "the establishment", in the room "party to secret talks", first time "first sexual experience", less than "the < sign"); the reader then gets the single words. Never hide a phrase whose idiomatic use is common (a little, each other, as if, look at, give up, to go "takeaway" only if you think a reader meets it more often than the infinitive; when unsure, keep it)."""
 
 ORDER_SCHEMA = {
     "type": "object",
@@ -239,6 +240,25 @@ def order_hash(entries):
     """Fingerprint of a spelling's entries; a change means the order has to be decided again."""
     payload = [[e["id"], wikt.source_hash(e)] for e in entries]
     return hashlib.sha1(json.dumps(payload).encode()).hexdigest()[:12]
+
+
+def phrase_groups(top):
+    """Multi-word spellings made only of words inside the wordfreq top N: the ones that steal ordinary text."""
+    from wordfreq import top_n_list
+
+    common = set(top_n_list("en", top))
+    entries = wikt.load()
+    by_word = {}
+    for e in entries:
+        by_word.setdefault(e["w"], []).append(e)
+    groups = [
+        (w, es, [PHRASE]) for w, es in by_word.items()
+        if wikt.is_multiword(es[0]) and all(t in common for t in wikt._tokens(w))
+    ]
+    return groups, by_word
+
+
+PHRASE = ("phrase", [])
 
 
 def order_groups(top):
@@ -287,6 +307,9 @@ def order_prompt(n, word, entries, readings, by_word):
         for i, s in enumerate(e["s"], 1):
             g = s["g"] if len(s["g"]) <= MAX_GLOSS else s["g"][: MAX_GLOSS - 1] + "…"
             lines.append(f"  {i}. " + (f"({', '.join(s['t'])}) " if s["t"] else "") + g)
+    if readings == [PHRASE]:
+        lines[0] += " (phrase)"
+        return "\n".join(lines)
     for head, labels in readings:
         first = by_word[head][0]["s"][0]["g"][:60]
         lines.append(f"inflected reading: {' '.join(labels) or 'form'} of {head} ({first})")
@@ -310,7 +333,10 @@ def _valid_order(item, entries, readings):
 def translate_order(args):
     store = Store(Path(args.store) if args.store else ORDER_STORE, key="w")
     llm = ClaudeCLI(args.model)
-    groups, by_word = order_groups(args.max_rank or 5000)
+    if args.phrases:
+        groups, by_word = phrase_groups(args.max_rank or 3000)
+    else:
+        groups, by_word = order_groups(args.max_rank or 5000)
     todo = [g for g in groups if (store.get(g[0]) or {}).get("h") != order_hash(g[1])]
     if args.limit:
         todo = todo[: args.limit]

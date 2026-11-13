@@ -23,6 +23,7 @@ def main():
     t.add_argument("--batch", type=int, default=20, help="entries per LLM call")
     t.add_argument("--workers", type=int, default=4)
     t.add_argument("--store", help="alternative store file (e.g. to compare models)")
+    t.add_argument("--phrases", action="store_true", help="order: multi-word headwords made of top-N words (default 3000)")
     t.set_defaults(run=translate.main)
 
     b = sub.add_parser("build", help="build dist/*.zip")
