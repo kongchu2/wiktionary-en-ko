@@ -1,5 +1,9 @@
 # Wiktionary-en-ko — Yomitan용 영한사전
 
+> Yomitan이 처음이라면 [설치 안내](https://kongchu2.github.io/yomitan-ko/)부터 보세요.
+> 자매 사전: [일본어 → 한국어 (JMdict-ko)](https://github.com/kongchu2/jmdict-ko) · [중국어 → 한국어 (CC-CEDICT-ko)](https://github.com/kongchu2/cedict-ko)
+> 틀린 뜻을 발견하면 [오역 제보](../../issues/new?template=mistranslation.yml)로 알려 주세요.
+
 한국어 · [English](README.en.md)
 
 [Yomitan](https://github.com/yomidevs/yomitan)에서 쓰는 **영어→한국어** 사전입니다.

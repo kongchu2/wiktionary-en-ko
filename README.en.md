@@ -1,5 +1,7 @@
 # Wiktionary-en-ko: an English→Korean dictionary for Yomitan
 
+> Sister dictionaries: [Japanese → Korean (JMdict-ko)](https://github.com/kongchu2/jmdict-ko) · [Chinese → Korean (CC-CEDICT-ko)](https://github.com/kongchu2/cedict-ko). Korean install guide: https://kongchu2.github.io/yomitan-ko/
+
 [한국어](README.md) · English
 
 An **English→Korean** dictionary for [Yomitan](https://github.com/yomidevs/yomitan).

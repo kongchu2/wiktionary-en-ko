@@ -1,0 +1,28 @@
+name: 오역 제보
+description: 틀리거나 어색한 한국어 뜻을 알려 주세요
+title: "[오역] "
+labels: ["mistranslation"]
+body:
+  - type: input
+    id: word
+    attributes:
+      label: 단어
+      description: 사전에 나온 표제어 (읽기도 알면 함께)
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: 지금 나오는 뜻
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 맞는 뜻
+      description: 모르면 비워 두어도 됩니다
+  - type: textarea
+    id: context
+    attributes:
+      label: 어디서 봤나요 (선택)
+      description: 단어가 나온 문장이 있으면 판단에 도움이 됩니다
