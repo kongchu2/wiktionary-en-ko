@@ -5,18 +5,18 @@
 [Yomitan](https://github.com/yomidevs/yomitan)에서 쓰는 **영어→한국어** 사전입니다.
 [영어 위키낱말사전](https://en.wiktionary.org/)의 표제어, 품사, 뜻 구분을 그대로 쓰고([kaikki.org](https://kaikki.org/) 추출본), 각 뜻을 LLM으로 한국어로 번역합니다.
 
-> 107,824개 항목(뜻 219,495개)을 Claude Haiku로 번역했습니다.
+> 107,812개 항목(뜻 219,478개)을 Claude Haiku로 번역했습니다.
 
 ## 수록 범위
 
 | 범위 | 표제어 | 항목 | 뜻 |
 |---|---|---|---|
-| 단일 단어: [wordfreq](https://github.com/rspeer/wordfreq) 빈도 상위 50,000, 하이픈으로 이은 말(`long-term`) 포함 | 47,096 | 69,760 | 165,748 |
+| 단일 단어: [wordfreq](https://github.com/rspeer/wordfreq) 빈도 상위 50,000, 하이픈으로 이은 말(`long-term`) 포함 | 47,090 | 69,748 | 165,731 |
 | 구동사: 위 동사 + 불변화사 (`give up`, `look forward to`) | — | 4,523 | 10,040 |
 | 그 밖의 여러 단어 표제어 (`of course`, `fall in love`, `ice cream`) | — | 33,541 | 43,707 |
-| 합계 | | 107,824 | 219,495 |
+| 합계 | | 107,812 | 219,478 |
 
-- 활용형(`went`, `children`, `years`)과 다른 철자(`favorite` → favourite)는 따로 번역하지 않고 원형 항목으로 연결합니다(`source/forms.jsonl`, 59,321개. `fell in love` → fall in love도 포함). Yomitan이 스스로 풀 수 있는 규칙 활용형(`plans`)은 여기에 넣지 않습니다.
+- 활용형(`went`, `children`, `years`)과 다른 철자(`favorite` → favourite)는 따로 번역하지 않고 원형 항목으로 연결합니다(`source/forms.jsonl`, 57,551개. `fell in love` → fall in love도 포함). Yomitan이 스스로 풀 수 있는 규칙 활용형(`plans`)은 여기에 넣지 않습니다.
 - 활용형만 상위 50,000 안에 있는 단어(`relegated` → relegate, `microorganisms` → microorganism)는 원형을 넣었습니다.
 - 약어·축약형(`it's`, `Mr`, `CIA`)은 일반 뜻이 없는 항목만, 풀이 2개까지 넣었습니다.
 - 문자·기호·접사 항목, 한 글자 표제어(관사 `a`와 대명사 `I`만 남김)와, 폐어·고어·희귀·방언·옛말투·비표준·오철자 표시가 붙은 뜻은 뺐습니다.

@@ -5,18 +5,18 @@
 An **English→Korean** dictionary for [Yomitan](https://github.com/yomidevs/yomitan).
 It keeps the headwords, parts of speech and sense divisions of the [English Wiktionary](https://en.wiktionary.org/) (through the [kaikki.org](https://kaikki.org/) extraction) and translates each sense into Korean with an LLM.
 
-> 107,824 entries (219,495 senses), translated by Claude Haiku.
+> 107,812 entries (219,478 senses), translated by Claude Haiku.
 
 ## Coverage
 
 | Scope | Headwords | Entries | Senses |
 |---|---|---|---|
-| Single words: the top 50,000 by [wordfreq](https://github.com/rspeer/wordfreq) frequency, hyphenated compounds (`long-term`) included | 47,096 | 69,760 | 165,748 |
+| Single words: the top 50,000 by [wordfreq](https://github.com/rspeer/wordfreq) frequency, hyphenated compounds (`long-term`) included | 47,090 | 69,748 | 165,731 |
 | Phrasal verbs: one of those verbs + particles (`give up`, `look forward to`) | — | 4,523 | 10,040 |
 | Other multi-word headwords (`of course`, `fall in love`, `ice cream`) | — | 33,541 | 43,707 |
-| Total | | 107,824 | 219,495 |
+| Total | | 107,812 | 219,478 |
 
-- Inflected forms (`went`, `children`, `years`) and other spellings (`favorite` → favourite) are not translated separately; they link to the base entry (`source/forms.jsonl`, 59,321 links, including `fell in love` → fall in love). Regular forms that Yomitan resolves by itself (`plans`) are not in there.
+- Inflected forms (`went`, `children`, `years`) and other spellings (`favorite` → favourite) are not translated separately; they link to the base entry (`source/forms.jsonl`, 57,551 links, including `fell in love` → fall in love). Regular forms that Yomitan resolves by itself (`plans`) are not in there.
 - Where only an inflected form is inside the top 50,000 (`relegated` → relegate, `microorganisms` → microorganism), the base word is included.
 - Abbreviations and contractions (`it's`, `Mr`, `CIA`) are included only where the entry has no ordinary sense, with at most 2 expansions each.
 - Character, symbol and affix entries are left out, one-letter headwords too (only the article `a` and the pronoun `I` stay), and so are senses marked obsolete, archaic, rare, dialectal, dated, nonstandard or misspelling.
